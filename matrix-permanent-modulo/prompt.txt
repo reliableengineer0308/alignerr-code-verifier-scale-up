@@ -1,0 +1,53 @@
+Use Python to solve this problem.
+
+Problem: Permanent of a Matrix Modulo M
+
+Description:
+The permanent of an n×n matrix A is defined as:
+perm(A) = Σ_{σ ∈ S_n} Π_{i=1}^n A[i][σ(i)]
+where S_n is the set of all permutations of {1,2,...,n}.
+
+Unlike the determinant, the permanent is #P-complete to compute exactly.
+For small n (n ≤ 20), we can use dynamic programming with bitmask.
+
+Algorithm using DP with bitmask:
+dp[mask] = sum over all ways to assign first popcount(mask) rows to columns in mask
+
+Given an n×n matrix and a modulus M, compute perm(A) mod M.
+
+Input:
+- First line: T (number of test cases, 1 ≤ T ≤ 10)
+- For each test case:
+  - First line: n M (1 ≤ n ≤ 20, 1 ≤ M ≤ 10^9)
+  - Next n lines: n integers each representing the matrix (0 ≤ A[i][j] ≤ 10^9)
+
+Output:
+- For each test case:
+  - Print perm(A) mod M
+
+Examples:
+
+Example 1:
+Input:
+2
+2 1000000007
+1 2
+3 4
+3 1000000007
+1 1 1
+1 1 1
+1 1 1
+
+Output:
+10
+6
+
+Explanation:
+Case 1: 2×2 matrix permanent = 1*4 + 2*3 = 4 + 6 = 10
+Case 2: 3×3 matrix of all ones: permanent = 3! = 6
+
+Constraints:
+- 1 ≤ T ≤ 10
+- 1 ≤ n ≤ 20
+- 1 ≤ M ≤ 10^9
+- 0 ≤ A[i][j] ≤ 10^9

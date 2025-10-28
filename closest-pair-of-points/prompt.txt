@@ -1,0 +1,48 @@
+Problem: Closest Pair of Points
+
+Description:
+Implement a function closest_pair(points) that finds the pair of 2D points with the smallest Euclidean distance between them.
+
+Your task:
+- Find two distinct points (x1, y1) and (x2, y2) such that the distance √((x1−x2)² + (y1−y2)²) is minimized
+- Return the minimal distance (as float) and the pair of points
+- Optimize for large inputs (up to 10⁴ points)
+- Use divide-and-conquer approach for efficiency
+
+Input:
+List of tuples points, where each tuple is (x, y) coordinates
+3 ≤ len(points) ≤ 10⁴
+Coordinate range: −10^6≤x,y≤10^6
+All points are distinct
+
+Output:
+- Tuple (min_distance, (p1, p2)) where:
+ * min_distance: float, minimal Euclidean distance
+ * (p1, p2): tuple of two closest points (as original tuples)
+- If input invalid, return (None, None)
+
+Examples:
+Example 1:
+Input: points = [(0, 0), (1, 1), (2, 2), (3, 3)]
+Output: (1.4142135623730951, ((0, 0), (1, 1)))
+Explanation: Distance between (0,0) and (1,1) is √2 ≈ 1.414
+
+Example 2:
+Input: points = [(1, 2), (4, 6), (7, 8), (2, 1)]
+Output: (1.4142135623730951, ((1, 2), (2, 1)))
+Explanation: Distance between (1,2) and (2,1) is √((1−2)² + (2−1)²) = √2
+
+Constraints:
+3≤n≤10^4
+Time complexity: O(nlogn) using divide-and-conquer
+Space complexity: O(n)
+Avoid brute-force O(n^2) solutions for large n
+Handle floating-point precision carefully
+The result should be accurate to at least 10⁻⁹
+
+Notes:
+- Use sorting and divide-and-conquer strategy
+- After dividing, check points near the boundary carefully
+- Consider only points within the current minimal distance
+- Sort by x-coordinate first, then process recursively
+- For small subproblems (≤ 3 points), use brute-force

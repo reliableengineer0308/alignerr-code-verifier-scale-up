@@ -1,0 +1,62 @@
+Problem: Minimum Swaps to Sort Array
+
+Description:
+Given an array of distinct integers, find the minimum number of swaps required to sort the array in ascending order.
+
+Goal: Return the minimum number of swaps needed to sort the array.
+
+Input:
+* arr: list of distinct integers
+* 1≤len(arr)≤10^5
+* −10^6≤arr[i]≤10^6
+
+Output:
+* Integer: minimum number of swaps to sort the array
+
+Examples:
+1. arr = [4, 3, 2, 1] → 2
+Swap 4↔1 → [1,3,2,4], then swap 3↔2 → [1,2,3,4]`
+2. arr = [1, 5, 4, 3, 2] → 2
+Swap 5↔2 → [1,2,4,3,5], then swap 4↔3 → [1,2,3,4,5]`
+3. arr = [1, 2, 3] → 0 (already sorted)
+4. arr = [2, 1] → 1
+
+Algorithm Requirements:
+Use cycle detection in permutation approach:
+1. Create a sorted version of the array to know target positions
+2. Map each value to its target index (since values are distinct)
+3. Traverse the array and for each unvisited element:
+ * Follow the cycle: current element → where it should go → next element in that position
+ * Count cycle length
+ * Add (cycle_length - 1) to total swaps (each cycle of length k needs k-1 swaps)
+4. Return total swaps
+
+Why this works:
+* Each element belongs to a cycle in the permutation
+* A cycle of size k can be resolved with k-1 swaps
+* Total minimum swaps = sum over all cycles of (cycle_size - 1)
+
+Steps:
+1. Create sorted_arr = sorted(arr)
+2. Create pos_map: value → its index in sorted_arr
+3. Initialize visited array of booleans
+4. For each index i:
+ - If not visited, start a cycle
+ - Traverse cycle: j = i, while not visited:
+  * Mark j as visited
+  * Find where arr[j] should be: target = pos_map[arr[j]]
+  * Move to target
+  * Increment cycle length
+5. Add cycle_length - 1 to answer
+6. Return answer
+
+Edge Cases:
+* Already sorted → 0 swaps
+* Two elements swapped → 1 swap
+* Single element → 0 swaps
+
+Complexity:
+* Time: O(nlogn) due to sorting
+* Space: O(n)
+
+Note: You may assume all elements are distinct.

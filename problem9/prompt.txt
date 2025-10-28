@@ -1,0 +1,36 @@
+Problem: Flood Evacuation
+
+A severe flood has hit a city, and people are trapped in various buildings. 
+Rescue teams have boats that can navigate between buildings. 
+Each building has a certain number of people, and each water route between buildings has a capacity limit (maximum number of people that can be transported per hour).
+Your task is to determine the maximum number of people that can be evacuated from all source buildings to safe zones within the next 6 hours. 
+There are multiple source buildings (where people are trapped) and multiple safe zones. Each boat can make multiple trips in 6 hours.
+
+Input Format
+The input consists of:
+First line: 3 integers - number of buildings (n), number of water routes (m), number of safe zones (k)
+Next line: k integers - the building IDs of safe zones (0-indexed)
+Next n lines: each with 1 integer - number of people in each building
+Next m lines: each with 3 integers - source building, destination building, capacity per hour
+
+Output Format
+A single integer: the maximum number of people that can be evacuated in 6 hours.
+
+Constraints
+2 ≤ n ≤ 100
+1 ≤ m ≤ 1000
+1 ≤ k ≤ 20
+0 ≤ number of people per building ≤ 1000
+0 ≤ capacity per route ≤ 500
+
+
+Example 1:
+Function: solve(data)
+Input: data = [2, 1, 1, 1, 10, 0, 0, 1, 2]
+Output: 10
+
+
+Example 2:
+Function: solve(data)
+Input: data = [2, 1, 1, 1, 20, 0, 0, 1, 2]
+Output: 12

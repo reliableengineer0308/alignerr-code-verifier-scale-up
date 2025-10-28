@@ -1,0 +1,53 @@
+Use Python to solve this problem.
+
+Problem: Mobius Function
+
+Description:
+The Mobius function μ(n) is defined as:
+- μ(1) = 1
+- μ(n) = 1 if n is a product of an even number of distinct primes
+- μ(n) = -1 if n is a product of an odd number of distinct primes  
+- μ(n) = 0 if n has a squared prime factor
+
+Given an integer N, compute μ(N).
+
+Input:
+- First line: T (number of test cases, 1 ≤ T ≤ 1000)
+- For each test case:
+  - N (1 ≤ N ≤ 10^6)
+
+Output:
+- For each test case:
+  - Print μ(N)
+
+Examples:
+
+Example 1:
+Input:
+6
+1
+2
+4
+6
+12
+30
+
+Output:
+1
+-1
+0
+1
+0
+-1
+
+Explanation:
+Case 1: μ(1) = 1
+Case 2: 2 is prime → μ(2) = -1
+Case 3: 4 = 2^2 → has squared prime factor → μ(4) = 0
+Case 4: 6 = 2*3 → product of 2 distinct primes (even) → μ(6) = 1
+Case 5: 12 = 2^2*3 → has squared prime factor → μ(12) = 0
+Case 6: 30 = 2*3*5 → product of 3 distinct primes (odd) → μ(30) = -1
+
+Constraints:
+- 1 ≤ T ≤ 1000
+- 1 ≤ N ≤ 10^6

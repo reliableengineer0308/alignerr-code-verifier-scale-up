@@ -1,0 +1,101 @@
+Use Python to solve this problem.
+
+Problem: 2-SAT Problem
+
+Description:
+The 2-SAT problem involves determining whether there exists a truth assignment to boolean variables that satisfies a given propositional formula in conjunctive normal form (CNF), where each clause contains exactly two literals.
+
+A 2-SAT formula consists of:
+- N boolean variables: x₁, x₂, ..., xₙ
+- M clauses of the form: (l₁ ∨ l₂) where each lᵢ is either a variable or its negation
+
+Detailed Explanation:
+- Each clause (A ∨ B) means "A OR B" where A and B can be variables or their negations
+- The formula is satisfiable if there exists an assignment of True/False to all variables that makes ALL clauses True
+- For a clause (A ∨ B) to be True, at least one of A or B must be True
+- Positive numbers represent variables: 1 = x₁, 2 = x₂, etc.
+- Negative numbers represent negated variables: -1 = ¬x₁, -2 = ¬x₂, etc.
+
+Key Insight:
+The clause (A ∨ B) is logically equivalent to:
+(¬A → B) AND (¬B → A)
+This allows us to build an implication graph and use strongly connected components (SCC) to solve the problem.
+
+Input Format:
+- First line: N M (number of variables, number of clauses)
+- Next M lines: a b (each representing a clause (a ∨ b))
+  - Positive numbers represent variables: 1 = x₁, 2 = x₂, etc.
+  - Negative numbers represent negated variables: -1 = ¬x₁, -2 = ¬x₂, etc.
+
+Output Format:
+- If unsatisfiable: print "UNSATISFIABLE"
+- If satisfiable: 
+  First line: "SATISFIABLE"
+  Second line: assignment for variables 1 to N as space-separated 1/0 values
+  (1 = True, 0 = False)
+
+Constraints:
+- 1 ≤ N ≤ 10000
+- 1 ≤ M ≤ 100000
+
+Examples:
+
+Example 1:
+Input:
+3 4
+1 2
+-2 -3
+-1 3
+3 -2
+
+Output:
+SATISFIABLE
+1 0 1
+
+Explanation: 
+Clauses: (x₁ ∨ x₂) ∧ (¬x₂ ∨ ¬x₃) ∧ (¬x₁ ∨ x₃) ∧ (x₃ ∨ ¬x₂)
+Assignment: x₁=True, x₂=False, x₃=True satisfies all clauses:
+- (True ∨ False) = True
+- (True ∨ False) = True  (¬False=True, ¬True=False)
+- (False ∨ True) = True
+- (True ∨ True) = True   (¬False=True)
+
+Example 2:
+Input:
+2 3
+1 2
+-1 2
+-2 -2
+
+Output:
+UNSATISFIABLE
+
+Explanation:
+Clauses: (x₁ ∨ x₂) ∧ (¬x₁ ∨ x₂) ∧ (¬x₂ ∨ ¬x₂)
+The last clause (¬x₂ ∨ ¬x₂) is equivalent to ¬x₂, which creates a contradiction with other constraints.
+
+Example 3:
+Input:
+1 2
+1 -1
+-1 1
+
+Output:
+SATISFIABLE
+1
+
+Explanation:
+Clauses: (x₁ ∨ ¬x₁) ∧ (¬x₁ ∨ x₁) 
+This is always satisfiable since it's equivalent to (x₁ OR NOT x₁) which is always True.
+
+Algorithm Requirements:
+1. Convert the 2-SAT problem to an implication graph with 2N nodes
+   - For each variable x, create two nodes: x (2i) and ¬x (2i+1)
+   - For each clause (A ∨ B), add edges: ¬A → B and ¬B → A
+2. Use Kosaraju's algorithm to find strongly connected components (SCC)
+3. Check if any variable and its negation are in the same SCC
+   - If yes: UNSATISFIABLE (contradiction)
+   - If no: SATISFIABLE
+4. If satisfiable, assign values based on topological order of SCCs
+   - If SCC[x] < SCC[¬x], set x = True
+   - Otherwise set x = False

@@ -1,0 +1,14 @@
+{
+    "name": "maximum-flow-network",
+    "task_type": "code-generation",
+    "programming_language": ["Python"],
+    "solution_file_path": ["solution.py"],
+    "test_file_path": ["test.py"],
+    "execution_file_path": "run.sh",
+    "difficulty": "Hard",
+    "tags": ["Graph", "Max Flow", "Dinic", "Network Flow"],
+    "timeout": 5,
+    "memory_limit": "256MB",
+    "num_test_cases": 0,
+    "additional_files": ["requirements.txt"]
+}

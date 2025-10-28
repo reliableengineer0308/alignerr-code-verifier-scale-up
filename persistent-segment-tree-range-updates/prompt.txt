@@ -1,0 +1,136 @@
+Use Python to solve this problem.
+
+Problem: Persistent Segment Tree with Range Updates
+
+Description:
+Implement a persistent segment tree that supports range updates and range queries.
+You need to handle multiple versions of the array and answer queries about historical states.
+
+Input:
+- First line: T (number of test cases)
+- For each test case:
+  - First line: N Q (array size, number of operations)
+  - Second line: N integers (initial array)
+  - Next Q lines: operations
+    - "UPDATE l r x" - add x to range [l, r] and create a new version
+    - "QUERY l r" - query sum in range [l, r] in current version  
+    - "ROLLBACK v" - revert to version v (0-indexed)
+    - "CHECKPOINT" - mark current version (does not create new version)
+
+Output:
+- For each test case:
+  - First line: "Case #X:" where X is test case number
+  - For each QUERY: output the sum
+
+Constraints:
+- 1 ≤ N, Q ≤ 100,000
+- -10^9 ≤ array values, x ≤ 10^9
+- 0 ≤ l ≤ r < N
+- 0 ≤ v ≤ current version number
+
+Example 1 - Basic Operations:
+Input:
+1
+5 10
+1 2 3 4 5
+QUERY 0 4
+UPDATE 1 3 10
+QUERY 0 4
+CHECKPOINT
+UPDATE 2 4 5
+QUERY 0 4
+ROLLBACK 1
+QUERY 0 4
+UPDATE 0 0 100
+QUERY 0 4
+
+Output:
+Case #1:
+15
+45
+60
+45
+145
+
+Explanation:
+Version 0: [1,2,3,4,5], sum=15
+UPDATE creates Version 1: [1,12,13,14,5], sum=45
+CHECKPOINT marks Version 1 (no new version)
+UPDATE creates Version 2: [1,12,18,19,10], sum=60  
+ROLLBACK to version 1: back to [1,12,13,14,5]
+UPDATE creates Version 3: [101,12,13,14,5], sum=145
+
+Example 2 - Multiple Checkpoints:
+Input:
+1
+3 8
+10 20 30
+UPDATE 0 2 5
+CHECKPOINT
+QUERY 0 2
+UPDATE 1 1 10
+CHECKPOINT
+QUERY 0 2
+ROLLBACK 1
+QUERY 0 2
+
+Output:
+Case #1:
+75
+85
+75
+
+Explanation:
+Version 0: [10,20,30]
+UPDATE creates Version 1: [15,25,35], sum=75 (CHECKPOINT marks Version1)
+UPDATE creates Version 2: [15,35,35], sum=85 (CHECKPOINT marks Version2)
+ROLLBACK to version1: back to [15,25,35], sum=75
+
+Example 3 - Complex Rollback Scenario:
+Input:
+1
+4 14
+1 1 1 1
+UPDATE 0 0 1
+CHECKPOINT
+UPDATE 1 1 1
+CHECKPOINT  
+UPDATE 2 2 1
+CHECKPOINT
+UPDATE 3 3 1
+QUERY 0 3
+ROLLBACK 2
+QUERY 0 3
+ROLLBACK 1
+QUERY 0 3
+ROLLBACK 0
+QUERY 0 3
+
+Output:
+Case #1:
+8
+6
+5
+4
+
+Explanation:
+UPDATE creates Version 1: [2,1,1,1]
+CHECKPOINT marks Version 1
+UPDATE creates Version 2: [2,2,1,1] 
+CHECKPOINT marks Version 2
+UPDATE creates Version 3: [2,2,2,1]
+CHECKPOINT marks Version 3
+UPDATE creates Version 4: [2,2,2,2], sum=8
+ROLLBACK to version 2: [2,2,1,1], sum=6
+ROLLBACK to version 1: [2,1,1,1], sum=5
+ROLLBACK to version 0: [1,1,1,1], sum=4
+
+Algorithm Requirements:
+- Implement persistent segment tree with lazy propagation
+- Handle range updates and range queries efficiently
+- Support version control with rollbacks
+- O(log N) per operation
+- Use path copying for persistence
+- Only UPDATE operations create new versions
+- CHECKPOINT only marks current version without creating new version
+- ROLLBACK moves current version pointer without creating new version

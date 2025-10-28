@@ -1,0 +1,88 @@
+Use Python to solve this problem.
+
+Problem: First Missing Positive
+
+Description:
+You are an expert Python programmer. Implement a function `first_missing_positive(nums: list[int]) -> int` that returns the **smallest positive integer** (greater than 0) that does *not* appear in the input array.
+
+Your solution must run in **O(n) time** and use **O(1)** extra space (not counting the input).
+
+Input:
+- An integer array `nums` with `1 ≤ len(nums) ≤ 10⁵`
+- Each element satisfies `-10⁵ ≤ nums[i] ≤ 10⁵`
+- Array may contain duplicates, negatives, and zeros
+
+
+Output:
+- Return the smallest positive integer missing from `nums`
+- Must be greater than 0
+- Assume at least one positive integer is missing
+
+
+Examples:
+
+Example 1:
+Input: nums = [1, 2, 0]
+Output: 3
+Explanation: 1 and 2 are present, 3 is the first missing positive.
+
+
+Example 2:
+Input: nums = [3, 4, -1, 1]
+Output: 2
+Explanation: 1 is present, but 2 is missing. 3 and 4 are present.
+
+
+Example 3:
+Input: nums = [7, 8, 9, 11, 12]
+Output: 1
+Explanation: 1 is missing (even though larger numbers are present)
+
+
+Example 4:
+Input: nums = [1]
+Output: 2
+
+
+Example 5:
+Input: nums = [-1, -2, -3]
+Output: 1
+Explanation: No positive integers → 1 is missing
+
+
+Constraints:
+- `1 ≤ len(nums) ≤ 100000`
+- `-100000 ≤ nums[i] ≤ 100000`
+- Solution must be **O(n)** time
+- Use **O(1)** extra space
+- Do not allocate new arrays (modify input in-place if needed)
+
+- Handle edge cases: all negatives, single element, duplicates
+
+
+Your Task:
+Implement the function:
+
+def first_missing_positive(nums: list[int]) -> int:
+    # Your code here
+
+
+Key Requirements:
+1. Achieve **O(n)** time complexity
+2. Use **O(1)** additional space
+3. Modify the array in-place (if needed) to encode information
+4. Ignore non-positive numbers (≤ 0) and numbers > n
+5. Use array indices as hash keys: place `x` at index `x-1` if possible
+6. After rearrangement, scan to find first index `i` where `nums[i] != i+1`
+7. Return `i+1` as the missing positive
+
+
+Hints:
+- Only numbers in `1..n` can affect the answer (where `n = len(nums)`)
+- If all `1..n` are present → answer is `n+1`
+- Use swapping to place each valid number `x` at position `x-1`
+- Skip numbers ≤ 0 or > n
+- After placement, scan: first mismatch → that index+1 is answer
+
+
+

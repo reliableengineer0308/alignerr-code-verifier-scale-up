@@ -1,0 +1,66 @@
+Use Python to solve this problem.
+
+Problem: Polygon Point Location with Dynamic Updates
+
+Description:
+You are given a simple polygon (no self-intersections) and need to support two types of operations:
+1. Query whether a point is inside, outside, or on the boundary of the polygon
+2. Update the polygon by moving one of its vertices to a new position
+
+The polygon is given as a list of vertices in counter-clockwise order.
+
+Input:
+- First line: N (number of vertices in initial polygon)
+- Next N lines: x y (coordinates of each vertex in counter-clockwise order)
+- Next line: Q (number of operations)
+- Next Q lines, each containing one of:
+  - "QUERY x y" - Check if point (x,y) is inside, outside, or on the polygon
+  - "UPDATE i x y" - Move vertex i (0-indexed) to new position (x,y)
+
+Output:
+- For each QUERY operation, output one of:
+  - "INSIDE"
+  - "OUTSIDE" 
+  - "BOUNDARY"
+
+Constraints:
+- 3 ≤ N ≤ 1000
+- 1 ≤ Q ≤ 10000
+- -10^6 ≤ x, y ≤ 10^6
+- Polygon is simple (no self-intersections)
+- After each update, the polygon remains simple
+
+Algorithm Requirements:
+- Use ray casting algorithm for point location
+- Handle dynamic updates efficiently by maintaining polygon structure
+- Check for point on boundary cases accurately
+
+Example:
+Input:
+4
+0 0
+4 0
+4 4
+0 4
+7
+QUERY 2 2
+QUERY 5 5
+QUERY 2 0
+UPDATE 1 6 0
+QUERY 3 2
+QUERY 5 1
+QUERY 2 0
+
+Output:
+INSIDE
+OUTSIDE
+BOUNDARY
+INSIDE
+INSIDE
+BOUNDARY
+
+Explanation:
+- Initially: square from (0,0) to (4,4)
+- (2,2) is inside, (5,5) is outside, (2,0) is on boundary
+- After updating vertex 1 from (4,0) to (6,0): polygon becomes rectangle (0,0)-(6,0)-(4,4)-(0,4)
+- (3,2) is inside the new polygon, (5,1) is inside, (2,0) is still on boundary

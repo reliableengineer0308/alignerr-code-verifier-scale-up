@@ -1,0 +1,59 @@
+Use Python to solve this problem.
+
+Problem: Pollard's Rho Algorithm for Factorization
+
+Description:
+Given a composite integer N, find a non-trivial factor of N using Pollard's Rho algorithm.
+Pollard's Rho is a randomized algorithm that works well for composite numbers with small factors.
+
+Algorithm:
+1. If N is even, return 2
+2. If N is prime (by Miller-Rabin), return N
+3. Choose random x, c
+4. Define f(x) = (x^2 + c) mod N
+5. Let y = x
+6. While True:
+   - x = f(x)
+   - y = f(f(y))
+   - d = gcd(|x - y|, N)
+   - If d == N: restart with new x, c
+   - If d > 1: return d
+
+Input:
+- First line: T (number of test cases, 1 ≤ T ≤ 100)
+- For each test case:
+  - N (4 ≤ N ≤ 10^12, N is composite)
+
+Output:
+- For each test case:
+  - Print a non-trivial factor of N
+
+Examples:
+
+Example 1:
+Input:
+5
+15
+91
+10403
+999999999999
+1000000000039
+
+Output:
+3
+7
+101
+999999
+1000000000039
+
+Explanation:
+Case 1: 15 = 3 × 5
+Case 2: 91 = 7 × 13  
+Case 3: 10403 = 101 × 103
+Case 4: 999999999999 = 999999 × 1000001
+Case 5: 1000000000039 is prime
+
+Constraints:
+- 1 ≤ T ≤ 100
+- 4 ≤ N ≤ 10^12
+- N is composite (except possibly the last case where prime is acceptable)

@@ -1,0 +1,54 @@
+Use Python to solve this problem.
+
+Problem: Find Local Minimum in Array using Ternary Search
+
+Description:
+Given an array of distinct integers, find a local minimum. A local minimum is an element that is 
+smaller than its neighbors. For boundary elements, only consider the existing neighbor.
+
+The array is not sorted but has the property that adjacent elements are distinct.
+
+Input:
+- First line: T (number of test cases, 1 ≤ T ≤ 100)
+- For each test case:
+  - First line: n (array size, 1 ≤ n ≤ 10^5)
+  - Second line: n distinct integers (array elements, -10^9 ≤ a_i ≤ 10^9)
+
+Output:
+- For each test case:
+  - Print "Case #X: Y" where X is test case number, Y is the value of a local minimum
+
+Examples:
+
+Example 1:
+Input:
+3
+7
+9 7 8 6 5 4 3
+5
+1 2 3 4 5
+6
+10 2 3 1 5 6
+
+Output:
+Case #1: 5
+Case #2: 1
+Case #3: 1
+
+Explanation:
+Case 1: Local minima could be 7, 6, 5, 4, or 3. The algorithm can find any of them.
+Case 2: Only local minimum is 1 (left boundary)
+Case 3: Local minima are 2 or 1
+
+Algorithm:
+Use ternary search inspired approach:
+1. Check boundaries first
+2. Use binary/ternary search style to find local minimum
+3. Compare middle element with neighbors to decide which half to search
+
+Constraints:
+- 1 ≤ T ≤ 100
+- 1 ≤ n ≤ 10^5
+- -10^9 ≤ a_i ≤ 10^9
+- All elements are distinct
+- Adjacent elements are distinct

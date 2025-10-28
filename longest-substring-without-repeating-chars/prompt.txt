@@ -1,0 +1,43 @@
+Problem: Longest Substring Without Repeating Characters
+
+Description:
+Implement a function length_of_longest_substring(s) that returns the length of the longest substring without repeating characters.
+
+Your task:
+- Find the longest contiguous substring with all unique characters
+- Return its length (integer)
+- Use sliding window technique with hash set for O(n) time
+
+Input:
+- String s with 0 ≤ len(s) ≤ 5 * 10⁴
+- Characters are ASCII (can include letters, digits, symbols)
+
+Output:
+Integer: length of longest substring with no repeating chars
+
+Examples:
+Example 1:
+Input: s = "abcabcbb"
+Output: 3
+Explanation: "abc" is longest (length 3)
+
+Example 2:
+Input: s = "bbbbb"
+Output: 1
+Explanation: Only "b" possible
+
+Example 3:
+Input: s = "pwwkew"
+Output: 3
+Explanation: "wke" is longest (not "pwke! due to repeating 'w')
+
+Constraints:
+0 ≤ len(s) ≤ 50000
+Time complexity: O(n)
+Space complexity: O(min(m, n)) where m = charset size
+
+Notes:
+- Use two pointers (left, right) and a set to track current window
+- Expand right while no duplicates
+- When duplicate found, shrink window from left until duplicate removed
+- Update max length at each step

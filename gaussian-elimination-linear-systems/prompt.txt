@@ -1,0 +1,76 @@
+Use Python to solve this problem.
+
+Problem: Gaussian Elimination with Partial Pivoting
+
+Description:
+Solve a system of linear equations Ax = b using Gaussian elimination with partial pivoting.
+Handle cases with unique solution, no solution, or infinite solutions.
+
+Input:
+- First line: n (number of equations/variables)
+- Next n lines: n+1 space-separated numbers (the augmented matrix [A|b])
+- Matrix A is n×n, vector b is n×1
+
+Output:
+- If unique solution: "Solution" followed by n lines with variable values (rounded to 6 decimal places)
+- If no solution: "No solution"
+- If infinite solutions: "Infinite solutions"
+
+Constraints:
+- 1 ≤ n ≤ 100
+- -1000 ≤ matrix elements ≤ 1000
+
+Examples:
+
+Example 1 (Unique solution):
+Input:
+3
+2 1 -1 8
+-3 -1 2 -11
+-2 1 2 -3
+
+Output:
+Solution
+2.000000
+3.000000
+-1.000000
+
+Explanation:
+The system:
+2x + y - z = 8
+-3x - y + 2z = -11
+-2x + y + 2z = -3
+Has solution: x=2, y=3, z=-1
+
+Example 2 (No solution):
+Input:
+2
+1 1 1
+1 1 2
+
+Output:
+No solution
+
+Explanation:
+x + y = 1
+x + y = 2
+These equations are inconsistent.
+
+Example 3 (Infinite solutions):
+Input:
+2
+1 1 1
+2 2 2
+
+Output:
+Infinite solutions
+
+Explanation:
+The second equation is a multiple of the first.
+
+Implementation Requirements:
+1. Use Gaussian elimination with partial pivoting
+2. Handle zero pivots by row swapping
+3. Detect inconsistent systems (no solution)
+4. Detect systems with infinite solutions
+5. Output solutions with 6 decimal places

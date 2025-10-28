@@ -1,0 +1,48 @@
+Problem: Graph Coloring with Limited Colors
+
+Description:
+Implement an algorithm to determine whether a given undirected graph can be colored using at most k colors such that no two adjacent vertices share the same color.
+This is the classic Graph Coloring Problem (a known NP-Complete problem).
+
+Input:
+* graph: Dictionary representing adjacency list (vertices → list of neighbors)
+* k: Integer, maximum number of colors allowed (1≤k≤10)
+
+Output:
+* Boolean: True if the graph can be colored with ≤ k colors, False otherwise
+
+Algorithm Requirements:
+1. Backtracking Approach:
+ * Assign colors to vertices one by one.
+ * Before assigning a color, check if it conflicts with already-colored neighbors.
+ * If no valid color exists for a vertex, backtrack.
+2. Color Validation:
+ * For each vertex, try colors from 0 to k-1.
+ * A color is valid if no adjacent vertex has the same color.
+3. Optimization:
+ * Use a colors array where colors[i] = color of vertex i.
+ * Initialize all colors as -1 (unassigned).
+4. Edge Cases:
+ * Empty graph → True (trivially colorable)
+ * Single vertex → True for any k ≥ 1
+ * Disconnected components
+ * Complete graphs (e.g., triangles, cliques)
+
+Steps:
+1. If k == 0: return False (unless graph is empty).
+2. If k >= number of vertices: always True (each vertex can have unique color).
+3. Use backtracking to assign colors:
+ * Pick an uncolored vertex.
+ * Try each color from 0 to k-1.
+ * Check if color conflicts with neighbors.
+ * Recurse; if fails, backtrack.
+4. Return True if all vertices are colored successfully.
+
+Complexity:
+* Time: O(k^V) in worst case (backtracking)
+ * Space: O(V+E) (for graph and color tracking)
+
+Constraints:
+* Pure Python (no external libraries).
+* Graphs with up to 15 vertices (due to NP-completeness).
+* Vertices are labeled as integers starting from 0.

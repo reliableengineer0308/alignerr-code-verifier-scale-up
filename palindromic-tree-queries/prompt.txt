@@ -1,0 +1,97 @@
+Use Python to solve this problem.
+
+Problem: Palindromic Tree for Multiple Palindromic Queries
+
+Description:
+Given a string S, find all distinct palindromic substrings and answer Q queries about them.
+
+The solver should support the following queries:
+1. COUNT: Return the total number of distinct palindromic substrings in S
+2. LONGEST: Return the longest palindromic substring
+3. FREQ k: Return the number of occurrences of the k-th distinct palindromic substring (in lex order)
+4. KTH k: Return the k-th distinct palindromic substring in lexicographical order
+
+Input:
+- First line: S (the input string)
+- Second line: Q (number of queries)
+- Next Q lines: queries in the formats above
+
+Output:
+- For each query, output the answer
+
+Constraints:
+- 1 ≤ |S| ≤ 100,000
+- 1 ≤ Q ≤ 100,000
+- String contains only lowercase English letters
+- For FREQ and KTH: 1 ≤ k ≤ total distinct palindromic substrings
+
+Examples:
+
+Example 1:
+Input:
+ababa
+6
+COUNT
+LONGEST
+FREQ 1
+FREQ 2
+KTH 3
+KTH 5
+
+Output:
+5
+ababa
+3
+2
+ababa
+bab
+
+Explanation:
+Distinct palindromic substrings in "ababa":
+1. "a" (occurrences: 3)
+2. "aba" (occurrences: 2)
+3. "ababa" (occurrences: 1)
+4. "b" (occurrences: 2)
+5. "bab" (occurrences: 1)
+
+Lex order: "a", "aba", "ababa", "b", "bab"
+
+FREQ 1: "a" occurs 3 times
+FREQ 2: "aba" occurs 2 times
+KTH 3: "ababa" (3rd in lex order)
+KTH 5: "bab" (5th in lex order)
+
+Example 2:
+Input:
+abcba
+5
+COUNT
+LONGEST
+KTH 1
+KTH 4
+FREQ 3
+
+Output:
+5
+abcba
+a
+bcb
+2
+
+Explanation:
+Distinct palindromic substrings in "abcba":
+1. "a" (occurrences: 2)
+2. "abcba" (occurrences: 1)
+3. "b" (occurrences: 2)
+4. "bcb" (occurrences: 1)
+5. "c" (occurrences: 1)
+
+Lex order: "a", "abcba", "b", "bcb", "c"
+
+FREQ 3: "b" occurs 2 times
+
+Implementation Approach:
+1. Use center expansion to find all distinct palindromic substrings
+2. Sort them lexicographically
+3. Count occurrences using efficient string searching
+4. Answer queries based on the precomputed data

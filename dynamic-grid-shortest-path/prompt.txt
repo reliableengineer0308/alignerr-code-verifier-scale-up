@@ -1,0 +1,68 @@
+Problem: Shortest Path in a Dynamic Grid with Time-Varying Obstacles
+
+You are given a 2D grid where some cells are blocked at specific times. Find the shortest time to reach the destination from the start, moving one cell per second (up/down/left/right), avoiding time-dependent obstacles.
+
+Function to implement:
+def shortest_path_dynamic(grid: List[List[int]], 
+                        start: Tuple[int, int],
+                        end: Tuple[int, int],
+                        obstacles: List[Tuple[int, int, int]]) -> int:
+
+Input:
+- grid: m x n grid (1 ≤ m, n ≤ 50). grid[i][j] = 0 (free) or 1 (permanently blocked)
+- start: (row, col) starting position (0-indexed)
+- end: (row, col) destination (0-index packed)
+- obstacles: List of (t, row, col) meaning cell (row,col) is blocked at time t (0 ≤ t ≤ 100)
+
+Rules:
+1. You move 1 cell per second in 4 directions (no diagonals)
+2. You cannot be in a cell when it becomes obstructed at time t
+3. Permanently blocked cells (grid[i][j]=1) are always obstructed
+4. You can wait in place (time increases by 1)
+5. Start at time 0
+6. If you reach end at time T, return T
+
+Output:
+- Minimum time to reach end, or -1 if impossible
+
+Examples:
+
+Example 1:
+grid = [[0,0],[0,0]]
+start = (0,0), end = (1,1)
+obstacles = [(1,1,0)]  # (1,0) blocked at t=1
+→ Output: 3
+Explanation: (0,0)→(0,1)→(1,1) at t=2 (avoids (1,0) at t=1)
+
+
+Example 2:
+grid = [[0,1],[0,0]]
+start = (0,0), end = (1,1)
+obstacles = [(2,1,1)]
+→ Output: -1
+Explanation: Must go through (1,1) at t≥2, but it's blocked at t=2
+
+
+Example 3:
+grid = [[0,0,0],[1,1,0],[0,0,0]]
+start = (0,0), end = (2,2)
+obstacles = [(3,2,1),(4,1,2)]
+→ Output: 6
+Path: (0,0)→(0,1)→(0,2)→(1,2)→(2,2) at t=4 (avoids both obstacles)
+
+
+Constraints:
+- 1 ≤ m, n ≤ 50
+- 0 ≤ number of obstacles ≤ 1000
+- 0 ≤ t ≤ 100 (obstacles only up to t=100)
+- start and end are always free
+- You cannot move outside grid
+
+
+Hints:
+1. Model state as (row, col, time)
+2. Use BFS or Dijkstra since edge weights are uniform (1 second per move)
+3. Precompute obstructed cells at each time
+4. Prune states where time > 100 + max_possible_steps (since obstacles stop at t=100)
+5. Use visited set with (row, col, time) to avoid cycles
+6. Consider that waiting might help avoid future obstacles

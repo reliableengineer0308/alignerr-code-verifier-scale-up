@@ -1,0 +1,54 @@
+Problem: Floyd-Warshall Algorithm Enhancement
+
+Description:
+Implement an enhanced Floyd-Warshall algorithm that computes:
+1. Shortest path distances between all pairs of vertices
+2. Path reconstruction (actual sequence of vertices) for any query
+3. Detection of negative cycles
+
+Input:
+- graph: 2D list (n × n) representing adjacency matrix
+ * graph[i][j] = weight of edge from vertex i to j
+ * float('inf') if no edge
+ * Diagonal graph[i][i] = 0
+- 1≤n≤100
+- Edge weights: −10^4≤w≤10^4
+
+Output:
+- A tuple (distances, parents, has_negative_cycle) where:
+ * distances: 2D list of shortest path distances
+ * parents: 2D list for path reconstruction
+ * has_negative_cycle: boolean
+
+Requirements:
+1. Core Floyd-Warshall:
+ * Use dynamic programming to compute all-pairs shortest paths
+ * Handle negative weights (but detect negative cycles)
+2. Path Reconstruction:
+ * Maintain parents[i][j] to store the predecessor of j in path from i
+ * Implement get_path(i, j) function to reconstruct path
+3. Negative Cycle Detection:
+ * After algorithm, check if any distances[i][i] < 0
+ * If yes, set has_negative_cycle = True
+4. Edge Cases:
+ * Graph with no edges
+ * Single vertex
+ * Negative edges but no cycles
+ * Disconnected components
+
+Algorithm Steps:
+1. Initialize distances = graph and parents[i][j] = i if edge exists, else None
+2. For each k in 0..n-1:
+ - For each i, j:
+  * If distances[i][k] + distances[k][j] < distances[i][j]:
+     Update distances[i][j]
+     Set parents[i][j] = parents[k][j]
+3. Check for negative cycles via self-distances
+
+Complexity:
+* Time: O(n^3)
+* Space: O(n^2)
+
+Constraints:
+* Do not use external libraries (pure Python)
+* Handle floating-point precision issues with math.isclose() if needed

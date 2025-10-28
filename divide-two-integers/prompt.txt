@@ -1,0 +1,127 @@
+Use Python to solve this problem.
+
+Problem: Divide Two Integers
+
+## Problem Description
+Given two integers dividend and divisor, divide them without using multiplication, division, and mod operator.
+Return the quotient after truncating toward zero.
+
+This problem requires implementing integer division with the following constraints:
+1. Cannot use *, /, or % operators
+2. Must handle 32-bit integer overflow cases
+3. Should be efficient (O(log n) time complexity)
+
+## Detailed Explanation
+The challenge is to perform integer division while:
+- Handling both positive and negative numbers
+- Correctly truncating toward zero (not floor division)
+- Dealing with the 32-bit integer range [-2^31, 2^31-1]
+- Using bit manipulation for efficiency
+
+The key insight is that division can be implemented using subtraction and bit shifts. 
+For example: 100 ÷ 3 can be computed as:
+- 3 × 32 = 96 (since 2^5 = 32)
+- 100 - 96 = 4
+- 4 ÷ 3 = 1
+- Total quotient = 32 + 1 = 33
+
+## Input Format
+- First line: T (number of test cases, 1 ≤ T ≤ 1000)
+- For each test case: dividend and divisor (space-separated)
+- Both dividend and divisor are 32-bit integers
+
+## Output Format
+- For each test case: quotient (32-bit integer)
+- If the quotient would overflow 32-bit range, return 2^31 - 1
+
+## Constraints
+- -2^31 ≤ dividend, divisor ≤ 2^31 - 1
+- divisor ≠ 0
+- At least 50% of test cases will involve edge cases and large numbers
+
+## Example 1: Basic Positive Division
+### Input
+3
+10 3
+15 5
+100 3
+
+### Output
+3
+3
+33
+
+### Explanation
+**Test Case 1:** 10 ÷ 3 = 3.333... → truncate to 3
+**Test Case 2:** 15 ÷ 5 = 3
+**Test Case 3:** 100 ÷ 3 = 33.333... → truncate to 33
+
+## Example 2: Negative Division with Varied Results
+### Input
+4
+7 -3
+-10 3
+-10 -3
+-15 4
+
+### Output
+-2
+-3
+3
+-3
+
+### Explanation
+**Test Case 1:** 7 ÷ (-3) = -2.333... → truncate to -2
+**Test Case 2:** -10 ÷ 3 = -3.333... → truncate to -3  
+**Test Case 3:** -10 ÷ (-3) = 3.333... → truncate to 3
+**Test Case 4:** -15 ÷ 4 = -3.75 → truncate to -3
+
+## Example 3: Critical Edge Cases
+### Input
+6
+-2147483648 -1
+-2147483648 1
+2147483647 -1
+0 5
+5 0
+-2147483648 2
+
+### Output
+2147483647
+-2147483648
+-2147483647
+0
+Error: divisor cannot be zero
+-1073741824
+
+### Explanation
+**Test Case 1:** -2147483648 ÷ (-1) = 2147483648, but this exceeds 32-bit maximum (2147483647)
+**Test Case 2:** Minimum 32-bit integer divided by 1
+**Test Case 3:** Maximum 32-bit integer divided by -1
+**Test Case 4:** Zero divided by any non-zero number is zero
+**Test Case 5:** Division by zero should be handled gracefully
+**Test Case 6:** Boundary case with large negative number
+
+## Example 4: Complex Large Number Division
+### Input
+3
+2147483647 2
+-2147483648 -3
+1234567890 12345
+
+### Output
+1073741823
+715827882
+100005
+
+### Explanation
+**Test Case 1:** Maximum positive divided by 2
+**Test Case 2:** Complex negative division requiring multiple bit shifts
+**Test Case 3:** Large number division testing efficiency
+
+## Algorithm Requirements
+- Use bit manipulation for O(log n) efficiency
+- Handle all edge cases including overflow
+- Implement without *, /, or % operators
+- Return appropriate values for division by zero
+- Time complexity: O(log n) where n is the absolute value of dividend

@@ -1,0 +1,14 @@
+{
+    "name": "heavy-light-decomposition-path-updates",
+    "task_type": "code-generation",
+    "programming_language": ["Python"],
+    "solution_file_path": ["solution.py"],
+    "test_file_path": ["test.py"],
+    "execution_file_path": "run.sh",
+    "difficulty": "Hard",
+    "tags": ["Heavy-Light Decomposition", "Tree", "Path Queries", "Segment Tree", "LCA"],
+    "timeout": 5,
+    "memory_limit": "512MB",
+    "num_test_cases": 0,
+    "additional_files": ["requirements.txt"]
+}

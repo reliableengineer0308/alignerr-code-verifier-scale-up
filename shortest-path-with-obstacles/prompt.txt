@@ -1,0 +1,64 @@
+Problem: Shortest Path in Grid with Obstacles
+
+Description:
+You are given an m × n grid where each cell can be:
+ 0: free cell (can walk through)
+ 1: obstacle (cannot walk through)
+ 2: special free cell (grants temporary ability to pass through one adjacent obstacle once)
+You start at (0, 0) and must reach (m-1, n-1).
+In one step, you can move one unit in any of the four cardinal directions (up, down, left, right), staying within grid bounds.
+
+Special Rule:
+* If you step on a cell with value 2, you gain the ability to pass through exactly one adjacent obstacle cell (only during the next move).
+* This ability is consumed immediately upon passing through an obstacle and does not stack.
+* The ability lasts only for the next move — you cannot save it.
+
+Goal: Find the minimum number of steps to reach the destination. If impossible, return -1.
+
+Input:
+* grid: 2D list of integers (0, 1, or 2) representing the map
+
+Output:
+* Integer: minimum steps to reach (m-1, n-1), or -1 if unreachable
+
+Constraints:
+* 1≤m,n≤100
+* Grid values ∈ {0, 1, 2}
+* Start and end cells are always free (0 or 2)
+
+Example 1:
+grid = [
+    [0, 2, 1],
+    [0, 1, 0]
+]
+* Path: (0,0) → (1,0) → (0,1) (uses 2) → then through (0,2) (obstacle, uses special ability) → (1,2)
+* Steps: 4
+* Output: 4
+
+Example 2:
+grid = [
+    [0, 1, 0],
+    [1, 1, 0],
+    [0, 0, 0]
+]
+* No 2 cells, and obstacles block all paths
+* Output: -1
+Algorithm Requirements:
+Use BFS with state tracking:
+* Each state: (row, col, has_ability) where has_ability is True/False
+* When on a 2 cell, you gain has_ability = True for the next move only
+* When moving into an obstacle (1), you can only do so if has_ability == True, and it consumes the ability
+* Do not revisit the same (row, col, has_ability) state
+
+Steps:
+1. Initialize queue with (0, 0, False) and distance 0
+2. For each state, explore 4 directions
+3. If next cell is 0 or 2: move freely, update ability (if 2, set has_ability=True for next state)
+4. If next cell is 1: only move if has_ability==True, then ability becomes False
+5. Return distance when (m-1, n-1) is reached
+6. If queue empties, return -1
+
+Notes:
+* Ability from 2 applies only to the next move
+* You can stand on 2 without using its power immediately
+* Multiple 2s can refresh the ability

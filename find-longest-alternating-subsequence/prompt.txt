@@ -1,0 +1,59 @@
+Problem: Find Longest Alternating Subsequence
+
+Description:
+Implement a function longest_alternating_subsequence(arr) that finds the length of the longest subsequence where adjacent elements alternate between increasing and decreasing.
+
+Your task:
+- Find the longest subsequence such that:
+	For even positions: subseq[i] < subseq[i+1]
+	For odd positions: subseq[i] > subseq[i+ Newton+1]
+- The subsequence doesn’t need to be contiguous
+- Return the length of this subsequence
+- Optimize for arrays up to 10⁵ elements
+
+Input:
+- Integer array arr with n ≥ 1
+- Elements range: −10 ^ 9 ≤ arr[i] ≤ 10 ^ 9
+ 
+Output:
+- Integer: length of the longest alternating subsequence
+- If n == 0, return 0
+
+Examples:
+Example 1:
+Input: arr = [1, 5, 4, 3, 6]
+Output: 4
+Explanation: One valid subsequence is [1, 5, 4, 6]:
+- 1 < 5 (increasing)
+- 5 > 4 (decreasing)
+- 4 < 6 (increasing)
+Length = 4
+
+Example 2:
+Input: arr = [2, 2, 2]
+Output: 1
+Explanation: All elements are equal → no alternation possible
+
+Example 3:
+Input: arr = [10, 9, 8, 7, 6, 5]
+Output: 2
+Explanation: Strictly decreasing → best we can do is pick any two adjacent elements
+
+Example 4:
+Input: arr = [1, 2, 3, 4, 5]
+Output: 2
+Explanation: Strictly increasing → best is two elements
+
+Constraints:
+1 ≤ n ≤ 10 ^ 5
+Time complexity: O(n)
+Space complexity: O(1) extra space
+Avoid brute-force O(n ^ 2) solutions
+The sequence must strictly alternate (no equal adjacent values)
+
+Notes:
+- A single element is a valid alternating subsequence of length 1
+- For two elements: if they’re different → length 2, otherwise → length 1
+- Use greedy approach: traverse and count alternations
+- Track the last direction (increasing/decreasing) to decide whether to include next element
+- Consider edge cases: all equal, strictly increasing/decreasing

@@ -1,0 +1,139 @@
+Use Python to solve this problem.
+
+Problem: Segment Tree with Lazy Propagation for Range Updates and Queries
+
+Description:
+You are given an array of integers and you need to perform multiple operations of two types:
+1. Range Update: Add a value to all elements in a given range [l, r]
+2. Range Query: Find the sum of all elements in a given range [l, r]
+
+Implement a Segment Tree with Lazy Propagation to efficiently handle these operations.
+
+Input Format:
+- First line: N Q (array size, number of queries, 1 ≤ N ≤ 100000, 1 ≤ Q ≤ 100000)
+- Second line: N integers representing the initial array (each value between -10^9 and 10^9)
+- Next Q lines: Each line is one of:
+  - "update l r value" - add 'value' to all elements from index l to r (0-indexed)
+  - "query l r" - get the sum of elements from index l to r
+
+Output Format:
+- For each "query" operation, output the sum on a separate line
+
+Constraints:
+- Array indices are 0-based: 0 ≤ l ≤ r ≤ N-1
+- Update values can be negative
+- The total sum of any range will fit in a 64-bit integer
+
+Example 1 (Basic Operations):
+Input:
+5 5
+1 2 3 4 5
+query 0 4
+update 1 3 2
+query 0 4
+update 2 4 -1
+query 1 3
+
+Output:
+15
+21
+13
+
+Explanation:
+Initial array: [1, 2, 3, 4, 5]
+query 0 4 → 1+2+3+4+5 = 15
+update 1 3 2 → array becomes [1, 4, 5, 6, 5]
+query 0 4 → 1+4+5+6+5 = 21
+update 2 4 -1 → array becomes [1, 4, 4, 5, 4]
+query 1 3 → 4+4+5 = 13
+
+Example 2 (Multiple Updates and Queries):
+Input:
+6 8
+10 20 30 40 50 60
+query 1 4
+update 2 5 5
+query 0 5
+update 0 3 -10
+query 1 2
+update 4 5 15
+query 3 5
+query 0 0
+
+Output:
+140
+255
+25
+135
+0
+
+Explanation:
+Step by step:
+Initial: [10,20,30,40,50,60]
+query 1 4: 20+30+40+50 = 140
+update 2 5 5: [10,20,35,45,55,65]
+query 0 5: 10+20+35+45+55+65 = 230
+update 0 3 -10: [0,10,25,35,55,65]
+query 1 2: 10+25 = 35
+update 4 5 15: [0,10,25,35,70,80]
+query 3 5: 35+70+80 = 185
+query 0 0: 0
+
+Example 3 (Large Range Updates):
+Input:
+3 4
+1000000000 2000000000 3000000000
+query 0 2
+update 0 2 -500000000
+query 0 2
+update 1 1 1000000000
+query 0 2
+
+Output:
+6000000000
+4500000000
+5500000000
+
+Explanation:
+Handling large numbers correctly is important.
+
+Example 4 (Single Element):
+Input:
+1 3
+42
+query 0 0
+update 0 0 8
+query 0 0
+
+Output:
+42
+50
+
+Example 5 (Stress Test Pattern):
+Input:
+4 6
+0 0 0 0
+update 0 3 5
+query 0 3
+update 1 2 3
+query 0 3
+update 0 0 -2
+query 0 3
+
+Output:
+20
+26
+24
+
+Algorithm Requirements:
+- Implement Segment Tree with Lazy Propagation
+- Time Complexity: O(log N) per operation
+- Space Complexity: O(N)
+- Handle range updates efficiently using lazy propagation
+- Support both range updates and range queries
+
+Important Notes:
+- Lazy propagation delays updates until they are actually needed
+- The segment tree should be built recursively
+- Use 0-based indexing for the array
+- Make sure to handle edge cases like single element updates and queries

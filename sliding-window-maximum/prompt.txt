@@ -1,0 +1,124 @@
+Use Python to solve this problem.
+
+Problem: Sliding Window Maximum
+
+## Problem Description
+You are given an array of integers and an integer K representing the window size. 
+The sliding window moves from the very left of the array to the very right. 
+You can only see the K numbers in the window. Your task is to return the maximum value in each sliding window.
+
+## Input Format
+- First line: T (number of test cases)
+- For each test case:
+  - First line: N (size of the array)
+  - Second line: array elements (space-separated integers)
+  - Third line: K (window size)
+
+## Output Format
+- For each test case: space-separated maximum values for each window position
+
+## Constraints
+- 1 ≤ N ≤ 10^5
+- 1 ≤ K ≤ N
+- -10^4 ≤ array[i] ≤ 10^4
+
+## Example 1: Basic Case
+### Input
+1
+8
+1 3 -1 -3 5 3 6 7
+3
+
+### Output
+3 3 5 5 6 7
+
+### Explanation
+Window position & maximum values:
+- [1  3  -1] -3  5  3  6  7 → 3
+- 1 [3  -1  -3] 5  3  6  7 → 3  
+- 1  3 [-1  -3  5] 3  6  7 → 5
+- 1  3  -1 [-3  5  3] 6  7 → 5
+- 1  3  -1  -3 [5  3  6] 7 → 6
+- 1  3  -1  -3  5 [3  6  7] → 7
+
+## Example 2: Single Element Window
+### Input
+1
+5
+1 2 3 4 5
+1
+
+### Output
+1 2 3 4 5
+
+### Explanation
+Each window contains exactly one element, so maximum is the element itself.
+
+## Example 3: Window Size Equals Array Size
+### Input
+1
+4
+9 8 7 6
+4
+
+### Output
+9
+
+### Explanation
+Only one window containing all elements, maximum is 9.
+
+## Example 4: Complex Case with Duplicates
+### Input
+1
+10
+4 2 4 3 2 5 7 3 8 1
+4
+
+### Output
+4 4 5 7 7 8 8
+
+### Explanation
+Window positions & maximum values:
+- [4 2 4 3] 2 5 7 3 8 1 → 4
+- 4 [2 4 3 2] 5 7 3 8 1 → 4
+- 4 2 [4 3 2 5] 7 3 8 1 → 5
+- 4 2 4 [3 2 5 7] 3 8 1 → 7
+- 4 2 4 3 [2 5 7 3] 8 1 → 7
+- 4 2 4 3 2 [5 7 3 8] 1 → 8
+- 4 2 4 3 2 5 [7 3 8 1] → 8
+
+## Example 5: All Negative Numbers
+### Input
+1
+6
+-3 -1 -2 -5 -4 -6
+2
+
+### Output
+-1 -1 -2 -4 -4
+
+### Explanation
+Window positions & maximum values:
+- [-3 -1] -2 -5 -4 -6 → -1
+- -3 [-1 -2] -5 -4 -6 → -1
+- -3 -1 [-2 -5] -4 -6 → -2
+- -3 -1 -2 [-5 -4] -6 → -4
+- -3 -1 -2 -5 [-4 -6] → -4
+
+## Example 6: Large Window with Small Array
+### Input
+1
+5
+10 20 30 40 50
+5
+
+### Output
+50
+
+### Explanation
+Only one window containing all elements, maximum is 50.
+
+## Algorithm Requirements
+- Use deque for O(N) time complexity
+- Maintain decreasing order in deque
+- Handle large input sizes efficiently

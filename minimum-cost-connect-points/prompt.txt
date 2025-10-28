@@ -1,0 +1,42 @@
+PROBLEM: MINIMUM COST TO CONNECT ALL POINTS
+
+LEVEL: HARD
+
+DESCRIPTION:
+You are given an array `points` where `points[i] = [xi, yi]` represents a point on the X-Y plane. 
+Your goal is to connect all points with the minimum total cost, where the cost between two points is the Manhattan distance:
+    cost(i, j) = |xi - xj| + |yi - yj|
+
+Return the minimum cost to connect all points such that there is exactly one path between any two points (i.e., a spanning tree).
+
+INPUT:
+- `points`: List of [x, y] coordinates, 1 ≤ len(points) ≤ 1000
+- Each coordinate: -10^6 ≤ x, y ≤ 10^6
+
+
+OUTPUT:
+- Integer: minimum total cost to connect all points
+
+EXAMPLES:
+
+Example 1:
+Input: points = [[0,0],[2,2],[3,10],[5,2],[7,0]]
+Output: 20
+Explanation: Optimal connection forms a minimum spanning tree with total cost 20.
+
+Example 2:
+Input: points = [[3,12],[-2,5],[-4,1]]
+Output: 18
+
+CONSTRAINTS:
+- All points are distinct
+- You must use Prim's algorithm (not Kruskal's)
+- Time complexity: O(n²), Space: O(n)
+- No external libraries allowed
+
+HINTS:
+1. Use Prim's algorithm with a priority queue (heap) or array-based selection
+2. Start from any node (e.g., index 0)
+3. Maintain an array of minimum distances to the MST
+4. Update distances as you add nodes
+5. Manhattan distance: |x1-x2| + |y1-y2|

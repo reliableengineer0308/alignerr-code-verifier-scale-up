@@ -1,0 +1,132 @@
+Problem: Line Segment Intersection
+
+
+Description:
+Implement a function `segments_intersect(a1, a2, b1, b2)` that determines whether two line segments `(a1,a2)` and `(b1,b2)` intersect.
+
+Note: This is a classic computational geometry problem requiring careful handling of edge cases and floating-point precision. The solution must be robust against:
+- Degenerate segments (points)
+- Collinear overlaps
+- Endpoint contacts
+- Parallel non-intersecting segments
+- Vertical/horizontal edge cases
+
+Input:
+- `a1, a2`: tuples `(x, y)` — endpoints of first segment
+- `b1, b2`: tuples `(x, y)` — endpoints of second segment
+- All coordinates are floats in range `[-1000, 1000]`
+- Segments may be degenerate (i.e., a point if `a1 == a2`)
+
+
+Output:
+- Boolean: `True` if segments intersect (including endpoints/boundaries), `False` otherwise
+
+
+Method:
+Use vector cross products (orientation tests) to determine intersection. The algorithm follows these steps:
+
+
+1. Orientation Test (CCW):
+   - Compute cross product of vectors to determine if three points are:
+     - Counter-clockwise (CCW) → positive cross product
+     - Clockwise (CW) → negative cross product
+     - Collinear → zero cross product (within epsilon)
+   - This helps detect if segments "straddle" each other
+
+
+2. Bounding Box Check:
+   - Before full computation, verify if bounding rectangles of segments overlap
+   - Optimizes early rejection of non-overlapping segments
+
+
+3. General Intersection Test:
+   - Segments AB and CD intersect properly if:
+     - Points C and D are on opposite sides of AB (different orientations)
+     - Points A and B are on opposite sides of CD (different orientations)
+
+
+4. Special Cases:
+   - Endpoint lies on the other segment (collinear + within bounds)
+   - Degenerate segment (point) touching another segment
+   - Collinear overlapping segments
+
+
+Key Cases to Handle:
+1. Proper intersection (cross inside)
+2. Endpoint touching (shared vertex)
+3. Collinear overlapping (partial or full overlap)
+4. Parallel non-overlapping (same line, no contact)
+5. Vertical/horizontal segments (special slope cases)
+6. Degenerate segments (zero-length)
+
+7. Floating-point precision issues (use small epsilon)
+
+
+Mathematical Foundation:
+
+- Cross product: `cross(o, a, b) = (a.x - o.x)*(b.y - o.y) - (a.y - o.y)*(b.x - o.x)`
+- Orientation: `ccw(a, b, c) = sign(cross(a, b, c))`
+- Collinearity: `|cross| < EPSILON`
+- Point-on-segment: collinear AND within bounding box
+
+
+Floating-Point Considerations:
+- Use `EPSILON = 1e-10` for comparisons
+- Never use `==` for floats; use `abs(a - b) < EPSILON`
+- Bounding box checks should include epsilon for robustness
+
+
+Examples:
+
+Example 1: Proper intersection
+a1, a2 = (0, 0), (2, 2)
+b1, b2 = (0, 2), (2, 0)
+→ True  # Cross at (1,1)
+
+
+Example 2: Endpoint touching
+a1, a2 = (0, 0), (1, 1)
+b1, b2 = (1, 1), (2, 2)
+→ True  # Share endpoint (1,1)
+
+
+Example 3: Parallel non-overlapping
+a1, a2 = (0, 0), (1, 0)
+b1, b2 = (2, 0), (3, 0)
+→ False  # Parallel, no overlap
+
+
+Example 4: Collinear overlap
+a1, a2 = (0, 0), (3, 0)
+b1, b2 = (1, 0), (2, 0)
+→ True  # Partial overlap on x-axis
+
+
+Example 5: Degenerate case
+a1, a2 = (1, 1), (1, 1)  # Point
+b1, b2 = (0, 0), (2, 2)  # Line
+→ True  # Point lies on line
+
+
+Constraints:
+- Time complexity: O(1) — constant time operations
+- Space complexity: O(1) — no additional data structures
+- Robustness: Handle all edge cases including floating-point imprecision
+- No external libraries — pure Python implementation
+
+
+Implementation Tips:
+1. Always use epsilon when comparing floats
+2. Check bounding boxes first for early rejection
+3. Handle collinear cases separately after orientation tests
+4. Test endpoint-on-segment cases explicitly
+5. Keep cross product calculation in a helper function for clarity
+6. Document each logical step in code with comments
+
+
+Testing Recommendations:
+- Include all example cases above
+- Add vertical/horizontal segment tests
+- Test floating-point coordinate precision
+- Verify degenerate segment handling
+- Check both intersection and non-intersection scenarios

@@ -1,0 +1,55 @@
+PROBLEM: NUMBER OF DISTINCT ISLANDS (BY SHAPE)
+
+LEVEL: HARD
+
+DESCRIPTION:
+Given a 2D binary matrix `grid` of 0s (water) and 1s (land), count the number of *distinct* islands.
+
+Two islands are considered the same (not distinct) if one can be translated (shifted) to equal the other — i.e., they have the same shape. Rotation and reflection are NOT allowed.
+
+Return the number of distinct island shapes.
+
+INPUT:
+- `grid`: List[List[int]] where 1 ≤ m, n ≤ 50
+- Each cell is 0 or 1
+
+OUTPUT:
+- Integer: number of distinct island shapes
+
+EXAMPLES:
+
+Example 1:
+Input:
+grid = [
+  [1,1,0,0,0],
+  [1,1,0,0,0],
+  [0,0,0,1,1],
+  [0,0,0,1,1]
+]
+Output: 1
+Explanation: Two islands, both 2×2 squares → same shape → count = 1
+
+Example 2:
+Input:
+grid = [
+  [1,1,0,1,1],
+  [1,0,0,0,0],
+  [0,0,0,0,1],
+  [1,1,0,1,1]
+]
+Output: 3
+Explanation: Three distinct shapes exist.
+
+CONSTRAINTS:
+- Use DFS or BFS to explore each island
+- Normalize island coordinates to a canonical form (e.g., relative to top-left corner)
+- Use a set to store unique shapes
+- Time: O(m×n), Space: O(m×n)
+- No external libraries (like numpy) allowed
+
+HINTS:
+1. For each unvisited land cell, start DFS
+2. Record the path of relative coordinates (e.g., from the first cell)
+3. Sort or normalize the relative coordinates into a hashable form
+4. Add the shape signature to a set
+5. Return the size of the set

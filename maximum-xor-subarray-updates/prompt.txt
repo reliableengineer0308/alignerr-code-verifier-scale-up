@@ -1,0 +1,101 @@
+Use Python to solve this problem.
+
+Problem: Maximum XOR Subarray with Updates
+
+Description:
+You are given an array of integers and need to support two types of operations:
+    UPDATE index value: Set the element at the specified index to the given value.
+    QUERY left right: Find the maximum XOR value of any contiguous subarray within the range [left, right].
+    The XOR of a contiguous subarray [i, j] is defined as A[i] ⊕ A[i+1] ⊕ ... ⊕ A[j].
+
+Detailed Explanation of "Maximum XOR of any subarray in [l, r]":
+For a given query "QUERY l r", we need to find the maximum value among all possible XORs of contiguous subarrays that lie completely within the range [l, r].
+
+Input Format:
+    The first line contains T (number of test cases).
+    For each test case:
+        The first line contains two integers N and Q (array size and number of operations).
+        The second line contains N integers representing the initial array.
+        The next Q lines each contain an operation:
+        "UPDATE i x" meaning set A[i] = x
+        "QUERY l r" meaning find the maximum XOR of any subarray in [l, r]
+
+Output Format:
+    For each test case:
+    First line: "Case #X:" where X is the test case number (starting from 1).
+    For each QUERY operation, output the maximum XOR value on a separate line.
+Constraints:
+
+1 ≤ T ≤ 10
+1 ≤ N, Q ≤ 100,000
+0 ≤ A[i] ≤ 10^9
+All indices are 0-based: 0 ≤ i < N, 0 ≤ l ≤ r < N
+
+Example 1:
+Input:
+1
+5 4
+1 2 3 4 5
+QUERY 0 4
+UPDATE 2 10
+QUERY 0 4
+QUERY 1 3
+
+Output:
+Case #1:
+7
+14
+14
+
+Explanation:
+    First QUERY: max XOR is 7 (from [2,3]: 3⊕4=7)
+    After UPDATE: [1,2,10,4,5]
+    Second QUERY: max XOR is 11 (from [2,4]: 10⊕4⊕5=11)
+    Third QUERY: max XOR is 14 (from [2,3]: 10⊕4=14)
+
+Example 2:
+Input:
+1
+4 4
+5 5 5 5
+QUERY 0 3
+UPDATE 1 0
+QUERY 0 3
+QUERY 1 2
+
+Output:
+Case #1:
+5
+5
+5
+
+Explanation:
+    Initial: [5,5,5,5], max XOR is 5 (single elements)
+    After UPDATE: [5,0,5,5], max XOR is 5 (single elements)
+    QUERY [1,2]: max XOR is 5 (from [2,2])
+
+Example 3:
+Input:
+1
+3 4
+1000000000 0 1000000000
+QUERY 0 2
+UPDATE 1 1000000000
+QUERY 0 2
+QUERY 1 1
+
+Output:
+Case #1:
+1000000000
+0
+0
+
+Explanation:
+    First QUERY: max is 10^9 (single elements)
+    After UPDATE: all elements are 10^9, so all XORs are 0
+    QUERY [1,1]: single element XOR is 0
+
+Implementation Requirements:
+    Use binary trie for efficient maximum XOR queries
+    Use segment tree to handle range queries and point updates
+    Time complexity: O(N log N + Q log² N) per test case

@@ -1,0 +1,56 @@
+Use Python to solve this problem.
+
+Problem: Find Peak Element in Mountain Array
+
+Description:
+A mountain array is defined as an array that:
+- Increases strictly to some peak element
+- Decreases strictly after the peak element
+
+Given a mountain array, find the index of the peak element. The array is guaranteed to be a mountain array.
+
+You must solve this in O(log n) time complexity using binary search.
+
+Input:
+- First line: T (number of test cases, 1 ≤ T ≤ 100)
+- For each test case:
+  - First line: n (array length, 3 ≤ n ≤ 10^5)
+  - Second line: n integers (mountain array elements, 0 ≤ a_i ≤ 10^9)
+
+Output:
+- For each test case:
+  - Print "Case #X: Y" where X is test case number, Y is the index (0-based) of the peak element
+
+Examples:
+
+Example 1:
+Input:
+3
+5
+1 3 5 4 2
+7
+1 2 3 4 3 2 1
+4
+0 1 0 -1
+
+Output:
+Case #1: 2
+Case #2: 3
+Case #3: 1
+
+Explanation:
+Case 1: Array [1, 3, 5, 4, 2] - peak is 5 at index 2
+Case 2: Array [1, 2, 3, 4, 3, 2, 1] - peak is 4 at index 3  
+Case 3: Array [0, 1, 0, -1] - peak is 1 at index 1
+
+Algorithm:
+Use binary search to find the peak:
+- Compare middle element with its right neighbor
+- If arr[mid] < arr[mid+1], search in right half (peak is to the right)
+- Else, search in left half (peak is to the left, or mid is the peak)
+
+Constraints:
+- 1 ≤ T ≤ 100
+- 3 ≤ n ≤ 10^5
+- 0 ≤ a_i ≤ 10^9
+- The array is guaranteed to be a mountain array

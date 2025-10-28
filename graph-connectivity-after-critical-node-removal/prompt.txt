@@ -1,0 +1,56 @@
+Problem: Graph Connectivity After Removing Critical Nodes
+
+Description:
+You are given an undirected, unweighted graph. Your task is to identify critical nodes (also known as articulation points) — nodes whose removal increases the number of connected components in the graph.
+After identifying all critical nodes, simulate their removal one by one and compute the number of connected components in the resulting graph for each removal.
+
+Goal: Return a list of (critical_node, component_count) pairs sorted by node ID.
+
+Requirements:
+- Implement an efficient algorithm to find articulation points using DFS with discovery times and low values.
+- For each critical node:
+ * Temporarily remove it from the graph
+ * Compute the number of connected components in the remaining graph
+ * Record the result
+- Return results sorted by node ID
+- Handle edge cases: no critical nodes, fully connected graphs, isolated nodes
+
+Input:
+* n: number of nodes (labeled 0 to n-1)
+* edges: list of undirected edges as tuples (u, v)
+
+Output:
+* List of tuples [(node, component_count), ...] for all critical nodes
+* Sorted by node in ascending order
+* If no critical nodes exist → return empty list []
+
+Constraints:
+* 1≤n≤1000
+* 0≤len(edges)≤n(n−1)/2
+​* Graph may be disconnected initially
+* No self-loops or duplicate edges
+
+Example:
+n = 5
+edges = [(0,1), (1,2), (2,0), (1,3), (3,4)]
+* Critical nodes: 1, 3 (removing either increases components)
+* Remove 1: graph splits into components {0,2}, {3,4} → 2 components
+* Remove 3: graph splits into {0,1,2}, {4} → 2 components
+* Output: [(1, 2), (3, 2)]
+
+Algorithm Steps:
+1. Use DFS to find all articulation points
+2. For each articulation point:
+ * Create a copy of the graph without that node
+ * Run DFS/BFS to count connected components
+ * Store result
+3. Sort results by node ID
+
+Notes:
+- Use adjacency list representation
+- Efficiently handle node removal (don’t rebuild graph from scratch each time)
+- Consider corner cases:
+ * Single node
+ * No edges
+ * All nodes are critical
+ * No critical nodes

@@ -1,0 +1,23 @@
+{
+  "name": "first-missing-positive",
+  "task_type": "code-generation",
+  "programming_language": "Python",
+  "solution_file_path": "solution.py",
+  "test_file_path": "test.py",
+  "execution_file_path": "run.sh",
+  "difficulty": "Medium",
+  "tags": [
+    "Array",
+    "Hash Table",
+    "In-Place Modification",
+    "Index as Hash Key",
+    "Optimization"
+  ],
+  "timeout": 5,
+  "memory_limit": "128MB",
+  "num_test_cases": 0,
+  "additional_files": [
+    "requirements.txt",
+    "prompt.txt"
+  ]
+}

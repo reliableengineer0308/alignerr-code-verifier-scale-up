@@ -1,0 +1,68 @@
+Use Python to solve this problem.
+
+Problem: Matrix Exponentiation for Linear Recurrence
+
+Description:
+Given a linear recurrence relation:
+F(n) = a1 * F(n-1) + a2 * F(n-2) + ... + ak * F(n-k)
+
+And initial values F(1), F(2), ..., F(k), find F(n) modulo 10^9+7 for very large n.
+
+Input:
+- First line: k (order of recurrence)
+- Second line: k integers a1, a2, ..., ak (coefficients)
+- Third line: k integers F1, F2, ..., Fk (initial values)  
+- Fourth line: n (the term to compute)
+
+Output:
+- F(n) modulo 10^9+7
+
+Constraints:
+- 1 ≤ k ≤ 10
+- 0 ≤ ai ≤ 10^9
+- 0 ≤ Fi ≤ 10^9  
+- 1 ≤ n ≤ 10^18
+
+Example 1 - Fibonacci:
+Input:
+2
+1 1
+1 1
+10
+
+Output:
+55
+
+Example 2 - Tribonacci:
+Input:
+3
+1 1 1
+1 1 2
+8
+
+Output:
+44
+
+Example 3 - Custom Recurrence:
+Input:
+3
+2 3 1
+1 2 3
+6
+
+Output:
+116
+
+Algorithm Requirements:
+- Use matrix exponentiation for O(k^3 * log n) time complexity
+- Implement fast matrix multiplication with modulo
+- Handle large n efficiently using exponentiation by squaring
+
+Explanation for Beginners:
+1. Linear recurrence can be represented as matrix multiplication
+2. For recurrence F(n) = a1*F(n-1) + ... + ak*F(n-k):
+   [F(n)  ]   [a1 a2 ... ak]   [F(n-1)]
+   [F(n-1)]   [1  0  ... 0 ]   [F(n-2)]
+   [  ... ] = [0  1  ... 0 ] * [  ...  ]
+   [F(n-k+1)] [0  0  ... 1 ]   [F(n-k)]
+3. Then F(n) = (M^(n-k)) * [Fk, F(k-1), ..., F1]^T

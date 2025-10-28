@@ -1,0 +1,102 @@
+Use Python to solve this problem.
+
+Problem: Serialize and Deserialize Binary Tree
+
+## Problem Description
+Design an algorithm to serialize and deserialize a binary tree. 
+Serialization is the process of converting a data structure into a sequence of bits. 
+Deserialization is reconstructing the tree from the serialized data.
+
+## Input Format
+- First line: T (number of test cases)
+- For each test case:
+  - First line: level order traversal with null nodes represented as 'null'
+
+## Output Format
+- For each test case: level order traversal after serialization and deserialization
+
+## Constraints
+- 0 ≤ number of nodes ≤ 1000
+- -1000 ≤ node value ≤ 1000
+
+## Example 1: Complex Tree with Negative Values
+### Input
+1
+10 -5 15 null 7 -20 null null null null 25 30
+
+### Output
+10 -5 15 null 7 -20 null null null null 25 30
+
+### Explanation
+Tree structure:
+        10
+       /  \
+     -5    15
+       \     \
+        7    -20
+             /  \
+            25   30
+
+Serialized: "10 -5 15 null 7 -20 null null null null 25 30"
+After deserialization, we get the same tree.
+
+## Example 2: Deep Unbalanced Tree
+### Input
+1
+1 2 null 3 null 4 null 5 null 6 null 7
+
+### Output
+1 2 null 3 null 4 null 5 null 6 null 7
+
+### Explanation
+Deep right-skewed tree:
+    1
+     \
+      2
+       \
+        3
+         \
+          4
+           \
+            5
+             \
+              6
+               \
+                7
+
+## Example 3: Mixed Null Patterns
+### Input
+1
+1 null 2 3 null null 4 5 6 null 7
+
+### Output
+1 null 2 3 null null 4 5 6 null 7
+
+### Explanation
+Complex tree structure:
+    1
+     \
+      2
+     / \
+    3   null
+   / \
+  4   5
+ /   /
+6   7
+
+## Example 4: Multiple Test Cases
+### Input
+3
+1 2 3 null null 4 5
+10 -5 15 null 7 -20 null null null null 25 30
+1 null 2 3 null null 4 5 6 null 7
+
+### Output
+1 2 3 null null 4 5
+10 -5 15 null 7 -20 null null null null 25 30
+1 null 2 3 null null 4 5 6 null 7
+
+## Algorithm Requirements
+- Use level order traversal (BFS) for serialization
+- Handle null nodes properly
+- The deserialized tree should be identical to the original

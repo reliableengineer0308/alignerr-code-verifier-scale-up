@@ -1,0 +1,50 @@
+Problem: Optimal Rectangle Packing
+
+Description:
+Implement an algorithm to pack a set of rectangles into a bounding container of minimal area. The goal is to find a non-overlapping arrangement of all rectangles such that the total bounding box has the smallest possible area.
+This is a variant of the 2D Bin Packing Problem, known to be NP-hard.
+
+Input:
+* rectangles: List of tuples (w, h) representing width and height of each rectangle
+* All rectangles must be axis-aligned (no rotation allowed)
+
+Output:
+- Tuple (min_area, placement) where:
+ * min_area: Minimal area of bounding box
+ * placement: List of tuples (x, y, w, h) indicating the position and size of each rectangle in the packing
+
+Algorithm Requirements:
+1. Approach Options (choose one or combine):
+ * Greedy First-Fit Decreasing (FFD): Sort by area (descending), place each in first available position
+ * Backtracking with Pruning: Try all positions, prune invalid/suboptimal branches
+ * Skyline Heuristic: Maintain a “skyline” of available positions
+2. Constraints:
+ * Rectangles cannot overlap
+ * No rotation (fixed orientation)
+ * All coordinates ≥ 0
+ * Minimize bounding box area (width × height)
+3. Edge Cases:
+ * Empty list → (0, )
+ * Single rectangle → its area
+ * Identical rectangles
+ * Very tall vs very wide rectangles
+4. Complexity Considerations:
+ * Exact solution: exponential time (backtracking)
+ * Heuristic: polynomial time with suboptimal results
+5. Optimization Goals:
+ * Prioritize compactness (min area)
+ * Avoid excessive whitespace
+ * Stable output (same input → same output)
+
+Steps (Recommended: FFD + Backtracking):
+1. Sort rectangles by area (descending)
+2. Initialize empty grid and bounding box
+3. For each rectangle:
+ * Find all valid positions (no overlap)
+ * Choose position that minimizes expansion of bounding box
+4. Return final area and placement
+
+Constraints:
+* Pure Python (no external libraries)
+* Handle up to 10 rectangles (exact solution)
+* For >10 rectangles, use heuristic (FFD)

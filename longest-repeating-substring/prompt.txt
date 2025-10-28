@@ -1,0 +1,59 @@
+Problem: Longest Repeating Substring
+
+Description:
+Given a string s, find the length of the longest substring that appears at least twice in s. The occurrences may overlap.
+Goal: Return the length of the longest repeating substring. If no repeating substring exists, return 0.
+
+Input:
+* s: string of lowercase English letters (a-z)
+* 1≤len(s)≤3000
+
+Output:
+* Integer: length of the longest substring that occurs ≥2 times
+
+Examples:
+1. s = "abcd" → 0 (no repeating substring)
+2. s = "abbaba" → 2 (substrings "ab", "ba" appear twice)
+3. s = "aabcaabdaab" → 3 ("aab" appears 3 times)
+4. s = "aaaa" → 3 (substring "aaa" appears twice: positions 0–2 and 1–3)
+
+Requirements:
+Implement an efficient algorithm to solve this problem. You may choose one of the following approaches:
+
+Approach 1: Binary Search + Rolling Hash
+* Binary search on the answer (length of substring)
+* For a given length L, use rolling hash (e.g., Rabin-Karp) to find duplicate substrings of length L
+* Time: O(nlogn), Space: O(n)
+
+Approach 2: Suffix Array + LCP
+* Build suffix array and compute LCP (Longest Common Prefix) array
+* Answer is the maximum value in the LCP array
+* Time: O(n), Space: O(n) (with efficient SA construction)
+
+Approach 3: Sliding Window with Hash Set
+- For each possible length from n-1 down to 1:
+ * Use a set to store hashes of substrings of that length
+ * If a hash repeats, return the length
+- Time: O(n^2), Space: O(n) — acceptable for n≤3000
+
+Algorithm Steps (Recommended: Binary Search + Rolling Hash):
+1. Define a helper function has_repeating_substring(L) that checks if any substring of length L appears ≥2 times.
+2. Use binary search over possible lengths: low = 1, high = len(s) - 1
+3. For each mid = (low + high) // 2, call has_repeating_substring(mid)
+4. If true, search higher lengths; else, search lower
+5. Return the maximum valid length
+
+Rolling Hash Tips:
+* Use a large base (e.g., 26 or 27) and modulus (e.g., 10^9+7)
+* Precompute powers of base for fast hash updates
+* Handle collisions carefully (use tuple (hash, start_index) or double hash)
+
+Edge Cases:
+* All characters same: "aaaa" → answer 3
+* No repeating: "abc" → 0
+* Single character: "a" → 0
+
+Notes:
+* Overlapping occurrences are allowed
+* Substring length ranges from 1 to n-1
+* Return 0 if no repeating substring

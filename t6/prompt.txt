@@ -1,0 +1,113 @@
+Use Python to solve this problem.
+
+Problem: Strongly Connected Components (Kosaraju's Algorithm)
+
+Description:
+A strongly connected component (SCC) in a directed graph is a maximal subgraph where every vertex is reachable from every other vertex within that subgraph.
+
+What is Kosaraju's Algorithm?
+Kosaraju's algorithm finds SCCs in a directed graph in O(V+E) time. It works in three steps:
+1. First DFS: Perform DFS on the original graph and record finishing times
+2. Graph Transpose: Create the transpose graph (reverse all edge directions)
+3. Second DFS: Perform DFS on the transpose graph in decreasing order of finishing times
+
+Input Format:
+- First line: N M (number of nodes, number of edges)
+- Next M lines: u v (directed edge from node u to node v)
+
+Output Format:
+- Print "Number of SCCs: X" where X is the number of SCCs found
+- Print each SCC as "SCC i: [nodes]" where i starts from 1
+- SCCs are printed in sorted order by their smallest node
+
+Constraints:
+- 1 ≤ N ≤ 10000
+- 0 ≤ M ≤ 100000
+- Nodes are 0-indexed
+
+Examples:
+
+Example 1: Connected Graph (One Large SCC)
+Input:
+8 14
+0 1
+1 2
+2 3
+2 4
+3 0
+4 5
+5 6
+6 4
+6 7
+7 5
+1 5
+4 1
+5 2
+7 7
+
+Output:
+Number of SCCs: 1
+SCC 1: [0, 1, 2, 3, 4, 5, 6, 7]
+
+Explanation: All nodes form one large SCC because there are paths connecting all cycles together.
+
+Example 2: Separated Cycles (Multiple SCCs)
+Input:
+6 6
+0 1
+1 2
+2 0
+3 4
+4 3
+5 5
+
+Output:
+Number of SCCs: 3
+SCC 1: [5]
+SCC 2: [3, 4]
+SCC 3: [0, 1, 2]
+
+Explanation:
+- SCC 1: Node 5 with self-loop
+- SCC 2: Nodes 3,4 form a 2-node cycle
+- SCC 3: Nodes 0,1,2 form a 3-node cycle
+
+Example 3: All Separate Nodes
+Input:
+4 0
+
+Output:
+Number of SCCs: 4
+SCC 1: [0]
+SCC 2: [1]
+SCC 3: [2]
+SCC 4: [3]
+
+Explanation: With no edges, each node is its own SCC.
+
+Example 4: One Large Cycle
+Input:
+5 5
+0 1
+1 2
+2 3
+3 4
+4 0
+
+Output:
+Number of SCCs: 1
+SCC 1: [0, 1, 2, 3, 4]
+
+Explanation: All nodes form one big cycle.
+
+Algorithm Steps:
+1. Build adjacency lists for original graph and transpose graph
+2. First DFS pass: Visit all unvisited nodes in original graph, push to stack when finished
+3. Second DFS pass: Process nodes from stack in reverse order on transpose graph
+4. Each DFS tree in second pass forms one SCC
+5. Sort SCCs for consistent output
+
+Important Notes:
+- A single node is an SCC only if it cannot reach other nodes in cycles
+- Nodes in cycles always belong to the same SCC
+- If cycles are connected, they merge into one larger SCC

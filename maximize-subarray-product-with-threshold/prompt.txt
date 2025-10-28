@@ -1,0 +1,56 @@
+PROBLEM: MAXIMIZE SUBARRAY PRODUCT UNDER CONSTRAINTS
+
+LEVEL: HARD
+
+DESCRIPTION:
+Implement a function `max_constrained_subarray(arr, k, threshold)` that finds a contiguous subarray of length exactly `k` such that:
+1. The product of its elements is maximized
+2. The subarray must contain at least one element ≥ `threshold`
+3. The solution must handle negative numbers, zeros, and edge cases efficiently
+
+INPUT:
+- `arr`: List of integers, 1 ≤ len(arr) ≤ 10^5
+- `k`: Integer, 1 ≤ k ≤ len(arr) (fixed subarray length)
+- `threshold`: Integer, -10^9 ≤ threshold ≤ 10^9
+
+OUTPUT:
+- Return the maximum product of any contiguous subarray of length `k` that contains at least one element ≥ `threshold`
+- If no valid subarray exists, return `None`
+
+
+EXAMPLES:
+
+Example 1:
+Input: arr = [2, 3, -2, 4], k = 2, threshold = 3
+Output: 6
+Explanation: Valid subarrays: [2,3]=6, [3,-2]=-6, [-2,4]=-8 → max = 6
+
+Example 2:
+Input: arr = [-2, 0, -1], k = 2, threshold = 0
+Output: 0
+Explanation: [0,-1]=0, [-2,0]=0 → max = 0
+
+Example 3:
+Input: arr = [1, 2, 3, 4, 5], k = 3, threshold = 6
+Output: None
+Explanation: No element ≥ 6 exists
+
+CONSTRAINTS:
+- Time complexity: O(n) expected
+- Space complexity: O(1)
+- Handle zeros, negatives, and potential overflow
+- k may equal len(arr)
+
+KEY CHALLENGES:
+1. Efficient sliding window product maintenance
+2. Handling zero values (product = 0 but subarray may be valid)
+3. Negative number sign management
+4. Threshold condition validation
+5. Avoiding overflow
+
+HINTS:
+1. Use sliding window with product tracking
+2. Track negative count for sign determination
+3. Recheck threshold condition after each window slide
+4. Handle zero division carefully
+5. Use logarithmic comparisons if needed for overflow protection

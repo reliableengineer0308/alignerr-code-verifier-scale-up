@@ -1,0 +1,55 @@
+Problem: Spiral Matrix Traversal
+
+Description:
+Implement a function spiral_order(matrix) that returns all elements of a 2D matrix in spiral order (clockwise), starting from the top-left corner.
+
+Your task:
+- Traverse the matrix in a spiral pattern: right → down → left → up → repeat
+- Collect elements in the order they are visited
+- Return a list of values in spiral order
+- Handle edge cases: empty matrix, single row/column
+
+Input:
+- 2D list matrix where each row is a list of integers
+- Matrix dimensions: 0 ≤ m ≤ 100, 0 ≤ n ≤ 100
+- Element range: −10^3≤matrix[i][j]≤10^3
+
+Output:
+- List of integers representing elements in spiral order
+- If matrix is empty, return empty list []
+
+Examples:
+Example 1:
+Input: matrix = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9]
+]
+Output: [1, 2, 3, 6, 9, 8, 7, 4, 5]
+
+Example 2:
+python
+Input: matrix = [
+  [1, 2, 3, 4],
+  [5, 6, 7, 8],
+  [9,10,11,12]
+]
+Output: [1,2,3,4,8,12,11,10,9,5,6,7]
+
+Example 3:
+Input: matrix = [1, 2, 3]
+Output: [1, 2, 3]  # Single row
+
+Constraints:
+0≤m,n≤100
+Time complexity: O(m×n)
+Space complexity: O(1) extra space (not counting output list)
+Do not modify the input matrix
+Handle all edge cases properly
+
+Notes:
+- Use layer-by-layer traversal approach
+- Track current boundaries: top, bottom, left, right
+- After processing each side, shrink the boundary
+- Stop when boundaries cross
+- Test with rectangular matrices too

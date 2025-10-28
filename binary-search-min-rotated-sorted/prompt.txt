@@ -1,0 +1,51 @@
+Use Python to solve this problem.
+
+Problem: Find Minimum in Rotated Sorted Array
+
+Description:
+Given a rotated sorted array (originally sorted in ascending order but rotated at some pivot), 
+find the minimum element. The array may contain duplicates.
+
+Input:
+- First line: T (number of test cases, 1 ≤ T ≤ 100)
+- For each test case:
+  - First line: n (array size, 1 ≤ n ≤ 10^5)
+  - Second line: n integers (rotated sorted array, -10^9 ≤ a_i ≤ 10^9)
+
+Output:
+- For each test case:
+  - Print "Case #X: Y" where X is test case number, Y is the minimum element
+
+Examples:
+
+Example 1:
+Input:
+3
+5
+3 4 5 1 2
+7
+4 5 6 7 0 1 2
+6
+1 1 1 0 1 1
+
+Output:
+Case #1: 1
+Case #2: 0
+Case #3: 0
+
+Explanation:
+Case 1: Array rotated, minimum is 1
+Case 2: Array rotated, minimum is 0
+Case 3: Array with duplicates, minimum is 0
+
+Algorithm:
+Use binary search:
+1. Compare middle element with rightmost element
+2. If nums[mid] > nums[right], search right half
+3. If nums[mid] < nums[right], search left half including mid
+4. If equal, decrement right pointer
+
+Constraints:
+- 1 ≤ T ≤ 100
+- 1 ≤ n ≤ 10^5
+- -10^9 ≤ a_i ≤ 10^9

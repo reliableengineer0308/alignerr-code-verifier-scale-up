@@ -1,0 +1,49 @@
+Use Python to solve this problem.
+
+Problem: Sum of Euler Totient Function
+
+Description:
+Given an integer N, compute the sum of Euler's totient function φ(i) for all i from 1 to N.
+That is, compute S(N) = φ(1) + φ(2) + ... + φ(N)
+
+We can compute this efficiently using the identity:
+Σ[d|n] φ(d) = n
+and applying Mobius inversion, or by using a sieve approach.
+
+Input:
+- First line: T (number of test cases, 1 ≤ T ≤ 1000)
+- For each test case:
+  - N (1 ≤ N ≤ 10^6)
+
+Output:
+- For each test case:
+  - Print S(N)
+
+Examples:
+
+Example 1:
+Input:
+5
+1
+2
+3
+10
+100
+
+Output:
+1
+2
+4
+32
+3044
+
+Explanation:
+Case 1: φ(1) = 1 → sum = 1
+Case 2: φ(1)+φ(2) = 1+1 = 2
+Case 3: φ(1)+φ(2)+φ(3) = 1+1+2 = 4
+Case 4: Sum of φ(1) to φ(10) = 32
+Case 5: Sum of φ(1) to φ(100) = 3044
+
+Constraints:
+- 1 ≤ T ≤ 1000
+- 1 ≤ N ≤ 10^6

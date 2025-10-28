@@ -1,0 +1,61 @@
+Use Python to solve this problem.
+
+Problem: Maximum Distance using Rotating Calipers
+
+Description:
+Given a set of points in a 2D plane, find the maximum Euclidean distance between any two points (the diameter of the set).
+Use the rotating calipers algorithm on the convex hull for efficiency.
+
+Input:
+- First line: T (number of test cases)
+- For each test case:
+  - First line: N (number of points)
+  - Next N lines: x y (coordinates of each point)
+
+Output:
+- For each test case:
+  - Print "Case #X: Y" where X is test case number, Y is the maximum squared distance
+  - Print the two points that achieve this maximum distance
+
+Constraints:
+- 1 ≤ T ≤ 10
+- 2 ≤ N ≤ 100000
+- -10^9 ≤ x, y ≤ 10^9
+
+Algorithm Requirements:
+- Compute convex hull first
+- Use rotating calipers to find antipodal points
+- Handle collinear cases properly
+- Output squared distance to avoid floating point issues
+
+Example:
+Input:
+2
+6
+0 0
+1 1
+2 2
+3 3
+4 4
+5 5
+8
+0 0
+4 0
+4 4
+0 4
+1 1
+2 2
+3 3
+2 0
+
+Output:
+Case #1: 50
+0 0
+5 5
+Case #2: 32
+0 0
+4 4
+
+Explanation:
+- First case: all points collinear, maximum distance between (0,0) and (5,5)
+- Second case: maximum distance between (0,0) and (4,4) with squared distance 32

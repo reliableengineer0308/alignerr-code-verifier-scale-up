@@ -1,0 +1,59 @@
+Use Python to solve this problem.
+
+Problem: Eulerian Numbers
+
+Description:
+Eulerian numbers A(n, k) count the number of permutations of n elements with k ascents.
+An ascent is a position i (1 ≤ i ≤ n-1) where π(i) < π(i+1).
+
+Recurrence relation:
+A(n, k) = (k + 1) * A(n-1, k) + (n - k) * A(n-1, k-1)
+Base cases:
+A(0, 0) = 1
+A(n, 0) = 1 for n ≥ 0
+A(n, k) = 0 for k ≥ n
+
+Given n, k and a modulus M, compute A(n, k) modulo M.
+
+Input:
+- First line: T (number of test cases, 1 ≤ T ≤ 100)
+- For each test case:
+  - n k M (0 ≤ n, k ≤ 1000, 1 ≤ M ≤ 10^9)
+
+Output:
+- For each test case:
+  - Print A(n, k) % M
+
+Examples:
+
+Example 1:
+Input:
+6
+3 1 1000000007
+4 1 1000000007
+4 2 1000000007
+5 2 1000000007
+0 0 1000000007
+3 3 1000000007
+
+Output:
+4
+11
+11
+66
+1
+0
+
+Explanation:
+Case 1: A(3,1) = 4
+Permutations of 3 with 1 ascent: 132, 213, 231, 312
+Case 2: A(4,1) = 11
+Case 3: A(4,2) = 11  
+Case 4: A(5,2) = 66
+Case 5: A(0,0) = 1
+Case 6: A(3,3) = 0 (cannot have 3 ascents in permutation of 3)
+
+Constraints:
+- 1 ≤ T ≤ 100
+- 0 ≤ n, k ≤ 1000
+- 1 ≤ M ≤ 10^9

@@ -1,0 +1,15 @@
+{
+  "name": "dynamic-grid-shortest-path",
+  "task_type": "algorithm-optimization",
+  "programming_language": "Python",
+  "solution_file_path": "solution.py",
+  "test_file_path": "test.py",
+  "execution_file_path": "run.sh",
+  "function_name": "shortest_path_dynamic",
+  "tags": ["Graph", "BFS", "Dijkstra", "Dynamic Grid", "Time-Varying", "Pathfinding"],
+  "timeout": 15,
+  "memory_limit": "512MB",
+  "num_test_cases": 14,
+  "additional_files": [],
+  "difficulty": "Hard"
+}

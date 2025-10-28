@@ -1,0 +1,54 @@
+Use Python to solve this problem.
+
+Problem: Particle Swarm Optimization for Rastrigin Function
+
+Description:
+Minimize the Rastrigin function using Particle Swarm Optimization.
+Rastrigin function: f(x) = A*n + Σ[x_i² - A*cos(2πx_i)] for i=1 to n, where A=10
+Search space: x_i ∈ [-5.12, 5.12]
+
+Input:
+- First line: dimensions particles iterations
+- Next line: w c1 c2 (inertia weight, cognitive parameter, social parameter)
+
+Output:
+- First line: best_position (comma-separated values rounded to 6 decimal places)
+- Second line: best_fitness (rounded to 6 decimal places)
+- Third line: convergence (comma-separated best fitness per iteration)
+
+Constraints:
+- 2 ≤ dimensions ≤ 10
+- 20 ≤ particles ≤ 100
+- 100 ≤ iterations ≤ 2000
+- 0.4 ≤ w ≤ 0.9
+- 1.5 ≤ c1, c2 ≤ 2.5
+
+Examples:
+
+Example 1:
+Input:
+2 50 500
+0.7 2.0 2.0
+
+Output:
+0.000000,0.000000
+0.000000
+9.234,8.156,7.023,...,0.000
+
+Example 2:
+Input:
+3 30 300
+0.8 1.8 2.2
+
+Output:
+0.000000,0.000000,0.000000
+0.000000
+12.456,10.234,8.567,...,0.000
+
+Implementation Approach:
+1. Initialize particles with random positions and velocities
+2. Update velocity: v = w*v + c1*r1*(pbest - x) + c2*r2*(gbest - x)
+3. Update position: x = x + v
+4. Clamp positions to search space [-5.12, 5.12]
+5. Track personal best and global best positions
+6. The global minimum is at (0,0,...,0) with value 0

@@ -1,0 +1,47 @@
+PROBLEM: LONGEST INCREASING PATH IN A MATRIX
+
+LEVEL: HARD
+
+DESCRIPTION:
+Given an m×n matrix of integers, find the length of the longest strictly increasing path.
+
+From each cell, you can move to any of the 4 adjacent cells (up, down, left, right) if the value in the adjacent cell is strictly greater than the current cell.
+
+Return the length of the longest increasing path in the matrix.
+
+INPUT:
+- `matrix`: List[List[int]] where 1 ≤ m, n ≤ 200
+- Each cell: -2^31 ≤ matrix[i][j] ≤ 2^31 - 1
+
+OUTPUT:
+- Integer: length of the longest strictly increasing path
+
+EXAMPLES:
+
+Example 1:
+Input: matrix = 
+[9,9,4],
+[6,6,8],
+[2,1,1]
+Output: 4
+Explanation: The longest path is 1 → 2 → 6 → 9 (length = 4)
+
+Example 2:
+Input: matrix = 
+[3,4,5],
+[3,2,6],
+[2,2,1]
+Output: 4
+Explanation: 1 → 2 → 3 → 4 → 5 (length = 5)? Wait — actually 3→4→5→6 (length=4)
+
+CONSTRAINTS:
+- You must use DFS with memoization (top-down DP)
+- Time: O(m×n), Space: O(m×n)
+- No external libraries allowed
+
+HINTS:
+1. Use DFS from every cell
+2. Memoize the longest path starting from each cell
+3. Only move to strictly greater values
+4. Directions: up, down, left, right
+5. The answer is the maximum of all DFS results

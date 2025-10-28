@@ -1,0 +1,46 @@
+Explanation
+Algorithm Approach
+This problem uses the Dinic's algorithm for maximum flow, which efficiently computes the maximum flow in a flow network. The key steps are:
+
+Graph Construction:
+
+Create a super-source connected to all restaurants (capacity = number of drivers)
+
+Create a super-sink connected to all customers (capacity = customer demand)
+
+Convert roads to edges with their given capacities
+
+Flow Computation:
+
+Use BFS to find augmenting paths and assign levels to nodes
+
+Use DFS to push flow along blocking paths
+
+Repeat until no more augmenting paths exist
+
+Why This Works
+The problem translates directly to a max-flow problem where we need to move "flow" (deliveries) from sources (restaurants) to sinks (customers)
+
+Road capacities naturally become edge capacities in the flow network
+
+The algorithm efficiently handles multiple sources and sinks through the super-node technique
+
+Complexity Analysis
+Time Complexity: O(V²E) where V is number of vertices and E is number of edges
+
+Space Complexity: O(V + E) for storing the graph
+
+For the given constraints (n ≤ 200, m ≤ 2000), this is efficient
+
+Sample Walkthrough
+For Test Case 1:
+
+Restaurant at location 0 has 10 drivers
+
+Customer at location 1 has demand for 8 deliveries
+
+Road 0→1 has capacity 15 (more than enough)
+
+Maximum flow = min(10, 8) = 8 deliveries
+
+The solution efficiently handles complex delivery routing scenarios and finds the optimal delivery plan using network flow principles.

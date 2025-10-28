@@ -1,0 +1,23 @@
+{
+  "name": "minimize-total-delay-resource-allocation",
+  "task_type": "code-generation",
+  "programming_language": "Python",
+  "solution_file_path": "solution.py",
+  "test_file_path": "test.py",
+  "execution_file_path": "run.sh",
+  "difficulty": "Hard",
+  "tags": [
+    "Scheduling",
+    "Resource Allocation",
+    "Topological Sort",
+    "Dynamic Programming",
+    "Greedy Algorithm",
+    "Optimization"
+  ],
+  "timeout": 10,
+  "memory_limit": "256MB",
+  "num_test_cases": 6,
+  "additional_files": [
+    "requirements.txt"
+  ]
+}

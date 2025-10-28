@@ -1,0 +1,48 @@
+prompt.txt
+Problem Title: Course Schedule (Graph Topological Sort)
+
+Description:
+You are tasked with determining whether it’s possible to complete all courses given a list of prerequisites. Each course has a unique ID from 0 to numCourses - 1. A prerequisite pair [ai, bi] means you must take course bi before course ai.
+
+Your goal is to return True if all courses can be finished, or False if there’s a cycle (making completion impossible).
+
+Key Requirements:
+* Model the problem as a directed graph using adjacency list representation
+* Detect cycles using DFS with 3-state marking (unvisited, visiting, visited)
+* Handle edge cases (empty prerequisites, self-loops, disconnected components)
+* Optimize for O(V + E) time and space complexity
+* Return a boolean result (no need to output the order)
+
+Input Format:
+* numCourses: integer (1 ≤ numCourses ≤ 2000)
+* prerequisites: list of pairs [[ai, bi], ...] where 0 ≤ ai, bi < numCourses
+
+Output Format:
+* Boolean: True if all courses can be completed, False otherwise
+
+Examples:
+Input: numCourses = 2, prerequisites = [[1,0]] → Output: True
+Input: numCourses = 2, prerequisites = [[1,0],[0,1]] → Output: False
+Input: numCourses = 3, prerequisites = [[1,0],[2,0]] → Output: True
+Input: numCourses = 1, prerequisites = [] → Output: True
+
+Why This Problem?
+* Teaches core graph concepts (directed graphs, adjacency lists, cycle detection)
+* Models real-world scenarios (course planning, dependency resolution)
+* Demonstrates DFS optimization with state tracking
+* Common in technical interviews
+* Builds foundation for topological sorting
+
+Expected Solution Approach:
+1. Build adjacency list from prerequisites
+2. Use DFS with 3-state marking:
+	0: unvisited
+	1: currently visiting (in recursion stack)
+	2: fully visited
+3. If you encounter a node marked 1 during DFS, a cycle exists
+4. Return False immediately if cycle found, else True after processing all nodes
+
+Constraints:
+- Must run in O(V + E) time
+- Must use O(V + E) space for graph storage
+- Handle all edge cases explicitly

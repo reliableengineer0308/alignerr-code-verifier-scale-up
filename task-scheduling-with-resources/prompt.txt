@@ -1,0 +1,72 @@
+Problem: Optimal Task Scheduling with Resource Constraints and Deadlines
+
+
+You are given a set of tasks that must be scheduled on a single machine. Each task has:
+- Processing time (duration)
+- Deadline (must finish by this time)
+- Resource requirement (units of a shared resource)
+- Profit (value if completed by deadline)
+
+The machine has a fixed resource capacity. At any moment, the sum of resource requirements of running tasks must not exceed capacity.
+
+Goal: Maximize total profit by selecting and scheduling tasks.
+
+Function to implement:
+def schedule_tasks(tasks: List[Dict], capacity: int) -> int:
+
+Input:
+- tasks: List of dictionaries with keys:
+  - "id": int (task identifier)
+  - "duration": int (>0)
+  - "deadline": int (≥ duration)
+  - "resource": int (>0)
+  - "profit": int (>0)
+- capacity: int (machine's resource capacity, ≥1)
+
+Constraints:
+1. Only one task can run at a time (no parallel execution)
+2. Total resource usage at any time ≤ capacity
+3. A task must run continuously (no preemption)
+4. Task must finish by its deadline
+5. Each task can be scheduled at most once
+
+Output:
+- Maximum achievable profit (sum of profits of scheduled tasks)
+
+Examples:
+
+Example 1:
+tasks = [
+  {"id": 1, "duration": 2, "deadline": 4, "resource": 3, "profit": 50},
+  {"id": 2, "duration": 3, "deadline": 6, "resource": 2, "profit": 60}
+]
+capacity = 5
+→ Output: 110
+Explanation: Both tasks can run sequentially (total resource 3+2=5 ≤ capacity). Schedule task 1 at t=0-2, task 2 at t=2-5 (both meet deadlines).
+
+Example 2:
+tasks = [
+  {"id": 1, "duration": 4, "deadline": 5, "resource": 4, "profit": 100},
+  {"id": 2, "duration": 3, "deadline": 7, "resource": 3, "profit": 80}
+]
+capacity = 6
+→ Output: 100
+Explanation: Cannot run both (4+3=7 > 6). Task 1 gives higher profit.
+
+
+Constraints:
+- 1 ≤ len(tasks) ≤ 20
+- 1 ≤ duration ≤ 100
+- duration ≤ deadline ≤ 200
+- 1 ≤ resource ≤ 50
+- 1 ≤ profit ≤ 1000
+- 1 ≤ capacity ≤ 100
+
+
+Hints:
+1. Consider sorting by deadline or profit-density
+2. Use DP over time or task subsets
+3. State: (time, mask) where mask represents scheduled tasks
+4. For each task, try scheduling it at all possible start times
+5. Prune invalid schedules (resource overflow or deadline miss)
+6. Use memoization to avoid recomputation

@@ -1,0 +1,80 @@
+Use Python to solve this problem.
+
+Problem: Longest Consecutive Sequence
+
+Description:
+You are an expert Python programmer. Implement a function `longest_consecutive(nums: list[int]) -> int` that returns the length of the longest consecutive elements sequence.
+
+Your algorithm must run in **O(n)** time.
+
+Input:
+- An integer array `nums` where `0 ≤ len(nums) ≤ 10⁵`
+- Each element satisfies `-10⁹ ≤ nums[i] ≤ 10⁹`
+- Array may contain duplicates and negative numbers
+
+Output:
+- Return the length of the **longest consecutive sequence** of integers
+- Sequence must be strictly increasing by 1 (e.g., 3,4,5,6)
+- Must run in **O(n)** time
+- Use **O(n)** space (for hash set)
+
+Examples:
+
+Example 1:
+Input: nums = [100,4,200,1,3,2]
+Output: 4
+Explanation: The longest consecutive sequence is [1,2,3,4] → length 4
+
+Example 2:
+Input: nums = [0,3,7,2,5,8,4,6,0,1]
+Output: 9
+Explanation: Longest sequence: [0,1,2,3,4,5,6,7,8] → length 9
+
+Example 3:
+Input: nums = []
+Output: 0
+Explanation: Empty array → no sequence
+
+Example 4:
+Input: nums = [7]
+Output: 1
+Explanation: Single element → sequence length 1
+
+
+Example 5:
+Input: nums = [1,2,0,1]
+Output: 3
+Explanation: Sequence [0,1,2] → length 3 (duplicate 1 ignored)
+
+Constraints:
+- `0 ≤ len(nums) ≤ 100000`
+- `-10^9 ≤ nums[i] ≤ 10^9`
+- Solve in **O(n)** time (no sorting allowed)
+- Handle duplicates correctly
+- Handle negative numbers
+- Edge cases: empty, single, all same
+
+
+Your Task:
+Implement the function:
+
+def longest_consecutive(nums: list[int]) -> int:
+    # Your code here
+
+Key Requirements:
+1. Use a hash set for O(1) lookups
+2. For each number, check if it's the *start* of a sequence:
+   - A number `x` is a start if `x-1` is NOT in the set
+3. If it's a start, count how long the consecutive sequence is by checking `x+1`, `x+2`, etc.
+4. Track the maximum length found
+5. Return the maximum
+
+Hints:
+- Convert `nums` to a set first: `num_set = set(nums)`
+- Iterate through each number in `nums`
+- Only begin counting if `num - 1` not in `num_set` (ensures we start at sequence beginning)
+- While `current + 1` in set, increment counter and current
+- Update global maximum
+- Return max length
+
+

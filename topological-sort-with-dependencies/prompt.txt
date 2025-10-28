@@ -1,0 +1,46 @@
+Problem: Topological Sort with Dependencies
+
+Description:
+Implement a topological sorting algorithm to resolve dependencies in a directed acyclic graph (DAG). The algorithm should return a linear ordering of vertices such that for every directed edge u → v, vertex u comes before v in the ordering.
+If the graph contains a cycle, the algorithm must detect it and return an appropriate indication (e.g., empty list or raise exception).
+
+Input:
+- graph: Dictionary representing adjacency list
+ * Keys: node identifiers (strings or integers)
+ * Values: list of dependent nodes (directed edges)
+- Example: {"A": ["B", "C"], "B": ["D"], "C": ["D"], "D": []}
+
+Output:
+- List of nodes in topological order if DAG
+- Empty list [] if a cycle is detected (or raise ValueError)
+
+Algorithm Requirements:
+1. Use Kahn’s Algorithm (indegree-based approach):
+ * Compute indegree for each node.
+ * Initialize queue with nodes having indegree 0.
+ * Process nodes: remove from queue, add to result, reduce indegree of neighbors.
+ * If neighbor’s indegree becomes 0, enqueue it.
+ * If result size < total nodes → cycle exists.
+2. Handle Edge Cases:
+ * Empty graph
+ * Single node
+ * Disconnected components
+ * Graph with cycle
+ * Nodes with no dependencies
+3. Complexity:
+ * Time: O(V+E)
+ * Space: O(V+E) (for graph and indegree storage)
+4. Constraints:
+ * Pure Python (no external libraries)
+ * Handle up to 1000 nodes
+ * Stable ordering: if multiple valid orders exist, return any one
+
+Steps:
+1. Build indegree map for all nodes.
+2. Initialize queue with nodes of indegree 0.
+3. While queue not empty:
+ * Dequeue node, add to result.
+ * For each neighbor, decrement indegree.
+ * If indegree becomes 0, enqueue neighbor.
+4. If result length ≠ total nodes → cycle detected → return [].
+5. Return result.

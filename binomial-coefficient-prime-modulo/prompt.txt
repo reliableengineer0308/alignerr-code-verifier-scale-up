@@ -1,0 +1,48 @@
+Use Python to solve this problem.
+
+Problem: Binomial Coefficient Modulo Prime
+
+Description:
+Given three integers n, k, and a prime number M, compute the binomial coefficient C(n, k) modulo M.
+
+The binomial coefficient C(n, k) is defined as:
+C(n, k) = n! / (k! * (n - k)!) for 0 ≤ k ≤ n
+C(n, k) = 0 for k > n
+
+Since M is prime, we can use modular arithmetic and Fermat's Little Theorem to compute factorials and their inverses.
+
+Input:
+- First line: T (number of test cases, 1 ≤ T ≤ 100)
+- For each test case:
+  - n k M (0 ≤ n, k ≤ 10^6, 2 ≤ M ≤ 10^9, M is prime)
+
+Output:
+- For each test case:
+  - Print C(n, k) % M
+
+Examples:
+
+Example 1:
+Input:
+4
+5 2 1000000007
+10 3 1000000007
+1000 500 1000000007
+5 6 1000000007
+
+Output:
+10
+120
+159835829
+0
+
+Explanation:
+Case 1: C(5, 2) = 10
+Case 2: C(10, 3) = 120
+Case 3: C(1000, 500) mod 1000000007 = 159835829
+Case 4: k > n, so C(5, 6) = 0
+
+Constraints:
+- 1 ≤ T ≤ 100
+- 0 ≤ n, k ≤ 10^6
+- 2 ≤ M ≤ 10^9, M is prime

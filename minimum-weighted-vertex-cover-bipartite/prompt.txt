@@ -1,0 +1,101 @@
+Use Python to solve this problem.
+
+Problem: Minimum Weighted Vertex Cover in Bipartite Graph
+
+Description:
+Given a bipartite graph with weighted vertices, find the minimum weighted vertex cover.
+A vertex cover is a set of vertices such that every edge has at least one endpoint in the set.
+In bipartite graphs, this problem can be reduced to a minimum cut problem.
+
+Input:
+- First line: T (number of test cases)
+- For each test case:
+  - First line: n m (number of vertices in left set, number of vertices in right set)
+  - Second line: weights for left vertices (n integers)
+  - Third line: weights for right vertices (m integers)
+  - Next lines: edges between left and right vertices
+    - Each line: u v (0-indexed, u from left set [0, n-1], v from right set [0, m-1])
+    - End of edges: -1 -1
+
+Output:
+- For each test case:
+  - First line: "Case #X: Y" where X is test case number, Y is minimum weight
+  - Second line: vertices in the cover (format: "L: a,b,c R: x,y,z")
+
+Constraints:
+- 1 ≤ n, m ≤ 1000
+- 0 ≤ weights ≤ 10000
+- 0 ≤ number of edges ≤ 10000
+- Total vertices across test cases ≤ 2000
+
+Example 1 - Simple Case:
+Input:
+1
+2 2
+5 10
+3 7
+0 0
+0 1
+1 0
+-1 -1
+
+Output:
+Case #1: 8
+L: 0 R: 0
+
+Explanation: 
+Left vertices weights: [5, 10], Right vertices weights: [3, 7]
+Edges: (0,0), (0,1), (1,0)
+Optimal cover: left vertex 0 (weight 5) + right vertex 0 (weight 3) = total 8
+
+Example 2 - Complex Case with Multiple Components:
+Input:
+2
+3 3
+10 20 30
+15 25 35
+0 0
+0 1
+1 1
+1 2
+2 2
+-1 -1
+2 2
+100 200
+150 250
+0 0
+1 1
+-1 -1
+
+Output:
+Case #1: 60
+L: 0,1,2 R:
+Case #2: 300
+L: 0,1 R:
+
+Example 3 - All Vertices Required:
+Input:
+1
+3 3
+1 1 1
+1 1 1
+0 0
+0 1
+0 2
+1 0
+1 1
+1 2
+2 0
+2 1
+2 2
+-1 -1
+
+Output:
+Case #1: 3
+L: 0,1,2 R: 
+
+Algorithm Requirements:
+- Use Konig's theorem: In bipartite graphs, minimum vertex cover = maximum matching
+- Convert to flow network and use max flow algorithm
+- Implement efficient bipartite matching or max flow
+- Reconstruct the vertex cover from the min cut

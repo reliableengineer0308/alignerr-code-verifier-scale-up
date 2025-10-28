@@ -1,0 +1,58 @@
+Problem Description: Network Packet Routing
+In the city of Cyberville, there's a complex network of routers that forward data packets. Each router has a processing capacity and connections to other routers. Your task is to determine the minimum time required for a packet to travel from a source router to a destination router, considering that each router takes a certain amount of time to process the packet before forwarding it.
+
+The network is represented as an undirected graph where:
+
+Each node represents a router with a processing time
+
+Each edge represents a direct connection between routers with a transmission time
+
+The total time to travel from router A to router B is the sum of:
+
+Processing time at router A
+
+Transmission time from A to B
+
+Processing time at router B (if B is not the final destination)
+
+However, if you're at the final destination, you don't need to process the packet again.
+
+Input Format:
+The input will be provided as a list of integers in the following order:
+
+Number of routers N
+
+Number of connections M
+
+Source router S
+
+Destination router D
+
+List of N integers representing processing times for each router (0-indexed)
+
+List of M*3 integers representing connections: [router_u, router_v, transmission_time] for each connection
+
+Constraints:
+
+2 ≤ N ≤ 1000
+
+1 ≤ M ≤ 10000
+
+0 ≤ S, D ≤ N-1, S ≠ D
+
+Processing times: 1 ≤ p_i ≤ 100
+
+Transmission times: 1 ≤ t_i ≤ 100
+
+Output Format:
+A single integer representing the minimum total time required, or -1 if unreachable.
+
+Example 1:
+Function: solve(arr)
+Input: arr = [3, 2, 0, 2, 2, 3, 1, 0, 1, 5, 1, 2, 4]
+Output: 14
+
+Example 2:
+Function: solve(arr)
+Input: arr = [2, 1, 0, 1, 1, 1, 0, 1, 10]
+Output: 11

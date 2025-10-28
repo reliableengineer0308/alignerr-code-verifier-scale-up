@@ -1,0 +1,79 @@
+Use Python to solve this problem.
+
+Problem: Search in Rotated Sorted Array
+
+## Problem Description
+You are given an array of integers that was originally sorted in ascending order but has been rotated at some unknown pivot. 
+For example, [0,1,2,4,5,6,7] might become [4,5,6,7,0,1,2]. Your task is to find the index of a given target value in this rotated array. 
+If the target is not found, return -1.
+
+You must write an algorithm with O(log n) runtime complexity.
+
+## Input Format
+- First line: T (number of test cases)
+- For each test case:
+  - First line: N (size of the array)
+  - Second line: array elements (space-separated integers)
+  - Third line: target value
+
+## Output Format
+- For each test case: the index of target in the array, or -1 if not found
+
+## Constraints
+- 1 ≤ N ≤ 10^5
+- -10^4 ≤ array[i], target ≤ 10^4
+- All values in the array are unique
+
+## Example 1: Basic Case
+### Input
+2
+7
+4 5 6 7 0 1 2
+0
+4
+1 3 5 7
+2
+
+### Output
+4
+-1
+
+### Explanation
+**Test Case 1:**
+Array: [4,5,6,7,0,1,2], Target: 0
+The target 0 is at index 4.
+
+**Test Case 2:**
+Array: [1,3,5,7], Target: 2
+The target 2 is not in the array, so return -1.
+
+## Example 2: Not Rotated
+### Input
+1
+5
+1 2 3 4 5
+3
+
+### Output
+2
+
+### Explanation
+The array is not rotated (already sorted). Target 3 is at index 2.
+
+## Example 3: Single Element
+### Input
+1
+1
+5
+5
+
+### Output
+0
+
+### Explanation
+Array has only one element which matches the target.
+
+## Algorithm Requirements
+- Use modified binary search
+- Time complexity: O(log n)
+- Handle both rotated and non-rotated cases

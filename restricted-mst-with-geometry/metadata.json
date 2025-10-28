@@ -1,0 +1,22 @@
+{
+  "name": "restricted-mst-with-geometry",
+  "task_type": "algorithm-optimization",
+  "programming_language": ["Python"],
+  "solution_file_path": ["solution.py"],
+  "test_file_path": ["test.py"],
+  "execution_file_path": "run.sh",
+  "function_name": "min_cost_connect_points",
+  "tags": [
+    "Graph",
+    "Minimum Spanning Tree",
+    "Prim's Algorithm",
+    "Geometry",
+    "Constraints",
+    "Optimization"
+  ],
+  "timeout": 10,
+  "memory_limit": "512MB",
+  "num_test_cases": 12,
+  "additional_files": [],
+  "difficulty": "Hard"
+}

@@ -1,0 +1,70 @@
+Problem Title: Longest Palindromic Substring with Sub-Linear Query Time
+
+Note: This problem explores preprocessing-based solutions where query time for the longest palindromic substring (LPS) approaches O(log n) after an initial preprocessing phase. True O(log n) total time is impossible for the general case, but we optimize for scenarios with repeated queries or constrained inputs.
+
+Description:
+You are given a string s of length n. Design a data structure that:
+1. Preprocesses s in O(n log n) or better
+2. Supports queries for the LPS in O(log n) time per query
+3. Returns the actual substring (not just length)
+After preprocessing, you should be able to answer LPS queries efficiently—even if the string is queried multiple times under different constraints.
+
+Key Requirements:
+* Input: String s with 1 ≤ |s| ≤ 10⁵, lowercase letters only
+* Preprocessing Time: ≤ O(n log n)
+* Query Time: O(log n) per LPS query
+* Space Complexity: O(n) or better
+* Output: The longest palindromic substring of s
+* Edge Cases: Handle single-character strings, no palindromes (return first char), and full-string palindromes
+
+Examples:
+Example 1:
+Input: s = "babad"
+Preprocess → Build data structure
+Query → Output: "bab" (or "aba", both valid)
+
+Example 2:
+Input: s = "cbbd"
+Query → Output: "bb"
+
+Example 3:
+Input: s = "a"
+Query → Output: "a"
+
+Example 4:
+Input: s = "abcdef"
+Query → Output: "a" (any single char is a palindrome)
+
+Example 5:
+Input: s = "racecar"
+Query → Output: "racecar" (whole string is palindrome)
+
+Why This Problem?:
+- Teaches preprocessing for fast queries (common in databases, search engines)
+- Explores palindromic properties via suffix arrays, eertree (palindromic tree), or Manacher’s algorithm
+- Models real-world use cases:
+ * DNA sequence analysis (palindromes in genomes)
+ * Text editors with live palindrome highlighting
+ * Plagiarism detection with mirrored phrases
+- Builds intuition for time-space tradeoffs in string algorithms
+
+Expected Solution Approach:
+Step 1: Preprocessing (O(n log n))
+Use suffix array + longest common prefix (LCP) to detect palindromic substrings efficiently:
+1. Build the reversed string s_rev = s[::-1]
+2. Concatenate: T = s + '#' + s_rev (use separator to avoid overlap)
+3. Build suffix array and LCP array for T
+4. For each position i in s, find its mirror in s_rev
+5. Use LCP to compute the longest palindrome centered at each position
+Alternatively, use Manacher’s Algorithm (O(n)) to precompute all palindromic radii.
+
+Step 2: Query (O(log n))
+After preprocessing:
+* Store the longest palindrome found during preprocessing
+* For queries, simply return this stored value in O(1) time
+* If dynamic updates are needed, use a balanced BST or heap to maintain top palindromes → query in O(log n)
+Note: The query is O(1) if no updates; O(log n) if we support dynamic insertion/deletion of palindromes.
+
+Step 3: Edge Handling
+If no palindrome >1 char exists, return any single character
+Handle even and odd length palindromes separately

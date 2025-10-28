@@ -1,0 +1,65 @@
+Problem: String Matching with Wildcards
+
+Description:
+Implement a function that checks if a given string s matches a pattern p containing wildcards:
+? → matches any single character
+* → matches any sequence of characters (including empty sequence)
+
+Goal: Return True if s fully matches p, otherwise False.
+
+Input:
+s: string to match (0 ≤ len(s) ≤ 2000)
+p: pattern string with wildcards (0 ≤ len(p) ≤ 2000)
+Both strings contain only lowercase English letters and wildcards ? and *
+
+Output:
+bool: True if full match, False otherwise
+
+Examples:
+1. s = "aa", p = "a" → False
+Pattern “a” doesn’t match “aa”
+
+2. s = "aa", p = "*" → True
+* matches any sequence, including “aa”
+
+3. s = "cb", p = "?a" → False
+? matches “c”, but “a” ≠ “b”
+
+4. s = "adceb", p = "*a*b" → True
+* → “”, a → “a”, * → “dce”, b → “b”
+
+5. s = "acdcb", p = "a*c?b" → False
+Last ? requires exactly one char, but “cb” has two
+
+Algorithm Requirements:
+Implement using Dynamic Programming (DP):
+1. Create 2D boolean DP table dp[i][j] where:
+ * i = length of substring s[:i]
+ * j = length of pattern prefix p[:j]
+ * dp[i][j] = True if s[:i] matches p[:j]
+2. Base case:
+ * dp[0][0] = True (empty string matches empty pattern)
+ * dp[0][j] = True if p[:j] consists only of * (each * can match empty string)
+3. Transition:
+ * If p[j-1] == s[i-1] or p[j-1] == '?':
+    dp[i][j] = dp[i-1][j-1]
+ * If p[j-1] == '*':
+    dp[i][j] = dp[i][j-1] (match empty) OR dp[i-1][j] (match one more char)
+ * Otherwise: dp[i][j] = False
+4. Return dp[len(s)][len(p)]
+
+Alternative Approaches:
+* Recursive with memoization (slower but clearer)
+* Two-pointer greedy (only for single *, not general case)
+
+Recommended Approach: DP for guaranteed O(mn) time.
+Edge Cases:
+* Empty string/pattern
+* Pattern starts/ends with *
+* Multiple consecutive *
+* Only ? wildcards
+* No wildcards
+
+Complexity:
+* Time: O(m×n) where m=len(s), n=len(p)
+* Space: O(m×n) for DP table

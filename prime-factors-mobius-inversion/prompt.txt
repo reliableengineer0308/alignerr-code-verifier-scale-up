@@ -1,0 +1,55 @@
+Use Python to solve this problem.
+
+Problem: Counting Numbers with Exactly K Prime Factors
+
+Description:
+Given integers N and K, count how many numbers between 1 and N (inclusive) have exactly K distinct prime factors.
+
+We can solve this using Mobius inversion and inclusion-exclusion principle.
+
+Let f(n, k) = count of numbers ≤ n with exactly k distinct prime factors.
+
+We can compute this using:
+f(n, k) = Σ_{d} μ(d) * C(ω(d), k) * floor(n/d)
+where ω(d) is the number of distinct prime factors of d.
+
+Alternatively, we can use dynamic programming with prime factorization.
+
+Input:
+- First line: T (number of test cases, 1 ≤ T ≤ 1000)
+- For each test case:
+  - N K (1 ≤ N ≤ 10^6, 0 ≤ K ≤ 10)
+
+Output:
+- For each test case:
+  - Print the count of numbers between 1 and N with exactly K distinct prime factors
+
+Examples:
+
+Example 1:
+Input:
+5
+10 1
+10 2
+100 2
+1000 3
+1000000 4
+
+Output:
+4
+2
+34
+132
+861
+
+Explanation:
+Case 1: Numbers with exactly 1 prime factor up to 10: 2,3,5,7 → 4 numbers
+Case 2: Numbers with exactly 2 prime factors up to 10: 6,10 → 2 numbers  
+Case 3: 34 numbers between 1-100 with exactly 2 prime factors
+Case 4: 132 numbers between 1-1000 with exactly 3 prime factors
+Case 5: 861 numbers between 1-1000000 with exactly 4 prime factors
+
+Constraints:
+- 1 ≤ T ≤ 1000
+- 1 ≤ N ≤ 10^6
+- 0 ≤ K ≤ 10

@@ -1,0 +1,53 @@
+Use Python to solve this problem.
+
+Problem: Minkowski Sum of Polygons
+
+Description:
+Given two convex polygons A and B, compute their Minkowski sum A ⊕ B = {a + b | a ∈ A, b ∈ B}.
+The Minkowski sum of two convex polygons is also a convex polygon.
+
+Input:
+- First line: N (number of vertices in polygon A)
+- Next N lines: x y (vertices of polygon A in counter-clockwise order)
+- Next line: M (number of vertices in polygon B)  
+- Next M lines: x y (vertices of polygon B in counter-clockwise order)
+
+Output:
+- First line: K (number of vertices in Minkowski sum polygon)
+- Next K lines: x y (vertices of Minkowski sum in counter-clockwise order)
+
+Constraints:
+- 3 ≤ N, M ≤ 1000
+- -10^6 ≤ x, y ≤ 10^6
+- Both polygons are convex and given in counter-clockwise order
+
+Algorithm Requirements:
+- Implement Minkowski sum using convolution of polygons
+- Handle edge cases (degenerate polygons, etc.)
+- Output convex hull of the sum
+
+Example:
+Input:
+4
+0 0
+2 0
+2 2
+0 2
+3
+0 0
+1 0
+0 1
+
+Output:
+5
+0 0
+3 0
+3 2
+2 3
+0 3
+
+Explanation:
+- Polygon A: square from (0,0) to (2,2)
+- Polygon B: right triangle with vertices (0,0), (1,0), (0,1)
+- Minkowski sum is a pentagon representing all possible sums
+- The result has 5 vertices as shown

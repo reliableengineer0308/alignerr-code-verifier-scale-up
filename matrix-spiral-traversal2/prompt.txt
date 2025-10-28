@@ -1,0 +1,58 @@
+Problem: Spiral Matrix Traversal
+
+Implement a function that traverses an m × n matrix in spiral (clockwise) order and returns the elements as a list.
+
+Function to implement:
+def spiral_order(matrix):
+
+Input:
+- A 2D list `matrix` representing an m × n matrix
+- 1 ≤ m, n ≤ 100
+- Matrix elements are integers in range [-100, 100]
+- The matrix is guaranteed to be non-empty
+
+Output:
+- A list containing the elements of the matrix traversed in clockwise spiral order
+
+Spiral traversal rules:
+1. Start from the top-left corner (0,0)
+2. Move right → down → left → up, repeating this pattern
+3. After completing a full loop, shrink the boundary and continue
+4. Stop when all elements have been visited
+
+Examples:
+
+Example 1:
+Input: matrix = [[1, 2, 3],
+                 [4, 5, 6],
+                 [7, 8, 9]]
+Output: [1, 2, 3, 6, 9, 8, 7, 4, 5]
+
+Example 2:
+Input: matrix = [[1,  2,  3,  4],
+                 [5,  6,  7,  8],
+                 [9, 10, 11, 12]]
+Output: [1, 2, 3, 4, 8, 12, 11, 10, 9, 5, 6, 7]
+
+Example 3 (single column):
+Input: matrix = [[1],
+                 [2],
+                 [3],
+                 [4]]
+Output: [1, 2, 3, 4]
+
+Example 4 (single row):
+Input: matrix = [[1, 2, 3, 4, 5]]
+Output: [1, 2, 3, 4, 5]
+
+Constraints:
+- Do not modify the input matrix
+- Time complexity: O(m × n)
+- Space complexity: O(1) excluding the output list
+- Handle edge cases: single row, single column, rectangular, square
+
+Hints:
+- Use four boundary pointers: top, bottom, left, right
+- After each direction, update the corresponding boundary
+- Stop when boundaries cross
+- Process directions: right → down → left → up

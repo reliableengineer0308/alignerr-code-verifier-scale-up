@@ -1,0 +1,60 @@
+Use Python to solve this problem.
+
+Problem: Find Maximum of Unimodal Function using Ternary Search
+
+Description:
+You are given a unimodal function f(x) that first increases to a maximum and then decreases. 
+The function is defined on a continuous range [left, right]. Your task is to find the value of x 
+that maximizes f(x) within the given range with precision up to 1e-7.
+
+The function f(x) is defined as: f(x) = -ax² + bx + c, where a > 0 (ensuring it's unimodal)
+
+However, the function parameters are not given directly. Instead, you are given evaluation points
+and must use ternary search to find the maximum.
+
+Input:
+- First line: T (number of test cases, 1 ≤ T ≤ 100)
+- For each test case:
+  - First line: left right (search range boundaries, -1000 ≤ left < right ≤ 1000)
+  - Second line: a b c (function parameters, 0.1 ≤ a ≤ 100, -1000 ≤ b, c ≤ 1000)
+
+Output:
+- For each test case:
+  - Print "Case #X: Y" where X is test case number, Y is the x value that maximizes f(x)
+  - The answer should have absolute error less than 1e-6
+
+Examples:
+
+Example 1:
+Input:
+3
+0.0 10.0
+1.0 0.0 0.0
+-5.0 5.0
+2.0 8.0 1.0
+1.0 20.0
+0.5 -10.0 100.0
+
+Output:
+Case #1: 0.000000
+Case #2: 2.000000
+Case #3: 10.000000
+
+Explanation:
+Case 1: f(x) = -1.0x², maximum at x = 0.0
+Case 2: f(x) = -2.0x² + 8.0x + 1.0, derivative f'(x) = -4x + 8 = 0 → x = 2.0
+Case 3: f(x) = -0.5x² - 10x + 100, derivative f'(x) = -x - 10 = 0 → x = -10, but since -10 is outside [1,20], maximum at boundary x = 1.0
+
+Algorithm:
+Use ternary search to find the maximum of unimodal function:
+1. While (right - left) > precision:
+2.   mid1 = left + (right - left) / 3
+3.   mid2 = right - (right - left) / 3
+4.   If f(mid1) < f(mid2): left = mid1
+5.   Else: right = mid2
+
+Constraints:
+- 1 ≤ T ≤ 100
+- -1000 ≤ left < right ≤ 1000
+- 0.1 ≤ a ≤ 100, -1000 ≤ b, c ≤ 1000
+- Precision requirement: 1e-7

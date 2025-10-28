@@ -1,0 +1,51 @@
+Use Python to solve this problem.
+
+Problem: Prime Factorization with Sieve
+
+Description:
+Given an integer N, find all prime factors of N and their exponents.
+Return the factors in increasing order.
+
+For example, for N = 60, the prime factors are 2, 3, 5 with exponents 2, 1, 1 respectively.
+
+You should use the Sieve of Eratosthenes to precompute the smallest prime factor (SPF) for each number up to a certain limit,
+then use the SPF array to efficiently factorize numbers.
+
+Input:
+- First line: T (number of test cases, 1 ≤ T ≤ 1000)
+- For each test case:
+  - N (1 ≤ N ≤ 10^6)
+
+Output:
+- For each test case:
+  - Print the prime factors and their exponents in the format: "p1^e1 p2^e2 ... pk^ek"
+  - If N = 1, print "1^1"
+
+Examples:
+
+Example 1:
+Input:
+5
+60
+17
+1
+100
+999983
+
+Output:
+2^2 3^1 5^1
+17^1
+1^1
+2^2 5^2
+999983^1
+
+Explanation:
+Case 1: 60 = 2^2 * 3^1 * 5^1
+Case 2: 17 is prime, so 17^1
+Case 3: 1 = 1^1 (special case)
+Case 4: 100 = 2^2 * 5^2
+Case 5: 999983 is prime
+
+Constraints:
+- 1 ≤ T ≤ 1000
+- 1 ≤ N ≤ 10^6

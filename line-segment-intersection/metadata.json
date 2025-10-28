@@ -1,0 +1,14 @@
+{
+  "name": "line-segment-intersection",
+  "task_type": "code-generation",
+  "programming_language": "Python",
+  "solution_file_path": "solution.py",
+  "test_file_path": "test.py",
+  "execution_file_path": "run.sh",
+  "difficulty": "Hard",
+  "tags": ["Geometry", "Computational Geometry", "Line Intersection", "Vector Math"],
+  "timeout": 5,
+  "memory_limit": "128MB",
+  "num_test_cases": 9,
+  "additional_files": "requirements.txt"
+}

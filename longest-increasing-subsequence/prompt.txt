@@ -1,0 +1,48 @@
+Problem: Longest Increasing Subsequence (LIS)
+
+Description:
+Implement a function length_of_lis(nums) that returns the length of the longest strictly increasing subsequence in an integer array.
+
+Your task:
+- Find the length of the longest subsequence where elements are in strictly increasing order
+- Subsequence doesn’t need to be contiguous
+- Use an efficient algorithm (avoid O(n²) brute force)
+- Handle edge cases: empty array, single element, all equal elements
+
+Input:
+- Array nums of integers: -10⁴ ≤ nums[i] ≤ 10⁴
+- Array length: 1 ≤ n ≤ 2500
+
+Output:
+Integer: length of the longest increasing subsequence
+
+Examples:
+Example 1:
+Input: nums = [10,9,2,5,3,7,101,18]
+Output: 4
+Explanation: The longest increasing subsequence is [2,3,7,18], length = 4.
+
+Example 2:
+Input: nums = [0,1,0,3,2,3]
+Output: 4
+Explanation: One possible LIS is [0,1,2,3], length = 4.
+
+Example 3:
+Input: nums = [7,7,7,7,7,7,7]
+Output: 1
+Explanation: All elements are equal, so LIS length = 1.
+
+Constraints:
+1 ≤ len(nums) ≤ 2500
+-10⁴ ≤ nums[i] ≤ 10⁴
+Time complexity: O(n log n) (optimal)
+Space complexity: O(n)
+Avoid O(n²) solutions for large inputs
+
+Notes:
+- Use Patience Sorting + Binary Search approach
+- Maintain an array tails where tails[i] is the smallest tail of all increasing subsequences of length i+1
+- For each number, use binary search to find its position in tails
+- Update tails accordingly
+- Final answer is the length of tails
+- Handle duplicates properly (strict increasing → skip equal elements)

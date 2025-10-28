@@ -1,0 +1,53 @@
+Use Python to solve this problem.
+
+Problem: Inclusion-Exclusion Principle
+
+Description:
+Given an integer N and a list of prime numbers, count how many numbers between 1 and N (inclusive)
+are divisible by at least one of the given primes.
+
+Use the Inclusion-Exclusion Principle:
+|A1 ∪ A2 ∪ ... ∪ Ak| = Σ|Ai| - Σ|Ai ∩ Aj| + Σ|Ai ∩ Aj ∩ Ak| - ... + (-1)^(k+1)|A1 ∩ A2 ∩ ... ∩ Ak|
+
+Where Ai is the set of numbers divisible by the i-th prime.
+
+Input:
+- First line: T (number of test cases, 1 ≤ T ≤ 10)
+- For each test case:
+  - First line: N K (1 ≤ N ≤ 10^9, 1 ≤ K ≤ 20)
+  - Second line: K space-separated primes (each prime between 2 and 100)
+
+Output:
+- For each test case:
+  - Print the count of numbers between 1 and N divisible by at least one of the given primes
+
+Examples:
+
+Example 1:
+Input:
+2
+100 2
+2 3
+1000 3
+2 3 5
+
+Output:
+67
+734
+
+Explanation:
+Case 1: Numbers divisible by 2 or 3 up to 100
+Count = floor(100/2) + floor(100/3) - floor(100/6) = 50 + 33 - 16 = 67
+
+Case 2: Numbers divisible by 2, 3, or 5 up to 1000
+Using inclusion-exclusion: 
+floor(1000/2) + floor(1000/3) + floor(1000/5) 
+- floor(1000/6) - floor(1000/10) - floor(1000/15) 
++ floor(1000/30) 
+= 500 + 333 + 200 - 166 - 100 - 66 + 33 = 734
+
+Constraints:
+- 1 ≤ T ≤ 10
+- 1 ≤ N ≤ 10^9
+- 1 ≤ K ≤ 20
+- Primes are between 2 and 100

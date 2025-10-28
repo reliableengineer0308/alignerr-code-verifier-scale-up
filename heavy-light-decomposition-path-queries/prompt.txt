@@ -1,0 +1,108 @@
+Use Python to solve this problem.
+
+Problem: Heavy-Light Decomposition with Path Queries
+
+Description:
+Given a tree with N nodes, each having a value, and Q queries. Implement Heavy-Light Decomposition (HLD)
+to efficiently handle path queries and updates. Support two types of queries:
+1. Update the value of a node
+2. Query the maximum value on the path between two nodes
+
+Input:
+- First line: T (number of test cases)
+- For each test case:
+  - First line: N (number of nodes)
+  - Second line: N integers (initial values of nodes)
+  - Next N-1 lines: u v (edges, 0-indexed)
+  - Next line: Q (number of queries)
+  - Next Q lines: queries
+    - "UPDATE u x" - update node u's value to x
+    - "QUERY u v" - find maximum value on path from u to v
+
+Output:
+- For each test case:
+  - First line: "Case #X:" where X is test case number
+  - For each QUERY: output the maximum value
+
+Constraints:
+- 1 ≤ N ≤ 100,000
+- 1 ≤ Q ≤ 50,000
+- -10^9 ≤ node values ≤ 10^9
+- 0 ≤ u, v < N
+
+Example 1 - Simple Tree:
+Input:
+1
+5
+10 20 5 15 30
+0 1
+0 2
+1 3
+1 4
+6
+QUERY 0 4
+UPDATE 1 25
+QUERY 0 4
+QUERY 2 3
+UPDATE 3 40
+QUERY 3 4
+
+Output:
+Case #1:
+30
+30
+25
+40
+
+Explanation:
+Initial tree with values [10,20,5,15,30]
+Path 0-4: 0->1->4, values: 10,20,30 → max=30
+After update node1=25: path 0-4: 10,25,30 → max=30
+Path 2-3: 2->0->1->3 → 5,10,25,15 → max=25
+After update node3=40: path 3-4: 3->1->4 → 40,25,30 → max=40
+
+Example 2 - Chain Tree:
+Input:
+1
+4
+5 10 15 20
+0 1
+1 2
+2 3
+3
+QUERY 0 3
+UPDATE 2 25
+QUERY 0 3
+
+Output:
+Case #2:
+20
+25
+
+Example 3 - Star Tree:
+Input:
+1
+5
+100 1 2 3 4
+0 1
+0 2
+0 3
+0 4
+4
+QUERY 1 2
+UPDATE 0 50
+QUERY 1 3
+QUERY 2 4
+
+Output:
+Case #3:
+100
+50
+50
+
+Algorithm Requirements:
+- Implement Heavy-Light Decomposition with segment trees
+- Use DFS for tree decomposition
+- Implement LCA (Lowest Common Ancestor)
+- Handle path queries by breaking into chain segments
+- O(log²N) per query/update

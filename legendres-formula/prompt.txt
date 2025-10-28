@@ -1,0 +1,50 @@
+Use Python to solve this problem.
+
+Problem: Legendre's Formula
+
+Description:
+Given integers n and a prime p, find the exponent of p in the prime factorization of n! (n factorial).
+
+Legendre's formula states:
+v_p(n!) = floor(n/p) + floor(n/p^2) + floor(n/p^3) + ... 
+where v_p(n!) is the exponent of prime p in n!.
+
+Input:
+- First line: T (number of test cases, 1 ≤ T ≤ 1000)
+- For each test case:
+  - n p (0 ≤ n ≤ 10^9, 2 ≤ p ≤ 10^9, p is prime)
+
+Output:
+- For each test case:
+  - Print the exponent of p in n!
+
+Examples:
+
+Example 1:
+Input:
+5
+10 2
+10 3
+10 5
+100 2
+1000000000 2
+
+Output:
+8
+4
+2
+97
+999999984
+
+Explanation:
+Case 1: 10! = 3628800 = 2^8 * ... → exponent of 2 is 8
+Case 2: 10! = 3^4 * ... → exponent of 3 is 4
+Case 3: 10! = 5^2 * ... → exponent of 5 is 2
+Case 4: 100! has 97 factors of 2
+Case 5: 1000000000! has 999999984 factors of 2
+
+Constraints:
+- 1 ≤ T ≤ 1000
+- 0 ≤ n ≤ 10^9
+- 2 ≤ p ≤ 10^9
+- p is prime

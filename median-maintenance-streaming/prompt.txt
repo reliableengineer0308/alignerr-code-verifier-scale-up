@@ -1,0 +1,55 @@
+Problem: Median Maintenance in Streaming Data
+
+Description:
+Design a data structure that efficiently maintains the median of a stream of integers as new elements arrive one by one. For each incoming number, compute and return the current median of all numbers seen so far.
+
+Input:
+A stream of integers arriving sequentially (one at a time).
+
+Output:
+After each insertion, return the current median of all values seen so far:
+* If count is odd → median is the middle element
+* If count is even → median is the lower of the two middle elements (floor of average)
+
+Requirements:
+1. Process elements one by one (streaming model).
+2. Support efficient insertion and median query in O(log n) time.
+3. Handle edge cases:
+ * First element → return that element
+ * Empty stream → undefined (assume non-empty)
+4. Memory usage: O(n) where n = number of elements processed
+
+Algorithm Hints:
+Use two heaps:
+* max_heap (for lower half) → stores negatives to simulate max-heap using min-heap
+* min_heap (for upper half)
+For each new number:
+1. Insert into appropriate heap:
+ * If num ≤ current median → max_heap
+ * Else → min_heap
+2. Balance heaps so that sizes differ by at most 1
+3. Compute median based on heap sizes
+
+Key Operations:
+* Insert: O(log n)
+* Get Median: O(1)
+
+Examples:
+Stream: [5, 15, 1, 3]
+Output: [5, 10, 5, 4]
+# Step-by-step:
+# 5 → median = 5
+# 5,15 → median = (5+15)/2 = 10
+# 1,5,15 → median = 5  
+# 1,3,5,15 → median = (3+5)/2 = 4 (lower middle)
+
+Stream: [1, 2, 3, 4, 5]
+Output: [1, 1, 2, 2, 3]
+# Even case: return lower middle (floor behavior)
+
+Constraints:
+* 1 ≤ number of elements ≤ 10⁴
+* -10⁵ ≤ value ≤ 10⁵
+* Process elements in arrival order
+
+Note: Implement with heapq module; do not sort the entire list on each insertion.

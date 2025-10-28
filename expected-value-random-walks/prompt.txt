@@ -1,0 +1,87 @@
+Use Python to solve this problem.
+
+Problem: Expected Number of Steps in Random Walks
+
+Description:
+A particle starts at position 0 on a number line. At each step, it moves:
+- Right by 1 with probability p
+- Left by 1 with probability q  
+- Stays at current position with probability r
+where p + q + r = 1.
+
+The walk stops when the particle reaches either position A (left boundary) or position B (right boundary).
+Calculate the expected number of steps until the walk stops.
+
+Mathematical Formulation:
+Let E(x) be the expected number of steps starting from position x.
+We have the system of equations:
+E(x) = 1 + p*E(x+1) + q*E(x-1) + r*E(x)  for A < x < B
+with boundary conditions: E(A) = 0, E(B) = 0
+
+Rearranging:
+E(x) - r*E(x) = 1 + p*E(x+1) + q*E(x-1)
+(1-r)*E(x) = 1 + p*E(x+1) + q*E(x-1)
+E(x) = (1 + p*E(x+1) + q*E(x-1)) / (1-r)
+
+We need to solve this system of linear equations for E(0).
+
+Input:
+- First line: T (number of test cases)
+- For each test case:
+  - First line: A B (boundaries, A < 0 < B)
+  - Second line: p q r (probabilities for right, left, stay)
+
+Output:
+- For each test case: expected number of steps rounded to 6 decimal places
+
+Constraints:
+- 1 ≤ T ≤ 100
+- -100 ≤ A < 0 < B ≤ 100
+- 0 ≤ p, q, r ≤ 1, p + q + r = 1
+
+Examples:
+
+Example 1:
+Input:
+2
+-1 1
+0.5 0.5 0.0
+-2 2
+0.3 0.3 0.4
+
+Output:
+1.000000
+6.666667
+
+Explanation:
+First case: Symmetric random walk from 0 to ±1. 
+Expected steps = 1 because with p=0.5, q=0.5, the particle reaches boundary in 1 step.
+
+Second case: With staying probability 0.4, it takes more steps on average.
+The exact value 6.666667 is calculated by solving the linear system.
+
+Example 2:
+Input:
+1
+-3 3
+0.4 0.4 0.2
+
+Output:
+11.250000
+
+Example 3:
+Input:
+1
+-5 5
+0.33 0.33 0.34
+
+Output:
+37.878788
+
+Implementation Approach:
+1. Set up a system of linear equations for E(x) where x ranges from A to B
+2. Use Gaussian elimination to solve the system
+3. Return E(0) rounded to 6 decimal places
+
+Note: The actual values may differ from intuitive estimates due to the staying probability.
+The examples above show the exact outputs from the implemented solution.

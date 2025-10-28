@@ -1,0 +1,55 @@
+Problem: Minimum Cost to Connect All Points (with Forbidden Edge Pairs)
+
+You are given n points in 2D space: points[i] = [xi, yi].
+
+The cost to connect two points (xi, yi) and (xj, yj) is their Manhattan distance:
+|xi - xj| + |yi - yj|.
+
+However, you are also given a list of forbidden edge pairs: forbidden_edges[k] = (u, v) meaning you cannot directly connect point u and point v.
+
+Your task:
+Find the minimum total cost to connect all n points into a single connected component (i.e., a spanning tree), without using any forbidden edge.
+If it’s impossible to connect all points under these constraints, return -1.
+Function to implement:
+python
+def min_cost_connect_points(points: list[list[int]], forbidden_edges: list[tuple[int, int]]) -> int:
+
+Input:
+- points: List of [x, y] coordinates. 1 <= n <= 15. 0 <= xi, yi <= 1000
+- forbidden_edges: List of (u, v) pairs (0-indexed). No duplicates. 0 <= u, v < n, u != v
+
+Output:
+Minimum total cost to connect all points without forbidden edges, or -1 if impossible
+
+Examples:
+Example 1:
+points = [[0,0],[2,2],[3,10],[5,2],[7,0]]
+forbidden_edges = [(1,4)]
+→ Output: 20
+Explanation: MST total cost is 20. The forbidden edge (1,4) is not used.
+
+Example 2:
+points = [[3,12],[-2,5],[-4,1]]
+forbidden_edges = [(0,1), (1,2), (0,2)]
+→ Output: -1
+Explanation: All possible direct edges are forbidden. With 3 points, we need at least 2 edges → impossible.
+
+Example 3:
+points = [[0,0], [1,1]]
+forbidden_edges = [(0,1)]
+→ Output: -1
+Explanation: Only one possible edge, but it's forbidden → can't connect.
+
+Constraints:
+1 <= len(points) <= 15
+0 <= len(forbidden_edges) <= n*(n-1)/2
+All coordinates are integers
+You must form a single connected tree (no cycles, no disconnected parts)
+
+Hints:
+1. This is a Constrained MST problem.
+2. Since n <= 15, you can consider bitmask DP or state-space search (e.g., Dijkstra over state: (connected_set, last_added)).
+3. Alternatively: generate all possible spanning trees (via backtracking) that avoid forbidden edges, compute cost, pick minimum.
+4. Use Manhattan distance for edge weights.
+5. If the graph of allowed edges is disconnected → return -1.
+6. Consider Prim’s or Kruskal’s algorithm, but skip forbidden edges.

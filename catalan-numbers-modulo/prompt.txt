@@ -1,0 +1,57 @@
+Use Python to solve this problem.
+
+Problem: Catalan Numbers Modulo M
+
+Description:
+The Catalan numbers form a sequence of natural numbers that occur in various counting problems.
+The n-th Catalan number can be expressed directly in terms of binomial coefficients:
+C_n = (2n)!/((n+1)!*n!) for n ≥ 0
+
+The first few Catalan numbers for n = 0, 1, 2, 3, ... are:
+1, 1, 2, 5, 14, 42, 132, 429, 1430, 4862, ...
+
+Applications:
+- Number of valid parenthesis expressions with n pairs
+- Number of full binary trees with n+1 leaves
+- Number of ways to triangulate a convex polygon with n+2 sides
+
+Given n and a modulus M, compute the n-th Catalan number modulo M.
+
+Input:
+- First line: T (number of test cases, 1 ≤ T ≤ 100)
+- For each test case:
+  - n M (0 ≤ n ≤ 1000, 1 ≤ M ≤ 10^9)
+
+Output:
+- For each test case:
+  - Print C_n % M
+
+Examples:
+
+Example 1:
+Input:
+5
+0 1000000007
+1 1000000007
+3 1000000007
+5 1000000007
+10 1000000007
+
+Output:
+1
+1
+5
+42
+16796
+
+Explanation:
+Case 1: C_0 = 1
+Case 2: C_1 = 1
+Case 3: C_3 = 5
+Case 4: C_5 = 42
+Case 5: C_10 = 16796
+
+Constraints:
+- 1 ≤ T ≤ 100
+- 0 ≤ n ≤ 1000
+- 1 ≤ M ≤ 10^9

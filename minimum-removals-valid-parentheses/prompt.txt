@@ -1,0 +1,91 @@
+Use Python to solve this problem.
+
+Problem: Minimum Removals to Make Valid Parentheses
+
+Description:
+You are an expert Python programmer. Implement a function `min_removals_to_valid(s)` that computes the **minimum number of parentheses to remove** to make the input string `s` a valid parentheses string.
+
+A valid parentheses string is defined as:
+- Empty string is valid.
+- If `A` is valid, then `(A)` is valid.
+- If `A` and `B` are valid, then `AB` is valid.
+
+
+Your goal is to return the **minimum count** of `'('` or `')'` to remove so that the resulting string becomes valid.
+
+Input:
+- A string `s` of length `1 ≤ len(s) ≤ 10⁴`
+- Each character is either `'('`, `')'`, or a lowercase English letter `a-z`
+- The string may contain letters, but they do not affect validity
+
+Output:
+- Return an integer: the minimum number of parentheses removals required
+- Return `0` if the string is already valid
+
+Example 1:
+Function: min_removals_to_valid(s)
+Input: s = "a)bc(d)"
+Output: 2
+Explanation:
+- Remove `')'` at index 1 → "abc(d)"
+- Remove `'('` at index 5 → "abcd"
+→ Resulting string has balanced parentheses → minimum removals = 2
+
+Example 2:
+Input: s = "(a(b)c)"
+Output: 0
+Explanation: The parentheses are already balanced: `( ( ) )` → valid
+
+
+Example 3:
+Input: s = "))(("
+Output: 4
+Explanation: All four parentheses are mismatched → remove all → "" → valid
+
+
+Example 4:
+Input: s = "hello(world)()"
+Output: 0
+Explanation: Parentheses: `( ) ( )` → balanced → no removal needed
+
+
+Example 5:
+Input: s = "())(()"
+Output: 2
+Explanation:
+- One extra `')'` at index 2
+- One unmatched `'('` at index 4
+→ Remove both → "()()" → valid
+
+
+Constraints:
+- `1 ≤ len(s) ≤ 10⁴`
+- `s[i]` ∈ `{'(', ')', 'a'-'z'}`
+- Only parentheses affect validity; letters are ignored
+- You must compute the **minimum** removals
+- Solution must run in **O(n)** time and **O(1)** space (excluding input)
+- Do not return the resulting string—only the count of removals
+
+
+Your Task:
+Implement the function:
+
+```python
+def min_removals_to_valid(s: str) -> int:
+    # Your code here
+
+Key Requirements:
+1. Use a greedy two-pass or stack-inspired counter approach
+2. Traverse left-to-right to catch excess ')'
+3. Traverse right-to-left to catch excess '('
+4. Or use a single pass with balance tracking
+5. Ignore letters completely
+6. Handle edge cases: empty, all letters, all mismatched
+7. Return only the count—no string reconstruction
+
+Hints:
+- Track balance: increment on '(', decrement on ')'
+- If balance < 0 → excess ')' → count it and reset balance
+- After pass, any positive balance → excess '(' → add to count
+- Letters do not change balance
+- This is a counting problem, not a reconstruction problem

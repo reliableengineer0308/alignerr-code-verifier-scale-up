@@ -1,0 +1,15 @@
+{
+  "name": "task-scheduling-with-resources",
+  "task_type": "optimization",
+  "programming_language": "Python",
+  "solution_file_path": "solution.py",
+  "test_file_path": "test.py",
+  "execution_file_path": "run.sh",
+  "function_name": "schedule_tasks",
+  "tags": ["Scheduling", "Greedy", "Dynamic Programming", "Resource Management", "Deadlines"],
+  "timeout": 20,
+  "memory_limit": "512MB",
+  "num_test_cases": 15,
+  "additional_files": [],
+  "difficulty": "Hard"
+}

@@ -1,0 +1,57 @@
+Problem: Minimize Absolute Difference Triplet
+
+Description:
+Implement a function minimize_abs_diff_triplet(arr) that finds three distinct elements a, b, c from the array such that the expression |a - b| + |b - c| + |c - a| is minimized.
+
+Your task:
+- Find three integers a, b, c at distinct indices minimizing |a−b| + |b−c| + |c−a|
+- Handle edge cases: duplicates, negatives, large arrays
+- Return the triplet and the computed minimal value
+- Optimize for arrays up to 10⁵ elements
+
+Input:
+- Integer array arr with n ≥ 3
+- Elements range: −10 ^ 9 ≤arr[i]≤10 ^ 9
+ 
+
+Output:
+- Tuple ((a, b, c), min_value) where:
+	(a, b, c) are the three selected integers
+	min_value = |a−b| + |b−c| + |c−a|
+- If n < 3, return (None, None)
+
+Examples:
+Example 1:
+Input: arr = [1, 5, 3, 9, 2]
+Output: ((1, 2, 3), 4)
+Explanation: |1−2| + |2−3| + |3−1| = 1 + 1 + 2 = 4 (minimum possible)
+
+Example 2:
+Input: arr = [-5, -2, -8, -1]
+Output: ((-5, -2, -1), 8)
+Explanation: |-5−(-2)| + |-2−(-1)| + |-1−(-5)| = 3 + 1 + 4 = 8
+
+Example 3:
+Input: arr = [7, 7, 7]
+Output: ((7, 7, 7), 0)
+Explanation: All equal → sum of absolute differences is 0
+
+Example 4:
+Input: arr = [100, -40, 70, -30, 80]
+Output: ((-30, -40, 70), 200)
+Explanation: Minimal among tested combinations
+
+Constraints:
+3≤ n ≤10 ^ 5
+Time complexity: O(nlogn) or better
+Space complexity: O(1) extra space
+Avoid brute-force O(n ^ 3) solutions
+The result is always non-negative (sum of absolute values)
+If multiple triplets yield the same minimum, return any one
+
+Notes:
+- The expression |a−b| + |b−c| + |c−a| is symmetric
+- For three numbers, this sum equals 2 × (max(a,b,c) − min(a,b,c))
+- Use this mathematical property to optimize
+- Sorting the array will help find close values efficiently
+- Consider consecutive triplets in sorted order as candidates

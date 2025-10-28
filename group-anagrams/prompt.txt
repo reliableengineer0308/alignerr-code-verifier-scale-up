@@ -1,0 +1,43 @@
+Problem: Group Anagrams
+
+Description:
+Implement a function group_anagrams(strs) that groups anagrams from a list of strings. An anagram is a word formed by rearranging the letters of another word.
+
+Your task:
+- Group all strings that are anagrams of each other
+- Return a list of lists, where each sublist contains anagrams
+- Order within groups doesn’t matter, but all anagrams must be grouped
+- Use hash map with sorted string as key
+
+Input:
+- List strs of strings (1 ≤ len(strs) ≤ 10⁴)
+- Each string length: 0 ≤ len(str) ≤ 100
+- All strings contain lowercase English letters
+
+Output:
+List of lists: each sublist is a group of anagrams
+
+Examples:
+Example 1:
+Input: strs = ["eat", "tea", "tan", "ate", "nat", "bat"]
+Output: [["eat","tea","ate"], ["tan","nat"], ["bat"]]
+
+Example 2:
+Input: strs = [""]
+Output: [[""]]
+
+Example 3:
+Input: strs = ["a"]
+Output: [["a"]]
+
+Constraints:
+1 ≤ len(strs) ≤ 10⁴
+0 ≤ len(str[i]) ≤ 100
+Time complexity: O(n * k * log k) where k = max string length
+Space complexity: O(n * k)
+
+Notes:
+- Use dictionary where key = sorted string, value = list of anagrams
+- For each string, sort its characters to get canonical form
+- Group strings with same canonical form
+- Handle empty strings and single characters

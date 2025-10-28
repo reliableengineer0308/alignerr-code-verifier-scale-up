@@ -1,0 +1,65 @@
+Problem: Valid Sudoku
+
+Description:
+Implement a function is_valid_sudoku(board) that checks if a 9×9 Sudoku board is valid. Only the filled cells need to be validated according to the following rules:
+- Each row must contain the digits 1–9 without repetition.
+- Each column must contain the digits 1–9 without repetition.
+- Each of the nine 3×3 sub-boxes of the grid must contain the digits 1–9 without repetition.
+
+Your task:
+- Validate the current state of the board (don’t solve it)
+- Return True if the board is valid, False otherwise
+- Only check filled cells (. or empty means unfilled)
+- Use efficient lookup (e.g., sets or dictionaries) to avoid O(n³)
+
+Input:
+- 2D list board of size 9×9
+- Each cell is a digit 1–9 or '.' (empty cell)
+- Board is guaranteed to be 9×9
+
+Output:
+Boolean: True if board is valid, False otherwise
+
+Examples:
+Example 1:
+python
+Input: board = 
+  5,3,'.', '.',7,'.', '.','.','.',
+  6,'.',1, 9,5,'.', '.','.','.',
+  '.',9,8, '.','.','.', '.',6,'.',
+  8,'.','.', '.',6,'.', '.','.',3,
+  4,'.','.', 8,'.',3, '.','.',1,
+  7,'.','.', '.',2,'.', '.','.',6,
+  '.',6,'.', '.','.','.', 2,8,'.',
+  '.','.','.', 4,1,9, '.','.',5,
+  '.','.','.', '.',8,'.', '.',7,9
+Output: True
+Explanation: The filled cells follow Sudoku rules.
+
+Example 2:
+Input: board = 
+  8,3,'.', '.',7,'.', '.','.','.',
+  6,'.',1, 9,5,'.', '.','.','.',
+  '.',9,8, '.','.','.', '.',6,'.',
+  8,'.','.', '.',6,'.', '.','.',3,
+  4,'.','.', 8,'.',3, '.','.',1,
+  7,'.','.', '.',2,'.', '.','.',6,
+  '.',6,'.', '.','.','.', 2,8,'.',
+  '.','.','.', 4,1,9, '.','.',5,
+  '.','.','.', '.',8,'.', '.',7,9
+Output: False
+Explanation: First column has two 8s → invalid.
+
+Constraints:
+board.length == 9
+boardi.length == 9
+boardij is a digit 1-9 or '.'
+Time complexity: O(1) (since 9×9 is fixed, but aim for clean O(n²) logic)
+Space complexity: O(1) extra space (use fixed-size sets)
+
+Notes:
+- Do not check if the board can be solved — only validate current filled cells
+- Use hash sets to track seen digits in rows, columns, boxes
+- For box indexing: box_id = (row // 3) * 3 + (col // 3)
+- Early return False on first conflict
+- Handle '.' as empty (skip validation)

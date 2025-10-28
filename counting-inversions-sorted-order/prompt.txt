@@ -1,0 +1,65 @@
+Problem: Counting Inversions in Sorted Order
+
+Description:
+Given an array of integers, count the number of inversions. An inversion is a pair of indices (i,j) such that:
+* 0≤i<j≤n−1
+* arr[i]>arr[j]
+In other words, an inversion occurs when a larger element appears before a smaller one, violating ascending order.
+
+Goal: Return the total number of inversions in the array.
+
+Input:
+* arr: list of integers
+* 1≤len(arr)≤10^5
+* −10^9 ≤arr[i]≤10^9
+
+Output:
+* Integer: total number of inversions
+
+Examples:
+1. arr = [2, 4, 1, 3, 5] → 3
+Inversions:(2,1), (4,1), (4,3)
+2. arr = [5, 4, 3, 2, 1] → 10
+Fully reversed → maximum inversions: n(n−1)/2=5×4/2=10
+3. arr = [1, 2, 3, 4, 5] → 0
+Already sorted → no inversions
+4. arr = [1] → 0
+
+Algorithm Requirements:
+Implement using Divide and Conquer with modified Merge Sort:
+1. Divide the array into two halves
+2. Recursively count inversions in left and right halves
+3. Count split inversions during merge:
+ * When an element from the right half is picked before elements in the left half, all remaining left elements form inversions with it
+4. Sum inversions from left, right, and split cases
+
+Why Merge Sort?
+* Standard merge sort: O(nlogn)
+* Modified version counts inversions during merge in O(n) per level
+* Overall complexity: O(nlogn)
+
+Steps:
+1. If array length ≤ 1 → return 0
+2. Split array into left and right halves
+3. Recursively compute:
+ * inv_left = inversions in left
+ * inv_right = inversions in right
+4. Merge left and right, counting split inversions
+5. Return inv_left + inv_right + split_inversions
+
+Split Inversion Counting:
+- Use two pointers i (left), j (right)
+- While merging:
+ * If left[i] ≤ right[j]: add left[i] to merged array, i++
+ * Else: add right[j] to merged array, increment inversion count by len(left) - i (all remaining left elements > right[j]), j++
+
+Edge Cases:
+* Single element
+* Already sorted
+* Reverse sorted
+* All equal elements (no inversions)
+
+Complexity:
+* Time: O(nlogn) — merge sort structure
+* Space: O(n) — temporary arrays for merging
+Note: Avoid O(n^2) brute force for large inputs.

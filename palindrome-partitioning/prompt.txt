@@ -1,0 +1,70 @@
+Use Python to solve this problem.
+
+Problem: Palindrome Partitioning
+
+## Problem Description
+Given a string S, partition it such that every substring of the partition is a palindrome. 
+Return all possible palindrome partitioning of S.
+
+A palindrome is a string that reads the same forward and backward.
+
+## Input Format
+- First line: T (number of test cases)
+- For each test case: string S
+
+## Output Format
+- For each test case: all possible partitioning
+  - Each partition is represented as space-separated substrings
+  - Different partitions are separated by '|'
+
+## Constraints
+- 1 ≤ len(S) ≤ 16
+- S contains only lowercase English letters
+
+## Example 1: Complex Palindrome Pattern
+### Input
+1
+abacaba
+
+### Output
+a b a c a b a|a b a c aba|a b aca b a|a bacab a|aba c a b a|aba c aba|abacaba
+
+### Explanation
+Multiple partitions including various palindrome combinations:
+- Single characters: ["a","b","a","c","a","b","a"]
+- Mixed lengths: ["a","b","a","c","aba"], ["a","b","aca","b","a"], ["a","bacab","a"]
+- Mixed lengths: ["aba","c","a","b","a"], ["aba","c","aba"]
+- Full string palindrome: ["abacaba"]
+
+## Example 2: Complex Mixed Pattern
+### Input
+1
+racecar
+
+### Output
+r a c e c a r|r a cec a r|r aceca r|racecar
+
+### Explanation
+Partitions include:
+- Single characters: ["r","a","c","e","c","a","r"]
+- Sub-palindromes: ["r","a","cec","a","r"], ["r","aceca","r"]
+- Full palindrome: ["racecar"]
+
+## Example 3: Symmetric Palindrome
+### Input
+1
+noon
+
+### Output
+n o o n|n oo n|noon
+
+### Explanation
+Partitions include:
+- Single characters: ["n","o","o","n"]
+- Mixed: ["n","oo","n"] ("oo" is palindrome)
+- Full palindrome: ["noon"]
+
+## Algorithm Requirements
+- Use backtracking with DFS
+- Precompute palindrome information for optimization using dynamic programming
+- Generate all valid partitions efficiently

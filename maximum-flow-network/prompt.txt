@@ -1,0 +1,129 @@
+Use Python to solve this problem.
+
+Problem: Maximum Flow in Network
+
+Description:
+Given a directed graph with N nodes and M edges, find the maximum flow from source node S to sink node T.
+Each edge has a capacity. Implement the Dinic's algorithm for maximum flow.
+
+In network flow theory, the maximum flow problem involves finding the maximum amount of flow that can be sent 
+from a source node to a sink node in a flow network, where each edge has a capacity limiting the flow through it.
+
+Input Format:
+- First line: T (number of test cases, 1 ≤ T ≤ 10)
+- For each test case:
+  - First line: N M (number of nodes, number of edges, 2 ≤ N ≤ 1000, 1 ≤ M ≤ 10000)
+  - Second line: S T (source node, sink node, 0 ≤ S, T < N)
+  - Next M lines: u v c (directed edge from u to v with capacity c, 0 ≤ u, v < N, 0 ≤ c ≤ 10000)
+
+Output Format:
+- For each test case:
+  - First line: "Case #X: Y" where X is test case number (starting from 1), Y is maximum flow value
+  - Second line: Flow values for each edge in the same order as input, separated by spaces
+
+Constraints:
+- Nodes are 0-indexed
+- Multiple edges between same nodes are allowed
+- No self-loops
+- The graph may not be connected
+
+Example 1 (Basic Flow):
+Input:
+1
+4 5
+0 3
+0 1 10
+0 2 10
+1 2 1
+1 3 10
+2 3 10
+
+Output:
+Case #1: 20
+10 10 0 10 10
+
+Explanation:
+The maximum flow from node 0 to node 3 is 20. 
+Flow values for edges in input order: 0→1:10, 0→2:10, 1→2:0, 1→3:10, 2→3:10
+
+Example 2 (Complex Network):
+Input:
+1
+6 10
+0 5
+0 1 16
+0 2 13
+1 2 10
+1 3 12
+2 1 4
+2 4 14
+3 2 9
+3 5 20
+4 3 7
+4 5 4
+
+Output:
+Case #1: 23
+12 11 0 12 0 11 1 19 8 4
+
+Explanation:
+This is a classic example showing how flow can be redirected through different paths.
+
+Example 3 (No Flow Possible):
+Input:
+1
+3 2
+0 2
+0 1 10
+1 0 5
+
+Output:
+Case #1: 0
+0 0
+
+Explanation:
+There's no path from source 0 to sink 2, so maximum flow is 0.
+
+Example 4 (Direct Edge Only):
+Input:
+1
+2 1
+0 1
+0 1 15
+
+Output:
+Case #1: 15
+15
+
+Example 5 (Multiple Test Cases):
+Input:
+2
+4 4
+0 3
+0 1 5
+1 3 10
+0 2 10
+2 3 5
+3 3
+0 2
+0 1 8
+1 2 12
+2 0 3
+
+Output:
+Case #1: 10
+5 5 5 5
+Case #2: 8
+8 8 0
+
+Algorithm Requirements:
+- Implement Dinic's algorithm for efficiency (O(V²E) time complexity)
+- Use BFS for level graph construction
+- Use DFS for blocking flow
+- Handle multiple edges correctly
+- Track flow values for each edge in input order
+
+Important Notes:
+- The flow through an edge cannot exceed its capacity
+- Flow conservation must be maintained at all nodes except source and sink
+- The algorithm should handle graphs with up to 1000 nodes and 10000 edges efficiently

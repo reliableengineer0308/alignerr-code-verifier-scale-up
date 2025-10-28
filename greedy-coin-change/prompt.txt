@@ -1,0 +1,51 @@
+Problem: Greedy Coin Change Problem
+
+Description:
+Given a set of coin denominations (sorted in ascending order) and a target amount, find the minimum number of coins needed to make up that amount using a greedy approach. The greedy strategy selects the largest denomination coin that does not exceed the remaining amount at each step.
+Note: The greedy solution is not always optimal for arbitrary coin systems (e.g., coins [1, 3, 4] and amount 6 → greedy gives 4+1+1=3 coins, but optimal is 3+3=2 coins). This problem assumes the coin system is canonical (like real-world currencies) where greedy works.
+
+Input:
+* coins: List of positive integers representing coin denominations (sorted in ascending order)
+* amount: Non-negative integer (target amount to make)
+
+Output:
+* Integer: Minimum number of coins needed using greedy selection
+* Return -1 if the amount cannot be formed (even though greedy might fail, we return -1 only if no combination exists)
+
+Greedy Strategy:
+1. Start with the largest coin ≤ remaining amount.
+2. Use as many of that coin as possible.
+3. Subtract the total value from the amount.
+4. Repeat with the next largest coin until amount = 0.
+
+Requirements:
+1. Assume coins[0] == 1 (so any amount can be formed).
+2. Coins are unique and sorted: coins[0] < coins[1] < ... < coins[n-1].
+3. Handle edge cases:
+ * amount == 0 → return 0
+ * Invalid inputs → handle gracefully
+4. Time complexity: O(n) where n = number of coin types.
+
+Algorithm Hints:
+1. Iterate from the largest coin down to smallest.
+2. For each coin:
+ * Count how many times it fits: count = amount // coin
+ * Add count to total coins
+ * Reduce amount -= count * coin
+3. If amount == 0, return total coins. Else, return -1.
+
+Examples:
+coins = [1, 5, 10, 25], amount = 67
+→ Output: 6  # 2×25 + 1×10 + 1×5 + 2×1 = 6 coins
+
+coins = [1, 3, 4], amount = 6  
+→ Output: 3  # Greedy: 4+1+1 (3 coins), but optimal=2 (3+3). We return greedy result: 3
+
+
+coins = [1, 2, 5], amount = 11
+→ Output: 3  # 5+5+1 = 3 coins
+
+Constraints:
+* 1 ≤ len(coins) ≤ 50
+* 1 ≤ coins[i] ≤ 1000 (and sorted)
+* 0 ≤ amount ≤ 10⁵

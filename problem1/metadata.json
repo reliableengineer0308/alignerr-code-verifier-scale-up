@@ -1,0 +1,26 @@
+
+{
+    "name": "Chrono-Energy Network",
+    "task_type": "code-generation",
+    "programming_language": [
+        "Python"
+    ],
+    "solution_file_path": [
+        "solution.py"
+    ],
+    "test_file_path": [
+        "test.py"
+    ],
+    "function_name": "solve",
+    "difficulty": "Medium",
+    "tags": [
+        "Dijkstra's algorithm",
+        "Graph"
+    ],
+    "timeout": 3,
+    "memory_limit": "256MB",
+    "num_test_cases": 3,
+    "additional_files": [
+        "requirements.txt"
+    ]
+}

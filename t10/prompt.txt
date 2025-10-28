@@ -1,0 +1,83 @@
+Use Python to solve this problem.
+
+Problem: BFS Maze Escape
+
+Description:
+Given a N x M grid with start (S), target (T), obstacles (#), and open cells (.), find the shortest path from S to T.
+
+Detailed Explanation:
+- The grid represents a maze where you need to find the shortest path from start to target
+- You can move in 4 directions: Up, Down, Left, Right
+- Obstacles block movement and cannot be traversed
+- The path must consist only of open cells (.) or the target cell (T)
+- BFS is used because it finds the shortest path in unweighted grids
+
+Input:
+- First line: N M (grid dimensions)
+- Next N lines: M characters each representing the grid
+- Grid contains: 
+  'S' (start position)
+  'T' (target position)
+  '#' (obstacle - cannot pass)
+  '.' (open cell - can pass)
+
+Output:
+- Print shortest path length (number of moves)
+- Print the path as sequence of moves (U=Up, D=Down, L=Left, R=Right)
+- Print "No path" if unreachable
+
+Constraints:
+- 1 ≤ N, M ≤ 1000
+- Exactly one S and one T
+- Grid boundaries act as walls (cannot move outside grid)
+
+Examples:
+
+Example 1:
+Input:
+5 5
+S . . # .
+# # . # .
+. . . . .
+. # # # .
+. . . T .
+
+Output:
+Shortest path length: 9
+Path: R R D D R R D D L
+
+Explanation:
+Path: S(0,0)→(0,1)→(0,2)→(1,2)→(2,2)→(2,3)→(2,4)→(3,4)→(4,4)→T(4,3)
+
+Example 2:
+Input:
+3 3
+S . .
+. # .
+. . T
+
+Output:
+Shortest path length: 4
+Path: D D R R
+
+Explanation:
+Path: S(0,0)→(1,0)→(2,0)→(2,1)→T(2,2)
+
+Example 3:
+Input:
+3 3
+S # .
+# # .
+. . T
+
+Output:
+No path
+
+Explanation:
+Start is completely blocked by obstacles.
+
+Algorithm Requirements:
+- Use BFS to find shortest path in unweighted grid
+- Store parent information to reconstruct path
+- Convert coordinate path to move directions (U/D/L/R)
+- Handle large grids efficiently

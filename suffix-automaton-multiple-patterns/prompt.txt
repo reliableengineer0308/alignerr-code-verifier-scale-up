@@ -1,0 +1,116 @@
+Use Python to solve this problem.
+
+Problem: Suffix Automaton with Multiple Patterns
+
+Description:
+Given a text string and multiple pattern strings, implement a suffix automaton that can efficiently:
+1. Count occurrences of each pattern in the text
+2. Find the first occurrence position of each pattern
+3. Find all occurrence positions of each pattern
+
+Input:
+- First line: T (number of test cases)
+- For each test case:
+  - First line: text (the main string)
+  - Second line: P (number of patterns)
+  - Next P lines: pattern strings
+  - Next line: Q (number of queries)
+  - Next Q lines: queries
+    - "COUNT pattern" - count occurrences of pattern
+    - "FIRST pattern" - find first occurrence position (-1 if not found)
+    - "ALL pattern" - find all occurrence positions (space separated, empty if none)
+
+Output:
+- For each test case:
+  - First line: "Case #X:" where X is test case number
+  - For each query: output the result
+
+Constraints:
+- 1 ≤ |text| ≤ 100,000
+- 1 ≤ P ≤ 1000
+- 1 ≤ Q ≤ 10,000
+- Total length of all patterns ≤ 100,000
+- Patterns are non-empty
+
+Example 1 - Basic Search:
+Input:
+1
+abracadabra
+3
+ab
+cad
+xyz
+5
+COUNT ab
+FIRST cad
+ALL ab
+COUNT xyz
+FIRST xyz
+
+Output:
+Case #1:
+2
+4
+0 7
+0
+-1
+
+Explanation:
+Text: "abracadabra"
+Pattern "ab" occurs at positions 0,7 → count=2, all=0 7
+Pattern "cad" occurs at position 4 → first=4
+Pattern "xyz" not found → count=0, first=-1
+
+Example 2 - Overlapping Patterns:
+Input:
+1
+aaaaa
+2
+aa
+aaa
+6
+COUNT aa
+COUNT aaa
+ALL aa
+ALL aaa
+FIRST aa
+FIRST aaa
+
+Output:
+Case #1:
+4
+3
+0 1 2 3
+0 1 2
+0
+0
+
+Example 3 - Multiple Patterns with Special Characters:
+Input:
+1
+hello@world@hello
+3
+hello
+@
+@world
+5
+COUNT hello
+FIRST @
+ALL @
+COUNT @world
+ALL @world
+
+Output:
+Case #1:
+2
+5
+5 11
+1
+5
+
+Algorithm Requirements:
+- Implement suffix automaton for the text
+- Support multiple pattern matching in O(|pattern|) per pattern
+- Handle occurrence counting and position finding
+- Use suffix links and transition edges
+- Optimize for memory and time complexity

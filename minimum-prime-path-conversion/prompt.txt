@@ -1,0 +1,86 @@
+Use Python to solve this problem.
+
+Problem: Minimum Prime Path Conversion
+
+Description:
+You are given two 4-digit prime numbers A and B. Your task is to convert A to B by changing one digit at a time, 
+such that every intermediate number formed during the conversion is also a 4-digit prime number. 
+Find the minimum number of steps required to convert A to B. If it's impossible, return -1.
+
+In each step, you can change exactly one digit of the current number to get another 4-digit prime number. 
+The converted number must always remain a 4-digit number (1000 to 9999).
+
+Input:
+- First line: T (number of test cases, 1 ≤ T ≤ 100)
+- For each test case: 
+  - One line with two 4-digit prime numbers A and B separated by space
+
+Output:
+- For each test case:
+  - Print the minimum number of steps required to convert A to B
+  - If conversion is impossible, print "Impossible"
+
+Constraints:
+- 1000 ≤ A, B ≤ 9999
+- Both A and B are guaranteed to be prime numbers
+- All intermediate numbers must be 4-digit primes
+
+Example 1:
+Input:
+2
+1033 8179
+1373 8017
+
+Output:
+6
+7
+
+Explanation for Example 1:
+For 1033 to 8179, one possible shortest path is:
+1033 → 1733 → 3733 → 3739 → 3779 → 8779 → 8179
+This takes 6 steps.
+
+Example 2:
+Input:
+1
+1009 1171
+
+Output:
+5
+
+Explanation:
+One possible path: 1009 → 1109 → 1103 → 1153 → 1163 → 1171
+
+Example 3:
+Input:
+1
+1033 1033
+
+Output:
+0
+
+Explanation:
+Source and destination are the same, no steps needed.
+
+Example 4:
+Input:
+1
+1009 9973
+
+Output:
+Impossible
+
+Explanation:
+No valid path exists between these two primes.
+
+Algorithm Requirements:
+- Precompute all 4-digit prime numbers first
+- Build a graph where nodes are primes and edges connect primes that differ by exactly one digit
+- Use BFS to find the shortest path from A to B
+- Handle multiple test cases efficiently
+
+Note:
+- Two primes are connected if they differ by exactly one digit
+- For example, 1033 and 1733 are connected (only first digit differs)
+- But 1033 and 1039 are also connected (only last digit differs)
+- All digits must be changed individually, you cannot change multiple digits at once

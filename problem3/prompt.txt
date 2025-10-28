@@ -1,0 +1,21 @@
+Problem: Maximum Non-Adjacent Subsequence Sum
+Problem Statement:
+Given an array of integers, find the maximum sum of a subsequence where no two elements are adjacent in the original array. 
+You need to find the maximum possible sum of such a subsequence.
+
+Input:
+A list of integers arr (1 ≤ length ≤ 10^5, -1000 ≤ arr[i] ≤ 1000)
+
+Output:
+
+Return the maximum sum of a non-adjacent subsequence
+
+Example 1:
+Function: solve(arr)
+Input: arr = [3, 2, 7, 10]
+Output: 13
+
+Example 2:
+Function: solve(arr)
+Input: arr = [3, 2, 5, 10, 7]
+Output: 15

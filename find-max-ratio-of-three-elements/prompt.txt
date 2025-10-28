@@ -1,0 +1,115 @@
+### Task Description:
+
+Given an array of integers, choose three distinct elements so that their product divided by another selected element yields the highest possible ratio.
+
+### Details:
+
+Write a Python function named `find_max_ratio(arr)` that takes an array of integers as input and returns a tuple consisting of:
+1. A tuple of three integers (the selected elements).
+2. The resulting maximum ratio as a float.
+
+Return `(None, None)` if it's impossible to select three distinct elements (i.e., the array has fewer than three elements or all elements are zero).
+
+### Input Format:
+- An array of integers `arr` with size `n` where `3 ≤ n ≤ 10,000`.
+- Every element satisfies `-10^9 ≤ arr[i] ≤ 10^9`.
+
+### Output Format:
+- A tuple: `((a, b, c), ratio)`
+- Where `a`, `b`, and `c` are the selected elements and `ratio` is the computed maximum ratio.
+
+### Solution Requirements:
+- Must work efficiently (better than O(n³)).
+- Preferably use sorting techniques to achieve O(n log n) performance.
+- Correctly handles edge cases including mixed-sign arrays, arrays with many zeros, and large inputs.
+
+### Examples:
+
+```python
+# Example 1: Basic case with small positive numbers
+arr = [1, 2, 3, 4, 5]
+result = find_max_ratio(arr)
+expected_result = ((4, 5, 1), 20.0)
+assert result == expected_result
+
+# Explanation:
+# The optimal choice here is multiplying the two largest numbers (4*5=20) and dividing by the smallest (1),
+# yielding a ratio of 20.0.
+```
+
+```python
+# Example 2: Negative numbers
+arr = [-10, -9, -8, -7, -6]
+result = find_max_ratio(arr)
+expected_result = ((-6, -7, -10), 4.2)
+assert result == expected_result
+
+# Explanation:
+# Multiplying two smaller negative numbers (-6*-7=42) and dividing by the largest negative (-10) gives us 4.2.
+```
+
+```python
+# Example 3: Mixed Signs
+arr = [-10, 8, 1, 2, 3]
+result = find_max_ratio(arr)
+expected_result = ((8, 3, 1), 24.0)
+assert result == expected_result
+
+# Explanation:
+# Here, multiplying 8 and 3 then dividing by 1 gives us 24.0.
+```
+
+```python
+# Example 4: Single Non-Zero Element
+arr = [0, 0, 0, 0, 1]
+result = find_max_ratio(arr)
+expected_result = ((0, 1, 1), 0.0)
+assert result == expected_result
+
+# Explanation:
+# Since there's only one non-zero element, multiplying anything by zero still gives zero.
+```
+
+```python
+# Example 5: Empty Input
+arr = []
+result = find_max_ratio(arr)
+expected_result = (None, None)
+assert result == expected_result
+
+# Explanation:
+# No elements exist in the array, hence returning (None, None).
+```
+
+```python
+# Example 6: Large Positive Numbers
+arr = [1000000, 999999, 999998, 999997, 999996]
+result = find_max_ratio(arr)
+expected_result = ((1000000, 999999, 999998), 1000000.000001)
+assert abs(result[1] - expected_result[1]) < 1e-6
+
+# Explanation:
+# Even though these numbers are very close, our solution selects the first two elements
+# and divides by the next largest, ensuring precision even with large numbers.
+```
+
+```python
+# Example 7: Many Zeros
+arr = [0, 0, 0, 0, 0, 1, 0, 0, 0]
+result = find_max_ratio(arr)
+expected_result = ((0, 1, 1), 0.0)
+assert result == expected_result
+
+# Explanation:
+# Similar to previous cases, since only one non-zero element exists, we multiply by zero.
+```
+
+### Constraints:
+- Length of array: `3 <= len(arr) <= 10,000`
+- Each element: `-10^9 <= arr[i] <= 10^9`
+- Time complexity requirement: Better than O(n³); preferable O(n log n).
+
+### Edge Cases:
+- Arrays with only zeros except one non-zero element.
+- Mixed-sign arrays (positive & negative).
+- All-positive or all-negative arrays.

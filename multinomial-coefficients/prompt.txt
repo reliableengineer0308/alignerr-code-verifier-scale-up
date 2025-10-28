@@ -1,0 +1,59 @@
+Use Python to solve this problem.
+
+Problem: Multinomial Coefficients
+
+Description:
+The multinomial coefficient counts the number of ways to partition n distinct objects into groups of sizes k1, k2, ..., km.
+It is defined as:
+C(n; k1, k2, ..., km) = n! / (k1! * k2! * ... * km!)
+where k1 + k2 + ... + km = n.
+
+Given n, a list of group sizes, and a modulus M, compute the multinomial coefficient modulo M.
+
+Input:
+- First line: T (number of test cases, 1 ≤ T ≤ 100)
+- For each test case:
+  - First line: n M (0 ≤ n ≤ 1000, 1 ≤ M ≤ 10^9)
+  - Second line: m (number of groups, 1 ≤ m ≤ n)
+  - Third line: k1 k2 ... km (group sizes, each ki ≥ 0, Σki = n)
+
+Output:
+- For each test case:
+  - Print the multinomial coefficient modulo M
+
+Examples:
+
+Example 1:
+Input:
+4
+6 1000000007
+3
+2 2 2
+8 1000000007
+4
+3 2 2 1
+10 1000000007
+2
+5 5
+5 1000000007
+3
+2 2 1
+
+Output:
+90
+1680
+252
+30
+
+Explanation:
+Case 1: C(6;2,2,2) = 6!/(2!2!2!) = 720/8 = 90
+Case 2: C(8;3,2,2,1) = 8!/(3!2!2!1!) = 40320/24 = 1680
+Case 3: C(10;5,5) = 10!/(5!5!) = 3628800/14400 = 252
+Case 4: C(5;2,2,1) = 5!/(2!2!1!) = 120/4 = 30
+
+Constraints:
+- 1 ≤ T ≤ 100
+- 0 ≤ n ≤ 1000
+- 1 ≤ M ≤ 10^9
+- 1 ≤ m ≤ n
+- 0 ≤ ki ≤ n, Σki = n

@@ -1,0 +1,81 @@
+Use Python to solve this problem.
+
+Problem: Longest Increasing Subsequence
+
+Description:
+Given a sequence of integers, find the length of the longest increasing subsequence and print one such subsequence.
+
+What is a Subsequence?
+- A subsequence is obtained by deleting some elements from the original sequence without changing the order of the remaining elements.
+- Example: In [10, 9, 2, 5, 3, 7, 101, 18], [2, 5, 7] is a valid subsequence, but [5, 3, 10] is not.
+
+What is an Increasing Subsequence?
+- A subsequence where each element is strictly larger than the previous one.
+- Example: [2, 5, 7, 101] is increasing, but [9, 5, 7] is not.
+
+Problem Requirements:
+- Find the LONGEST possible increasing subsequence
+- Output both its length and one actual sequence
+
+Input:
+- First line: N (sequence length)
+- Second line: N integers
+
+Output:
+- Print LIS length
+- Print one valid LIS
+
+Constraints:
+- 1 ≤ N ≤ 100000
+- -10^9 ≤ values ≤ 10^9
+
+Example 1:
+Input:
+8
+10 9 2 5 3 7 101 18
+
+Output:
+LIS length: 4
+One LIS: 2 3 7 18
+
+Explanation:
+Possible LIS: [2, 3, 7, 18] or [2, 3, 7, 101] or [2, 5, 7, 101]
+
+Example 2:
+Input:
+6
+0 8 4 12 2 10
+
+Output:
+LIS length: 3
+One LIS: 0 4 12
+
+Explanation:
+Possible LIS: [0, 4, 12] or [0, 2, 10] or [0, 8, 12]
+
+Example 3:
+Input:
+7
+3 4 -1 5 8 2 3
+
+Output:
+LIS length: 4
+One LIS: -1 5 8
+
+Explanation:
+Possible LIS: [-1, 5, 8] or [3, 4, 5, 8]
+
+Algorithm Requirements:
+- Implement O(N log N) algorithm using binary search
+- Maintain active lists and use patience sorting
+- Reconstruct the actual LIS sequence
+- Handle strictly increasing subsequences (no duplicates allowed)
+
+Why O(N log N) algorithm?
+- Brute force would check 2^N possible subsequences → impossible for N=100,000
+- We use binary search to efficiently find positions in "tail" array
+
+Key Idea:
+- tail[i] = smallest ending value of all increasing subsequences of length i+1
+- For each number, find its position using binary search
+- Update tail array and track predecessors for reconstruction

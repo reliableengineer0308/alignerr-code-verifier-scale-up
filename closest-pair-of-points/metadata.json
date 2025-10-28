@@ -1,0 +1,14 @@
+{
+  "name": "closest-pair-of-points",
+  "task_type": "code-generation",
+  "programming_language": "Python",
+  "solution_file_path": "solution.py",
+  "test_file_path": "test.py",
+  "execution_file_path": "run.sh",
+  "difficulty": "Hard",
+  "tags": ["Algorithm", "Divide and Conquer", "Computational Geometry"],
+  "timeout": 15,
+  "memory_limit": "512MB",
+  "num_test_cases": 8,
+  "additional_files": "requirements.txt"
+}

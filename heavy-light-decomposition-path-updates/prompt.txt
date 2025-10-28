@@ -1,0 +1,94 @@
+Use Python to solve this problem.
+
+Problem: Heavy-Light Decomposition with Path Queries and Updates
+
+Description:
+Given a tree with N nodes, each node has a value. You need to process Q queries of three types:
+1. UPDATE u x: Update the value of node u to x
+2. QUERY_PATH u v: Find the maximum value on the path from u to v
+3. ADD_PATH u v x: Add x to all nodes on the path from u to v
+
+Implement Heavy-Light Decomposition (HLD) to efficiently handle these operations.
+
+Input:
+- First line: N (number of nodes)
+- Next N-1 lines: u v (tree edges, 1-indexed)
+- Next line: N integers (initial node values)
+- Next line: Q (number of queries)
+- Next Q lines: queries in the formats above
+
+Output:
+- For each QUERY_PATH query, output the maximum value
+
+Constraints:
+- 1 ≤ N, Q ≤ 100,000
+- 0 ≤ node values ≤ 10^9
+- 1 ≤ u, v ≤ N
+
+Example 1 - Basic Operations:
+Input:
+6
+1 2
+1 3
+2 4
+2 5
+3 6
+10 20 30 40 50 60
+5
+QUERY_PATH 4 6
+UPDATE 3 35
+QUERY_PATH 4 6
+ADD_PATH 1 6 5
+QUERY_PATH 4 6
+
+Output:
+60
+60
+65
+
+Example 2 - Chain Tree:
+Input:
+5
+1 2
+2 3
+3 4
+4 5
+1 2 3 4 5
+4
+QUERY_PATH 1 5
+UPDATE 3 10
+QUERY_PATH 1 5
+ADD_PATH 2 4 2
+
+Output:
+5
+10
+10
+
+Example 3 - Star Tree:
+Input:
+4
+1 2
+1 3
+1 4
+5 10 15 20
+3
+QUERY_PATH 2 4
+UPDATE 1 25
+QUERY_PATH 2 4
+
+Output:
+20
+25
+
+Algorithm Requirements:
+- Implement Heavy-Light Decomposition
+- Use segment tree for chain operations
+- Support path maximum queries and range updates
+- Handle LCA (Lowest Common Ancestor) efficiently
+
+Explanation for Beginners:
+1. HLD decomposes tree into heavy chains for efficient path operations
+2. Each path query becomes O(log^2 N) segment tree queries
+3. Heavy edges form chains, light edges connect chains
+4. Path from u to v is broken into O(log N) chain segments

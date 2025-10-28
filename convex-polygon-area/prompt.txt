@@ -1,0 +1,39 @@
+Problem: Convex Polygon Area
+
+Description:
+Implement a function polygon_area(vertices) that calculates the area of a convex polygon given its vertices in order (either clockwise or counterclockwise).
+
+Your task:
+- Use the Shoelace formula (also known as the surveyor’s formula)
+- Handle both clockwise and counterclockwise vertex ordering
+- Return the absolute value of the area (always positive)
+
+Input:
+* vertices: list of tuples [(x1, y1), (x2, y2), ..., (xn, yn)]
+* 3 ≤ len(vertices) ≤ 1000
+* Each coordinate: -1000 ≤ x, y ≤ 1000
+* Vertices are given in order around the polygon
+
+Output:
+Float: area of the polygon (rounded to 6 decimal places)
+
+Method (Shoelace Formula):
+For vertices (x₁,y₁), (x₂,y₂), ..., (xn,yn):
+	Area= 1/2 |∑_{i=1}^n (x_i * y_{i+1} − x_{i+1} y_i​)|
+where (xn+1, yn+1) = (x₁, y₁) (wrap around).
+
+Examples:
+Example 1:
+python
+vertices = [(0, 0), (4, 0), (4, 3), (0, 3)]
+→ 12.0
+
+Example 2:
+python
+vertices = [(1, 1), (3, 1), (2, 4)]
+→ 3.0
+
+Constraints:
+- Time complexity: O(n)
+- Space complexity: O(1)
+- Handle floating-point precision (round to 6 decimals)

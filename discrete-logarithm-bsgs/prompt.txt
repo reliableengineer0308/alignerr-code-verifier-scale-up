@@ -1,0 +1,49 @@
+Use Python to solve this problem.
+
+Problem: Discrete Logarithm using Baby-Step Giant-Step Algorithm
+
+Description:
+Given a prime modulus p, a base g, and a target value h, find the smallest non-negative integer x such that:
+g^x ≡ h (mod p)
+
+This is known as the discrete logarithm problem. Use the Baby-Step Giant-Step algorithm which has time complexity O(√p log p).
+
+Algorithm:
+1. Let m = ceil(√(p-1))
+2. Baby Step: Precompute g^j mod p for j = 0, 1, ..., m-1 and store in a hash table
+3. Giant Step: Compute h * g^(-im) mod p for i = 0, 1, ..., m-1 and check if it exists in the hash table
+4. If found, solution is x = i*m + j
+
+Input:
+- First line: T (number of test cases, 1 ≤ T ≤ 100)
+- For each test case:
+  - p g h (2 ≤ p ≤ 10^9, p is prime, 1 ≤ g, h < p)
+
+Output:
+- For each test case:
+  - Print the smallest non-negative integer x satisfying g^x ≡ h (mod p)
+  - If no solution exists, print -1
+
+Examples:
+
+Example 1:
+Input:
+3
+23 5 3
+1000000007 2 1
+1000000007 3 2
+
+Output:
+16
+0
+-1
+
+Explanation:
+Case 1: 5^16 ≡ 3 (mod 23)
+Case 2: 2^0 ≡ 1 (mod 1000000007)
+Case 3: No solution exists for 3^x ≡ 2 (mod 1000000007)
+
+Constraints:
+- 1 ≤ T ≤ 100
+- 2 ≤ p ≤ 10^9, p is prime
+- 1 ≤ g, h < p

@@ -1,0 +1,24 @@
+Problem: Longest Increasing Subsequence (LIS)
+Problem Statement:
+Given an array of integers, find the length of the longest increasing subsequence (LIS). 
+A subsequence is a sequence that can be derived from the array by deleting some elements without changing the order of the remaining elements.
+
+Input:
+
+First number: length of array (n)
+
+Next n numbers: the array elements
+
+Output:
+
+Length of the longest increasing subsequence
+
+Example 1:
+Function: solve(arr)
+Input: arr = [8, 10, 9, 2, 5, 3, 7, 101, 18]
+Output: 3
+
+Example 2:
+Function: solve(arr)
+Input: arr = [5, 1, 2, 3, 4, 5]
+Output: 5

@@ -1,0 +1,40 @@
+Problem: "Periodic String Analyzer"
+In the digital signal processing lab, researchers are analyzing periodic patterns in data streams. 
+They need to find the longest prefix of a signal that is periodic with a period that repeats at least twice. 
+A periodic string can be expressed as multiple repetitions of a smaller substring. Your task is to find the length of the longest prefix that is periodic.
+
+Given a string of integers, find the length of the longest prefix that can be expressed as multiple repetitions of a smaller substring (with the period length being at most half the prefix length). 
+If no such prefix exists, return 0.
+
+Input Format
+The input will be provided as a single string containing:
+First line: length of the string (n)
+Second line: the string (as space-separated integers)
+
+Output Format
+A single integer representing the length of the longest periodic prefix.
+
+Constraints
+1 ≤ n ≤ 10,000,000
+
+The string consists of integers from 0 to 255
+
+# Required API
+```python
+def solve(data):
+    lines = data.strip().split('\n')
+    n = int(lines[0])
+    arr = list(map(int, lines[1].split()))
+
+Example 1:
+Function: solve(data)
+Input: data = """"6
+1 2 1 2 1 2"""
+Output: 6
+
+
+Example 2:
+Function: solve(data)
+Input: data = """3
+1 2 3"""
+Output: 0

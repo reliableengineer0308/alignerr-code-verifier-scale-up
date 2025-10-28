@@ -1,0 +1,82 @@
+Use Python to solve this problem.
+
+Problem: Prime Path Transformation
+
+Description:
+You are given two 4-digit prime numbers A and B. Your task is to convert A to B by changing one digit at a time, 
+such that every intermediate number formed during the transformation is also a 4-digit prime number.
+
+Mathematical Constraint:
+At each step, you can change exactly one digit of the current number to obtain the next number in the sequence. 
+All numbers in the transformation path must be 4-digit prime numbers (between 1000 and 9999).
+
+Input:
+- A: starting number (1000 ≤ A ≤ 9999)
+- B: target number (1000 ≤ B ≤ 9999)
+- A and B are not necessarily prime numbers
+
+Output:
+- Print appropriate English messages based on the result:
+  - If A or B is not a 4-digit prime: "Error: A is not a 4-digit prime number" or "Error: B is not a 4-digit prime number"
+  - If no path exists: "Error: Cannot generate path from A to B"
+  - If path exists: "Shortest path found (length: N)" and print the path
+- Return the path as a list (or empty list if no path/invalid input)
+
+Example 1:
+Input: A = 1033, B = 8179
+Output: 
+"Shortest path found (length: 7)"
+"Path: 1033 → 1733 → 3733 → 3739 → 3779 → 8779 → 8179"
+Return: [1033, 1733, 3733, 3739, 3779, 8779, 8179]
+
+Example 2:
+Input: A = 1000, B = 8179
+Output: "Error: 1000 is not a 4-digit prime number"
+Return: []
+
+Example 3:
+Input: A = 1033, B = 1000
+Output: "Error: 1000 is not a 4-digit prime number"
+Return: []
+
+Example 4:
+Input: A = 1033, B = 1033
+Output: "Shortest path found (length: 1)"
+"Path: 1033"
+Return: [1033]
+
+Example 5:
+Input: A = 1009, B = 9973  # If no path exists
+Output: "Error: Cannot generate path from 1009 to 9973"
+Return: []
+
+Constraints:
+- 1000 ≤ A, B ≤ 9999
+- A and B must be prime numbers for transformation to be possible
+- The solution should efficiently handle the search space
+- Use BFS (Breadth-First Search) for shortest path finding
+
+Important Validation:
+- First check if A and B are 4-digit prime numbers
+- Only proceed with BFS if both are valid primes
+- Print clear English error messages for invalid cases
+- Print success message with path length when path exists
+- Display the actual path with arrow separators
+
+Algorithm Steps:
+1. Validate that A and B are 4-digit prime numbers
+2. Generate all 4-digit prime numbers (1000-9999) using Sieve of Eratosthenes
+3. Build a graph where edges connect primes that differ by exactly one digit
+4. Use BFS to find the shortest path from A to B
+5. Print appropriate messages and return the path
+
+Output Requirements:
+- For invalid input: Print error message and return empty list
+- For no path: Print error message and return empty list  
+- For success: Print success message with path length and the actual path
+- Always return the path list (or empty list) for testing purposes
+
+Efficiency Considerations:
+- Precompute all primes and graph structure for optimal performance
+- Use BFS for shortest path finding
+- Handle large search space (1061 four-digit primes) efficiently

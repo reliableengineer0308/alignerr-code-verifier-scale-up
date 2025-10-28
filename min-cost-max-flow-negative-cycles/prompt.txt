@@ -1,0 +1,132 @@
+Problem: Minimum Cost Maximum Flow with Negative Cycles
+
+Description:
+Given a directed graph where each edge has a capacity and a cost, find the maximum flow from source to sink that has the minimum total cost. The graph may contain negative cost cycles, which makes the problem more challenging.
+
+Key Concepts:
+- Flow Network: Directed graph with capacities (maximum flow) and costs (per unit flow)
+- Maximum Flow: The maximum amount of flow that can be sent from source to sink
+- Minimum Cost: Among all maximum flows, find the one with minimum total cost
+- Negative Cycles: Cycles where the sum of edge costs is negative - these can be exploited to reduce total cost by sending flow around the cycle
+
+Cost Calculation:
+- The total cost is calculated as: SUM(flow[i] * cost[i]) for all edges
+- If an edge has flow f and cost c, it contributes f * c to the total cost
+- Negative costs reduce the total cost (act as "profit")
+- The goal is to minimize the sum of (flow × cost) over all edges while achieving maximum flow
+
+Input Format:
+- First line: T (number of test cases)
+- For each test case:
+  - First line: N M (number of nodes, number of edges)
+  - Second line: S T (source node, sink node) - nodes are 0-indexed
+  - Next M lines: u v cap cost (edge from u to v with capacity and cost per unit flow)
+
+Output Format:
+- For each test case:
+  - First line: "Case #X: flow_value total_cost" where X is test case number (1-indexed)
+  - Second line: f1 f2 f3 ... fM (flow values for each edge in the same order as input)
+
+Constraints:
+- 2 ≤ N ≤ 1000
+- 1 ≤ M ≤ 10000  
+- -1000 ≤ cost ≤ 1000
+- 0 ≤ cap ≤ 10000
+
+Detailed Explanation:
+
+What makes this problem special:
+1. Negative costs are allowed - some edges might actually give you "profit"
+2. Negative cycles may exist - you can reduce total cost by circulating flow in cycles
+3. The algorithm must handle these cases correctly
+
+Algorithm Approach:
+The solution uses Cycle Canceling algorithm:
+1. First find any maximum flow (ignoring costs)
+2. Then repeatedly find negative cost cycles in the residual graph and push flow through them to reduce total cost
+3. Continue until no negative cycles remain in the residual graph
+
+Example Walkthroughs:
+
+Example 1 - Basic Case:
+Input:
+1
+4 5
+0 3
+0 1 10 1
+0 2 10 2
+1 2 5 -1
+1 3 10 3
+2 3 10 1
+
+Maximum Flow Analysis:
+- Source capacity: 0→1 (10) + 0→2 (10) = 20
+- Sink capacity: 1→3 (10) + 2→3 (10) = 20
+- Maximum flow is 20
+
+Simplest Flow Distribution (ignoring negative cost edge):
+- Path 1: 0→1→3 (10 flow) = cost: 10×(1+3) = 40
+- Path 2: 0→2→3 (10 flow) = cost: 10×(2+1) = 30
+Total cost = 70
+
+Edge Flows:
+- 0→1: 10
+- 0→2: 10
+- 1→2: 0 (not used)
+- 1→3: 10
+- 2→3: 10
+
+Output:
+Case #1: 20 70
+10 10 0 10 10
+
+Example 2 - Negative Cycle:
+Input:
+1
+3 3
+0 2
+0 1 10 -5
+1 2 10 -3
+2 0 10 1
+
+Maximum Flow: 10
+Negative Cycle: 0→1→2→0 (cost: -5 + -3 + 1 = -7)
+
+Optimal Strategy:
+Push maximum flow through the negative cycle to minimize cost while still delivering 10 to sink.
+
+Final Flows:
+- 0→1: 10
+- 1→2: 10
+- 2→0: 10
+
+Cost: 10×(-5) + 10×(-3) + 10×1 = -50 -30 + 10 = -70
+
+Output:
+Case #1: 10 -70
+10 10 10
+
+Example 3 - Simple Case:
+Input:
+1
+3 2
+0 2
+0 1 10 2
+1 2 10 3
+
+Output:
+Case #1: 10 50
+10 10
+
+Implementation Notes:
+- Use Bellman-Ford to detect negative cycles in residual graph
+- Maintain residual capacities and costs
+- Track flow through each original edge
+- Handle large graphs efficiently (N=1000, M=10000)
+
+Edge Cases to Consider:
+- Multiple edges between same nodes
+- Zero capacity edges
+- Very large costs (positive and negative)
+- Graphs with no negative cycles
+- Graphs where negative cycles don't affect optimal solution

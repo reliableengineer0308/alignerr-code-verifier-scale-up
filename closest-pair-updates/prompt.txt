@@ -1,0 +1,61 @@
+Use Python to solve this problem.
+
+Problem: Closest Pair with Dynamic Updates
+
+Description:
+You are given a set of points in a 2D plane that supports two operations:
+1. Add a new point to the set
+2. Remove an existing point from the set
+3. Query the current closest pair distance
+
+After each operation, you need to efficiently maintain and query the closest pair distance.
+
+Input:
+- First line: Q (number of operations)
+- Next Q lines, each containing one of:
+  - "ADD x y" - Add point (x, y)
+  - "REMOVE x y" - Remove point (x, y) (guaranteed to exist)
+  - "QUERY" - Query current closest pair distance
+
+Output:
+- For each QUERY operation, output the squared distance of the closest pair
+- If there are less than 2 points, output "0"
+
+Constraints:
+- 1 ≤ Q ≤ 50000
+- -10^9 ≤ x, y ≤ 10^9
+- Total number of points at any time ≤ 20000
+
+Algorithm Requirements:
+- Use line sweep or divide and conquer approach
+- Handle dynamic updates efficiently
+- Use balanced BST or spatial partitioning
+
+Example:
+Input:
+12
+ADD 0 0
+ADD 1 1
+QUERY
+ADD 3 3
+ADD 2 2
+QUERY
+REMOVE 1 1
+QUERY
+ADD 0 1
+ADD 1 0
+QUERY
+REMOVE 0 0
+QUERY
+
+Output:
+2
+2
+2
+1
+1
+
+Explanation:
+- After first two points: closest pair is (0,0)-(1,1) with squared distance 2
+- After adding more points: closest pair changes
+- After removal: distances update accordingly

@@ -1,0 +1,67 @@
+Use Python to solve this problem.
+
+Problem: Chinese Remainder Theorem
+
+Description:
+Given a system of congruences:
+x ≡ a1 (mod m1)
+x ≡ a2 (mod m2)
+...
+x ≡ ak (mod mk)
+
+Find the smallest non-negative integer x that satisfies all congruences.
+If no solution exists, return -1.
+
+The Chinese Remainder Theorem (CRT) states that if all moduli are pairwise coprime,
+there exists a unique solution modulo M = m1 * m2 * ... * mk.
+
+Algorithm:
+1. Compute M = product of all moduli
+2. For each congruence i:
+   - Compute Mi = M / mi
+   - Compute yi = modular inverse of Mi modulo mi
+   - Add ai * Mi * yi to the solution
+3. Return solution mod M
+
+If moduli are not pairwise coprime, we need to check for consistency.
+
+Input:
+- First line: T (number of test cases, 1 ≤ T ≤ 10)
+- For each test case:
+  - First line: k (number of congruences, 1 ≤ k ≤ 10)
+  - Next k lines: ai mi (0 ≤ ai < mi, 1 ≤ mi ≤ 1000)
+
+Output:
+- For each test case:
+  - Print the smallest non-negative solution x, or -1 if no solution exists
+
+Examples:
+
+Example 1:
+Input:
+2
+3
+2 3
+3 5
+2 7
+2
+1 2
+2 4
+
+Output:
+23
+-1
+
+Explanation:
+Case 1: x ≡ 2 mod 3, x ≡ 3 mod 5, x ≡ 2 mod 7
+Solution: x = 23
+Check: 23 mod 3 = 2, 23 mod 5 = 3, 23 mod 7 = 2
+
+Case 2: x ≡ 1 mod 2, x ≡ 2 mod 4
+No solution exists because if x ≡ 1 mod 2, x is odd, but x ≡ 2 mod 4 requires x to be even.
+
+Constraints:
+- 1 ≤ T ≤ 10
+- 1 ≤ k ≤ 10
+- 0 ≤ ai < mi
+- 1 ≤ mi ≤ 1000

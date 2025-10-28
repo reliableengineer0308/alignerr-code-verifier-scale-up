@@ -1,0 +1,63 @@
+Use Python to solve this problem.
+
+Problem: Linear Diophantine Equations
+
+Description:
+Given integers a, b, and c, find integer solutions (x, y) to the equation:
+a*x + b*y = c
+
+The equation has integer solutions if and only if gcd(a, b) divides c.
+
+If solutions exist, find the solution with the smallest non-negative x.
+If multiple solutions have the same x, choose the one with smallest non-negative y.
+
+Algorithm:
+1. Let g = gcd(a, b)
+2. If c is not divisible by g, no solution exists
+3. Otherwise, find one solution using Extended Euclidean Algorithm
+4. Generate the general solution and find the one with smallest non-negative x
+
+General solution:
+x = x0 + (b/g)*t
+y = y0 - (a/g)*t
+where (x0, y0) is a particular solution and t is any integer.
+
+Input:
+- First line: T (number of test cases, 1 ≤ T ≤ 1000)
+- For each test case:
+  - a b c (|a|, |b|, |c| ≤ 10^9, a and b not both zero)
+
+Output:
+- For each test case:
+  - If no solution exists, print "No Solution"
+  - Otherwise, print "x y" where x and y are the solution with smallest non-negative x
+
+Examples:
+
+Example 1:
+Input:
+5
+2 3 1
+4 6 2
+4 6 3
+15 25 5
+123456789 987654321 1
+
+Output:
+2 -1
+2 -1
+No Solution
+2 -1
+1752346651 -218375462
+
+Explanation:
+Case 1: 2*2 + 3*(-1) = 4 - 3 = 1
+Case 2: 4*2 + 6*(-1) = 8 - 6 = 2  
+Case 3: gcd(4,6)=2, but 3 is not divisible by 2 → No solution
+Case 4: 15*2 + 25*(-1) = 30 - 25 = 5
+Case 5: Large coefficients
+
+Constraints:
+- 1 ≤ T ≤ 1000
+- |a|, |b|, |c| ≤ 10^9
+- a and b are not both zero

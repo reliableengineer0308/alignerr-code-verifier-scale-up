@@ -1,0 +1,41 @@
+Problem: Point in Triangle
+
+Description:
+Implement a function is_point_in_triangle(p, v1, v2, v3) that determines whether a given point p lies inside, on the edge, or outside a triangle defined by vertices v1, v2, v3.
+
+Input:
+* p: tuple (x, y) — coordinates of the point to check
+* v1, v2, v3: tuples (x, y) — coordinates of triangle vertices
+* All coordinates are floats in range [-1000, 1000]
+
+Output:
+String: "inside" (strict interior), "edge" (on boundary), or "outside"
+
+Method:
+Use the cross product approach:
+1. For each edge of the triangle, compute the cross product between the edge vector and the vector from edge start to point.
+2. The signs of cross products indicate position:
+ * All same sign → inside
+ * One zero, others same sign → on edge
+ * Mixed signs → outside
+
+Examples:
+Example 1:
+p = (1, 1)
+v1, v2, v3 = (0, 0), (2, 0), (0, 2)
+→ "inside"
+
+Example 2:
+p = (1, 0)
+v1, v2, v3 = (0, 0), (2, 0), (0, 2)
+→ "edge"
+
+Example 3:
+p = (3, 3)
+v1, v2, v3 = (0, 0), (2, 0), (0, 2)
+→ "outside"
+
+Constraints:
+- Time complexity: O(1)
+- Space complexity: O(1)
+- Handle floating-point precision (use small epsilon for comparisons)

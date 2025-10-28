@@ -1,0 +1,40 @@
+Problem: Valid Parentheses
+
+Description:
+- Implement a function is_valid(s) that checks if a string containing just the characters '(', ')', '{', '}', '[' and ']' is valid.
+- A string is valid if:
+- Open brackets must be closed by the same type of brackets.
+- Open brackets must be closed in the correct order.
+
+Every close bracket has a corresponding open bracket of the same type.
+
+Input:
+- String s with 1 ≤ len(s) ≤ 10⁴
+- Contains only '(', ')', '{', '}', '[', ']'
+
+Output:
+Boolean: True if valid, False otherwise
+
+Examples:
+Example 1:
+Input: s = "()"
+Output: True
+
+Example 2:
+Input: s = "()[]{}"
+Output: True
+
+Example 3:
+Input: s = "(]"
+Output: False
+
+Constraints:
+1 ≤ len(s) ≤ 10⁴
+Time complexity: O(n)
+Space complexity: O(n)
+
+Notes:
+- Use stack data structure
+- For each opening bracket, push to stack
+- For each closing bracket, check if it matches the top of stack
+- At end, stack should be empty

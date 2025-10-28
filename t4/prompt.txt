@@ -1,0 +1,38 @@
+Use Python to solve this problem.
+
+Problem: Traveling Salesman Problem with Bitmask DP
+
+Description:
+Given N cities and a distance matrix, find the shortest possible route that visits each city exactly once and returns to the starting city.
+
+Input:
+- First line: N (number of cities)
+- Next N lines: N integers each (distance matrix, INF if no direct path)
+
+Output:
+- Print the minimum cost of Hamiltonian cycle
+- Print "No path exists" if no valid cycle
+- Print the path if exists
+
+Constraints:
+- 2 ≤ N ≤ 20
+- 0 ≤ distances ≤ 1000
+- Cities are 0-indexed
+
+Example:
+Input:
+4
+0 10 15 20
+10 0 35 25
+15 35 0 30
+20 25 30 0
+
+Output:
+Minimum cost: 80
+Path: 0 → 1 → 3 → 2 → 0
+
+Algorithm Requirements:
+- Use dynamic programming with bitmask state representation
+- State: dp[mask][last] = minimum cost to visit cities in mask ending at last
+- Handle both symmetric and asymmetric TSP
+- Reconstruct the optimal path

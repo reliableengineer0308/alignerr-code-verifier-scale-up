@@ -1,0 +1,51 @@
+Use Python to solve this problem.
+
+Problem: Maximum Flow in Network
+
+Description:
+Given a directed graph with N nodes and M edges, find the maximum flow from source node S to sink node T.
+Each edge has a capacity. Implement the Dinic's algorithm for maximum flow.
+
+Input:
+- First line: T (number of test cases)
+- For each test case:
+  - First line: N M (nodes, edges)
+  - Second line: S T (source, sink)
+  - Next M lines: u v c (edge from u to v with capacity c)
+
+Output:
+- For each test case:
+  - Print "Case #X: Y" where X is test case number, Y is max flow value
+  - Print the flow for each edge in input order
+
+Constraints:
+- 2 ≤ N ≤ 1000
+- 1 ≤ M ≤ 10000
+- 0 ≤ capacities ≤ 10000
+- Nodes are 0-indexed
+
+Example:
+Input:
+1
+6 10
+0 5
+0 1 16
+0 2 13
+1 2 10
+1 3 12
+2 1 4
+2 4 14
+3 2 9
+3 5 20
+4 3 7
+4 5 4
+
+Output:
+Case #1: 23
+Flows: 11 12 0 12 0 11 1 19 0 4
+
+Algorithm Requirements:
+- Implement Dinic's algorithm for efficiency
+- Use BFS for level graph construction
+- Use DFS for blocking flow
+- Handle multiple test cases efficiently

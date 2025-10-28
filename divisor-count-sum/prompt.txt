@@ -1,0 +1,50 @@
+Use Python to solve this problem.
+
+Problem: Divisor Count and Sum
+
+Description:
+Given an integer N, find:
+1. The number of divisors of N
+2. The sum of divisors of N
+
+If the prime factorization of N is: N = p1^a1 * p2^a2 * ... * pk^ak, then:
+- Number of divisors: d(N) = (a1 + 1) * (a2 + 1) * ... * (ak + 1)
+- Sum of divisors: σ(N) = (p1^(a1+1)-1)/(p1-1) * (p2^(a2+1)-1)/(p2-1) * ... * (pk^(ak+1)-1)/(pk-1)
+
+Input:
+- First line: T (number of test cases, 1 ≤ T ≤ 1000)
+- For each test case:
+  - N (1 ≤ N ≤ 10^6)
+
+Output:
+- For each test case:
+  - Print "count sum" where count is number of divisors and sum is sum of divisors
+
+Examples:
+
+Example 1:
+Input:
+5
+1
+12
+100
+999983
+1000000
+
+Output:
+1 1
+6 28
+9 217
+2 999984
+49 2480437
+
+Explanation:
+Case 1: 1 has 1 divisor (1), sum = 1
+Case 2: 12 has divisors 1,2,3,4,6,12 → count=6, sum=28
+Case 3: 100 = 2^2 * 5^2 → divisors count = (2+1)*(2+1)=9, sum = (2^3-1)/(2-1) * (5^3-1)/(5-1) = 7 * 31 = 217
+Case 4: 999983 is prime → divisors: 1, 999983 → count=2, sum=999984
+Case 5: 1000000 = 2^6 * 5^6 → divisors count = (6+1)*(6+1)=49, sum = (2^7-1)/(2-1) * (5^7-1)/(5-1) = 127 * 19531 = 2480437
+
+Constraints:
+- 1 ≤ T ≤ 1000
+- 1 ≤ N ≤ 10^6

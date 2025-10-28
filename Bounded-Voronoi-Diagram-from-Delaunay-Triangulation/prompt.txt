@@ -1,0 +1,54 @@
+Problem: Bounded Voronoi Diagram from Delaunay Triangulation
+
+Description:
+Given a set of points (sites) in a 2D plane, compute the Delaunay triangulation and then derive the bounded Voronoi diagram.
+
+To handle unbounded Voronoi regions, we'll add a bounding box around all sites and compute the clipped Voronoi diagram.
+
+Input:
+- First line: N (number of sites)
+- Next N lines: x y (coordinates of each site)
+
+Output:
+- First line: V (number of Voronoi vertices)
+- Next V lines: x y (coordinates of each Voronoi vertex, rounded to 2 decimal places)
+- Next line: E (number of Voronoi edges)  
+- Next E lines: i j (edge between Voronoi vertices i and j, 0-indexed)
+
+Constraints:
+- 3 ≤ N ≤ 1000
+- -10^6 ≤ x, y ≤ 10^6
+- No three points are colinear
+
+Algorithm Requirements:
+- Compute Delaunay triangulation
+- Add bounding box to handle unbounded regions
+- Calculate circumcenters as Voronoi vertices
+- Connect Voronoi vertices and clip edges to bounding box
+
+Example:
+Input:
+4
+0 0
+4 0
+4 4
+0 4
+
+Output:
+5
+2.00 2.00
+2.00 0.00
+4.00 2.00
+2.00 4.00
+0.00 2.00
+4
+0 1
+0 2
+0 3
+0 4
+
+Explanation:
+- 4 points form a square
+- Bounding box is added to clip unbounded regions
+- Voronoi diagram has a center vertex and 4 boundary vertices
+- Edges connect center to each boundary vertex

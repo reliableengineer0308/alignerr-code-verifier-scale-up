@@ -1,0 +1,44 @@
+Problem: Trapping Rain Water
+
+Description:
+Implement a function trap(height) that computes how much water it can trap after raining, given an elevation map represented by an array of non-negative integers.
+
+Your task:
+- Calculate the total volume of water trapped between bars
+- Use an efficient algorithm (avoid brute-force O(n²))
+- Handle edge cases: empty array, flat terrain, descending/ascending sequences
+
+Input:
+- Array height of non-negative integers: 0 ≤ height[i] ≤ 10⁵
+- Array length: 0 ≤ n ≤ 2×10⁴
+
+Output:
+Integer: total units of water trapped
+
+Examples:
+Example 1:
+Input: height = [0,1,0,2,1,0,1,3,2,1,2,1]
+Output: 6
+Explanation: The above elevation map (black bars) traps 6 units of rain water.
+
+Example 2:
+Input: height = [4,2,0,3,2,5]
+Output: 9
+
+Example 3:
+Input: height = []
+Output: 0
+
+Constraints:
+0 ≤ n ≤ 2×10⁴
+0 ≤ height[i] ≤ 10⁵
+Time complexity: O(n)
+Space complexity: O(1) (optimal) or O(n) (DP approach)
+Avoid nested loops for large inputs
+
+Notes:
+- Use two pointers or dynamic programming approach
+- For two pointers: track left_max and right_max while moving inward
+- For DP: precompute left_max and right_max arrays
+- Water at position i = min(left_max[i], right_max[i]) - height[i]
+- Handle zero-length array explicitly

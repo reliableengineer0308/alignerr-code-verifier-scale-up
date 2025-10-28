@@ -1,0 +1,14 @@
+{
+  "name": "string-matching-with-wildcards",
+  "task_type": "code-generation",
+  "programming_language": "Python",
+  "solution_file_path": "solution.py",
+  "test_file_path": "test.py",
+  "execution_file_path": "run.sh",
+  "difficulty": "Medium",
+  "tags": ["String Matching", "Dynamic Programming", "Recursion", "Wildcard Pattern", "Pattern Matching"],
+  "timeout": 5,
+  "memory_limit": "256MB",
+  "num_test_cases": 10,
+  "additional_files": "requirements.txt"
+}

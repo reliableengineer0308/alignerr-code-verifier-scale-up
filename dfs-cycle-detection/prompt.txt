@@ -1,0 +1,52 @@
+Problem: Depth-First Search with Cycle Detection
+
+Description:
+Implement a Depth-First Search (DFS) algorithm that detects cycles in a directed graph. The algorithm should:
+1. Traverse the graph using DFS.
+2. Detect if a cycle exists.
+3. Return True if a cycle is found, False otherwise.
+
+Input:
+- graph: Dictionary representing adjacency list
+ * Keys: vertex IDs (integers or strings)
+ * Values: List of adjacent vertices (directed edges)
+- Example: {"A": ["B"], "B": ["C"], "C": ["A"]} (contains cycle)
+
+Output:
+* Boolean: True if cycle exists, False otherwise
+
+Algorithm Requirements:
+1. DFS Traversal:
+ - Use recursion or explicit stack.
+ - Track visited nodes.
+2. Cycle Detection:
+ - Maintain three states for each node:
+   * 0: Unvisited (white)
+   * 1: Currently being explored (gray)
+   * 2: Fully explored (black)
+ - If during traversal you encounter a node in state 1, a cycle exists.
+3. Edge Cases:
+ - Empty graph
+ - Single node (no edges)
+ - Disconnected components
+ - Self-loops (edge from node to itself)
+
+Steps:
+1. Initialize all nodes as unvisited (0).
+2. For each unvisited node:
+ - Start DFS from that node.
+ - Mark node as 1 (being explored).
+ - For each neighbor:
+  * If neighbor is 0: Recursively visit it.
+  * If neighbor is 1: Cycle detected → return True.
+  * If neighbor is 2: Skip (already processed).
+ - After exploring all neighbors, mark node as 2 (fully explored).
+3. If no cycle found after all nodes are processed, return False.
+
+Complexity:
+- Time: O(V+E)
+- Space: O(V) (recursion stack + state array)
+
+Constraints:
+- Do not use external libraries (pure Python).
+- Handle graphs with up to 1000 nodes.

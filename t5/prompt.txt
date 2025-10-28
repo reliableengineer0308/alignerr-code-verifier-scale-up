@@ -1,0 +1,104 @@
+Use Python to solve this problem.
+
+Problem: Maximum Bipartite Matching
+
+Description:
+Given a bipartite graph with U nodes on left and V nodes on right, find the maximum matching.
+Implement Hopcroft-Karp algorithm for optimal performance.
+
+Input:
+- First line: U V E (left nodes, right nodes, edges)
+- Next E lines: u v (edge from left node u to right node v)
+
+Output:
+- Print maximum matching size
+- Print matching pairs in sorted order
+
+Constraints:
+- 1 ≤ U, V ≤ 1000
+- 0 ≤ E ≤ 10000
+- 0 ≤ u < U, 0 ≤ v < V
+
+Examples:
+
+Example 1:
+Input:
+4 4 6
+0 1
+0 2
+1 0
+1 3
+2 2
+3 2
+
+Output:
+Maximum matching: 3
+Matching pairs: (0,1), (1,0), (2,2)
+
+Example 2: Complete Matching
+Input:
+3 3 5
+0 0
+0 1
+1 1
+1 2
+2 2
+
+Output:
+Maximum matching: 3
+Matching pairs: (0,1), (1,2), (2,0)
+
+Example 3: Partial Matching
+Input:
+4 3 4
+0 0
+1 0
+2 1
+3 2
+
+Output:
+Maximum matching: 3
+Matching pairs: (0,0), (2,1), (3,2)
+
+Example 4: Bottleneck Case
+Input:
+5 4 5
+0 0
+1 0
+2 0
+3 0
+4 0
+
+Output:
+Maximum matching: 1
+Matching pairs: (0,0)
+
+Example 5: Asymmetric Case
+Input:
+3 5 6
+0 0
+0 1
+1 2
+1 3
+2 3
+2 4
+
+Output:
+Maximum matching: 3
+Matching pairs: (0,1), (1,2), (2,4)
+
+Example 6: No Edges
+Input:
+2 2 0
+
+Output:
+Maximum matching: 0
+No matching pairs
+
+Algorithm Requirements:
+- Implement Hopcroft-Karp algorithm for bipartite matching
+- Use BFS for finding augmenting paths
+- Use DFS for matching
+- Return maximum matching size and pairs
+
+Note: There can be multiple valid maximum matchings. The algorithm should find any valid maximum matching.

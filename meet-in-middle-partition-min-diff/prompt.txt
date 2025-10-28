@@ -1,0 +1,52 @@
+Use Python to solve this problem.
+
+Problem: Partition Array into Two Subsets with Minimum Difference
+
+Description:
+Given an array of integers, partition it into two subsets such that the absolute difference 
+between their sums is minimized. Return the minimum absolute difference.
+
+Since n can be up to 40, use meet-in-the-middle technique.
+
+Input:
+- First line: T (number of test cases, 1 ≤ T ≤ 10)
+- For each test case:
+  - First line: n (array size, 1 ≤ n ≤ 40)
+  - Second line: n integers (array elements, -10^9 ≤ a_i ≤ 10^9)
+
+Output:
+- For each test case:
+  - Print "Case #X: Y" where X is test case number, Y is the minimum absolute difference
+
+Examples:
+
+Example 1:
+Input:
+3
+5
+1 2 3 4 5
+4
+1 1 1 1
+3
+10 20 30
+
+Output:
+Case #1: 1
+Case #2: 0
+Case #3: 0
+
+Explanation:
+Case 1: Partition [1,2,3,4] and [5] gives difference |10-5| = 5; [1,3,5] and [2,4] gives |9-6| = 3; Optimal: [1,4] and [2,3,5] gives |5-10| = 5; Total sum=15, best partition sum=7 and 8, difference=1
+Case 2: Partition [1,1] and [1,1] gives difference 0
+Case 3: Partition [10,20] and [30] gives difference 0
+
+Algorithm:
+1. Split array into two halves
+2. Generate all possible subset sums for each half
+3. For each sum in first half, find the best matching sum in second half to minimize |sum1 + sum2 - (total_sum)/2|
+4. The minimum difference is 2 * min_distance
+
+Constraints:
+- 1 ≤ T ≤ 10
+- 1 ≤ n ≤ 40
+- -10^9 ≤ a_i ≤ 10^9

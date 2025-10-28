@@ -1,0 +1,76 @@
+Use Python to solve this problem.
+
+Problem: Course Schedule
+
+## Problem Description
+There are a total of numCourses courses you need to take, labeled from 0 to numCourses-1.
+
+You are given an array prerequisites where prerequisites[i] = [a, b] indicates that 
+you must take course b first if you want to take course a (b → a).
+
+Return true if you can finish all courses (no cycles in dependency graph), otherwise return false.
+
+## Input Format
+- First line: T (number of test cases)
+- For each test case:
+  - First line: numCourses
+  - Second line: number of prerequisites
+  - Next lines: prerequisite pairs [a, b] meaning b → a
+
+## Output Format
+- For each test case: "true" if possible, "false" otherwise
+
+## Constraints
+- 1 ≤ numCourses ≤ 2000
+- 0 ≤ prerequisites ≤ 5000
+
+## Example 1: No Cycle
+### Input
+1
+4
+4
+1 0
+2 0
+3 1
+3 2
+
+### Output
+true
+
+### Explanation
+Dependency graph:
+0 → 1 → 3
+0 → 2 → 3
+No cycles, so all courses can be finished.
+
+## Example 2: With Cycle
+### Input
+1
+2
+2
+1 0
+0 1
+
+### Output
+false
+
+### Explanation
+Dependency graph has cycle: 0 → 1 → 0
+Cannot finish courses.
+
+## Example 3: No Prerequisites
+### Input
+1
+3
+0
+
+### Output
+true
+
+### Explanation
+No dependencies, can take courses in any order.
+
+## Algorithm Requirements
+- Use topological sort (Kahn's algorithm) or DFS cycle detection
+- Build adjacency list and indegree array
+- Time complexity: O(V + E)

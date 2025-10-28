@@ -1,0 +1,49 @@
+Problem: Unique Permutations Counting
+
+Description:
+Given a string (or list) with possibly repeated characters, compute the number of unique permutations that can be formed. Unlike standard permutations, duplicates must be excluded (e.g., "aab" has 3 unique permutations: "aab", "aba", "baa").
+
+Input:
+* s: String (or list of characters) with possible duplicates
+
+Output:
+* Integer: Count of unique permutations of s
+
+Key Insight:
+If all characters were unique, the count would be n! (n = length). But when characters repeat, we divide by the factorial of each character’s frequency to avoid overcounting.
+
+Formula:
+Unique Permutations=n!/(f1!*f2!*...fk!)
+​where:
+n = length of string
+fi = frequency of the i-th distinct character
+
+Requirements:
+1. Handle strings with repeated characters.
+2. Return 1 for empty string or single character.
+3. Use efficient factorial computation (avoid recomputing).
+4. Edge cases:
+ * Empty string → 1
+ * All characters same → 1
+ * No duplicates → n#
+
+Algorithm Hints:
+1. Count frequency of each character (use dict or Counter).
+2. Compute n!.
+3. For each frequency f, divide by f!.
+4. Use integer arithmetic (no floating-point division).
+
+Examples:
+s = "abc! → 6  # All unique: 3# = 6
+s = "aab! → 3  # (3!)/(2!1!) = 6/2 = 3
+s = "aaa! → 1  # Only one permutation possible
+s = "abcd! → 24 # 4# = 24
+s = "" → 1     # Empty string has one permutation (empty)
+s = "aabb! → 6 # (4!)/(2!2!) = 24/4 = 6
+
+Constraints:
+* 0 ≤ len(s) ≤ 10
+* Characters are ASCII letters (case-sensitive)
+* Input can be empty
+
+Note: The result fits in a 64-bit integer for len(s) ≤ 10.

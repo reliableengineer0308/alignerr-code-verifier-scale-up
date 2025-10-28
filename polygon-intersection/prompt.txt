@@ -1,0 +1,47 @@
+Use Python to solve this problem.
+
+Problem: Polygon Intersection Area
+
+Description:
+Given two convex polygons, compute the area of their intersection.
+The polygons are given in counter-clockwise order.
+
+Input:
+- First line: N (number of vertices in polygon A)
+- Next N lines: x y (vertices of polygon A)
+- Next line: M (number of vertices in polygon B)  
+- Next M lines: x y (vertices of polygon B)
+
+Output:
+- Area of intersection rounded to 2 decimal places
+
+Constraints:
+- 3 ≤ N, M ≤ 1000
+- -10^6 ≤ x, y ≤ 10^6
+- Both polygons are convex and given in counter-clockwise order
+
+Algorithm Requirements:
+- Use polygon clipping algorithm (Sutherland-Hodgman or Weiler-Atherton)
+- Handle all intersection cases (disjoint, contained, overlapping)
+- Compute area using shoelace formula
+
+Example:
+Input:
+4
+0 0
+4 0
+4 4
+0 4
+4
+1 1
+5 1
+5 5
+1 5
+
+Output:
+9.00
+
+Explanation:
+- Polygon A: square from (0,0) to (4,4), area = 16
+- Polygon B: square from (1,1) to (5,5), area = 16  
+- Intersection: square from (1,1) to (4,4), area = 9

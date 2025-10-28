@@ -1,0 +1,51 @@
+Problem: "Secret Message Decoder"
+
+In the ancient kingdom of Codetopia, spies used a special encryption method to send secret messages. 
+They would hide a secret pattern within a longer text by repeating it multiple times with slight variations. 
+Your mission is to build a decoder that can find all occurrences of a secret pattern in intercepted messages and calculate their "influence score" - the total number of times the pattern appears.
+However, the spies are clever - the pattern might appear in overlapping positions, and each occurrence counts separately!
+Given a text string and a pattern string, find the total number of occurrences of the pattern in the text, including overlapping occurrences.
+
+Input Format
+The input will be provided as a single string containing:
+
+First line: length of text (n)
+Second line: length of pattern (m)
+Third line: the text string (as space-separated integers representing characters)
+Fourth line: the pattern string (as space-separated integers representing characters)
+
+Output Format
+A single integer representing the total number of pattern occurrences.
+
+Constraints
+1 ≤ n ≤ 10,000,000
+1 ≤ m ≤ 10,00,000
+m ≤ n
+
+Text and pattern consist of integers from 0 to 255 (ASCII range)
+
+# Required API
+```python
+def solve(data):
+    lines = data.strip().split('\n')
+    n = int(lines[0])
+    m = int(lines[1])
+    text = list(map(int, lines[2].split()))
+    pattern = list(map(int, lines[3].split()))
+
+Example 1:
+Function: solve(arr)
+Input: arr = """20
+3
+1 2 3 1 2 1 2 3 1 2 3 4 1 2 3 5 6 7 8 9
+1 2 3"""
+Output: 4
+
+
+Example 2:
+Function: solve(arr)
+Input: arr = """10
+2
+1 1 1 1 1 1 1 1 1 1
+1 1"""
+Output: 9

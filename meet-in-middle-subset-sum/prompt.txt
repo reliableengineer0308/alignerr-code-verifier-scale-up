@@ -1,0 +1,53 @@
+Use Python to solve this problem.
+
+Problem: Subset Sum Closest to Target using Meet in the Middle
+
+Description:
+Given a set of n integers and a target value T, find the subset sum that is closest to T.
+Since n can be up to 40, brute force (2^40) is too slow. Use meet-in-the-middle technique.
+
+Split the array into two halves, generate all subset sums for each half, then combine results.
+
+Input:
+- First line: T (number of test cases, 1 ≤ T ≤ 10)
+- For each test case:
+  - First line: n target (array size and target sum, 1 ≤ n ≤ 40, -10^9 ≤ target ≤ 10^9)
+  - Second line: n integers (array elements, -10^9 ≤ a_i ≤ 10^9)
+
+Output:
+- For each test case:
+  - Print "Case #X: Y" where X is test case number, Y is the closest subset sum to target
+
+Examples:
+
+Example 1:
+Input:
+3
+5 10
+1 2 3 4 5
+4 7
+-1 2 3 4
+6 100
+10 20 30 40 50 60
+
+Output:
+Case #1: 10
+Case #2: 7
+Case #3: 100
+
+Explanation:
+Case 1: Subset [1,2,3,4] sums to 10, which equals target
+Case 2: Subset [3,4] sums to 7, which equals target
+Case 3: Subset [10,20,30,40] sums to 100, equals target
+
+Algorithm:
+1. Split array into two halves A and B
+2. Generate all subset sums for A and store in sorted list
+3. Generate all subset sums for B
+4. For each sum in B, use binary search to find best matching sum in A such that (sum_A + sum_B) is closest to target
+5. Track the best overall sum
+
+Constraints:
+- 1 ≤ T ≤ 10
+- 1 ≤ n ≤ 40
+- -10^9 ≤ target, a_i ≤ 10^9
