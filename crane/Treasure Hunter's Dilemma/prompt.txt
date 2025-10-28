@@ -1,0 +1,37 @@
+Treasure Hunter's Dilemma
+
+You are a treasure hunter exploring ancient ruins. The ruins consist of n chambers arranged in a line. 
+Each chamber contains a certain amount of gold, but there's a catch: if you take gold from two adjacent chambers, the ancient security system will trigger and you'll lose all your treasure!
+Your goal is to maximize the amount of gold you can collect without triggering the security system.
+Given an array chambers where chambers[i] represents the amount of gold in chamber i, find the maximum amount of gold you can collect without taking gold from two adjacent chambers.
+
+Input Constraints
+1 ≤ n ≤ 100,000 (number of chambers)
+0 ≤ chambers[i] ≤ 10,000 (amount of gold in each chamber)
+
+Input Format
+The input will be a list of integers where:
+The first number is n (number of chambers)
+The next n numbers are the gold amounts in each chamber
+
+Output Format
+Return a single integer representing the maximum gold that can be collected.
+
+# Required API
+```python
+def solve(data):
+    n = data[0]
+    chambers = data[1:1+n]
+
+
+Example 1:
+Function: solve(data):
+Input: data = [5, 2, 7, 9, 3, 1]
+Output: 12
+Explanation : Optimal path: Take chambers at indices 2, 4, and 6 (values 2, 9, 1) Total: 2 + 9 + 1 = 12
+
+
+Example 2:
+Function: solve(data)
+Input: data = [4, 5, 5, 5, 5]
+Output: 10

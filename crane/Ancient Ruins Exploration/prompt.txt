@@ -1,0 +1,50 @@
+Problem: "Ancient Treasure Maze"
+
+Deep in the Amazon rainforest, archaeologists have discovered an ancient temple with a treasure maze. 
+The maze is represented as a grid where each cell contains a certain number of gold coins. 
+As an adventurer, you start from the top-left corner and must reach the bottom-right corner. 
+You can only move right or down at each step.
+However, there's a twist! The temple has security systems that detect if you collect too much gold too quickly. 
+You cannot collect more than K consecutive coins in the same direction. 
+That means if you move in the same direction (right or down) more than K times consecutively, the temple's traps will activate!
+
+Your task is to find the maximum number of gold coins you can collect while respecting the consecutive moves constraint.
+
+Input Format:
+The input is a list of integers where:
+First integer: number of rows (M)
+Second integer: number of columns (N)
+Third integer: maximum consecutive moves allowed (K)
+Next M×N integers: grid values row by row
+
+Constraints:
+
+1 ≤ M, N ≤ 100
+1 ≤ K ≤ 10
+0 ≤ grid values ≤ 1000
+
+Output:
+Return the maximum gold coins collectable, or -1 if it's impossible to reach the destination.
+
+
+
+# Required API
+```python
+def solve(data):
+    # Parse input data
+    idx = 0
+    M = data[idx]; idx += 1
+    N = data[idx]; idx += 1
+    K = data[idx]; idx += 1
+
+
+Example 1:
+Function: solve(data):
+Input: data = [2, 2, 2, 1, 2, 3, 4]
+Output: 8
+
+
+Example 2:
+Function: solve(data)
+Input: data = [2, 3, 1, 1, 1, 1, 1, 1, 1]
+Output: 4

@@ -1,0 +1,39 @@
+Problem: "Space Station Power Grid"
+Problem Description
+You are the chief engineer of a futuristic space station. 
+The station has a circular power grid with N energy nodes. 
+Each node has a certain power level, but there's a critical constraint: if you activate a node, you cannot activate its adjacent nodes (they're too close and would cause power surges).
+
+Your mission is to select a set of non-adjacent nodes to maximize the total power output. Since the grid is circular, the first and last nodes are also considered adjacent.
+
+Input Format:
+The input is a list of integers where:
+First integer: number of nodes (N)
+Next N integers: power values of each node
+
+Constraints:
+1 ≤ N ≤ 100,000
+0 ≤ power values ≤ 10,000
+
+Output:
+Return the maximum total power achievable.
+
+
+
+# Required API
+```python
+def solve(data):
+    n = data[0]
+    power = data[1:1 + n]
+
+
+Example 1:
+Function: solve(data):
+Input: data = [4, 1, 2, 3, 1]
+Output: 4
+
+
+Example 2:
+Function: solve(data)
+Input: data = [3, 2, 3, 2]
+Output: 3
